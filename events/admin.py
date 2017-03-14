@@ -3,7 +3,7 @@ from .models import Event, Interaction
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'datetime', 'image', 'details')
+    list_display = ('title', 'datetime', 'image', 'details', 'is_upcoming')
 
 
 class InteractionAdmin(admin.ModelAdmin):

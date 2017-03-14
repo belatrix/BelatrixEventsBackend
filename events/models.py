@@ -18,6 +18,8 @@ class Event(models.Model):
     interaction_text = models.CharField(max_length=200, blank=True, null=True)
     interaction_confirmation_text = models.CharField(max_length=200, blank=True, null=True)
     is_featured = models.BooleanField(default=False)
+    is_upcoming = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
@@ -32,6 +34,7 @@ class Interaction(models.Model):
     text = models.CharField(max_length=100)
     event = models.ForeignKey(Event)
     votes = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.text
