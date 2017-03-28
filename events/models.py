@@ -12,13 +12,14 @@ class Event(models.Model):
     address = models.CharField(max_length=200, blank=True, null=True)
     details = models.TextField()
     register_link = models.URLField(blank=True, null=True)
-    share_text = models.CharField(max_length=140, blank=True, null=True)
+    sharing_text = models.CharField(max_length=140, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     has_interactions = models.BooleanField(default=False)
     interaction_text = models.CharField(max_length=200, blank=True, null=True)
     interaction_confirmation_text = models.CharField(max_length=200, blank=True, null=True)
     is_featured = models.BooleanField(default=False)
     is_upcoming = models.BooleanField(default=True)
+    is_interaction_finished = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
