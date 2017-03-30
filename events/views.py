@@ -23,7 +23,7 @@ def event_featured(request):
     Returns event featured
     """
     event_featured = Event.objects.filter(is_featured=True, is_active=True, is_upcoming=True).first()
-    if event_featured == None:
+    if event_featured is None:
         random_id = randint(0, Event.objects.count() - 1)
         event_featured = Event.objects.filter(is_active=True, is_upcoming=True)[random_id]
     serializer = EventSerializer(event_featured)
@@ -35,10 +35,23 @@ def event_interaction(request, event_id):
     """
     Returns event interactions
     """
-    event = get_object_or_404(Event, pk=event_id)
-    interactions = Interaction.objects.filter(event=event)
+    event = get_object_or_404(Event, pk=event_id, is_active=True)
+    interactions = Interaction.objects.filter(event=event, is_active=True)
     serializer = InteractionSerializer(interactions, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['PATCH', ])
+def event_interaction_vote(request, interaction_id):
+    """
+    Add +1 vote to interaction votes count
+    """
+    interaction = get_object_or_404(Interaction, pk=interaction_id, is_active=True)
+    if interaction.event.is_interaction_active:
+        interaction.votes += 1
+        interaction.save()
+    serializer = InteractionSerializer(interaction)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @api_view(['GET', ])
@@ -56,7 +69,7 @@ def event_upcoming_list(request):
     """
     Returns upcoming event list
     """
-    events = Event.objects.filter(is_upcoming=True)
+    events = Event.objects.filter(is_upcoming=True, is_active=True)
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -66,6 +79,6 @@ def event_past_list(request):
     """
     Returns past event list
     """
-    events = Event.objects.filter(is_upcoming=False)
+    events = Event.objects.filter(is_upcoming=False, is_active=True)
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)

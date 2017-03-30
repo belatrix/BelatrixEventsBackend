@@ -19,7 +19,7 @@ class Event(models.Model):
     interaction_confirmation_text = models.CharField(max_length=200, blank=True, null=True)
     is_featured = models.BooleanField(default=False)
     is_upcoming = models.BooleanField(default=True)
-    is_interaction_finished = models.BooleanField(default=False)
+    is_interaction_active = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
