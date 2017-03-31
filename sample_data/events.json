@@ -1,0 +1,41 @@
+[{
+	"model": "events.event",
+	"pk": 1,
+	"fields": {
+		"title": "Hackatrix Lima 2016",
+		"image": "http://hackatrix.belatrixsf.com/2016_peru/media/bg_02_hackatop.jpg",
+		"datetime": "2016-05-21T09:00:00Z",
+		"address": "Auditorio \u201cPrimus Interpares\u201d de la Universidad San Martin de Porres - Campus FIA Av. La Fontana 1250 \u2013 La Molina",
+		"details": "Es la Hackathon anual de Belatrix para promover el desarrollo colectivo de ideas sociales e innovadoras en un ambiente de diversi\u00f3n y adrenalina pura.\r\nTodo completamente GRATUITO.",
+		"register_link": "http://hackatrix.belatrixsf.com/2016_peru/",
+		"sharing_text": "Un nuevo a\u00f1o, un nuevo desaf\u00edo  \u00bfEst\u00e1s listo para un d\u00eda de programaci\u00f3n al m\u00e1ximo?",
+		"location": "https://www.google.com.pe/maps/place/Facultad+de+Ingenieria+y+Arquitectura/@-12.0477255,-77.0341608,",
+		"has_interactions": false,
+		"interaction_text": "",
+		"interaction_confirmation_text": "",
+		"is_featured": false,
+		"is_upcoming": false,
+		"is_interaction_active": false,
+		"is_active": true
+	}
+}, {
+	"model": "events.event",
+	"pk": 2,
+	"fields": {
+		"title": "Hackatrix Lima 2017",
+		"image": "http://hackatrix.belatrixsf.com/2016_arg/media/bg_compu_codigo.jpg",
+		"datetime": "2017-05-20T09:00:00Z",
+		"address": "Oficinas BCP",
+		"details": "Es la Hackathon anual de Belatrix para promover el desarrollo colectivo de ideas sociales e innovadoras en un ambiente de diversi\u00f3n y adrenalina pura.",
+		"register_link": "http://hackatrix.belatrixsf.com/2016_arg/#Registro",
+		"sharing_text": "Viv\u00ed la experiencia de programar en vivo",
+		"location": "https://www.google.com.pe/maps/place/Banco+De+Credito/@-12.0730034,-76.934053,15z/data=!4m12!1m6!3m5",
+		"has_interactions": true,
+		"interaction_text": "Seg\u00fan tu opinion, \u00bfQu\u00e9 proyecto consideras que debe ganar la Hackatrix?",
+		"interaction_confirmation_text": "\u00bfEst\u00e1 seguro que desea votar  por el proyecto ABC?",
+		"is_featured": true,
+		"is_upcoming": true,
+		"is_interaction_active": true,
+		"is_active": true
+	}
+}]

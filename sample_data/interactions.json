@@ -1,0 +1,64 @@
+[{
+	"model": "events.interaction",
+	"pk": 1,
+	"fields": {
+		"text": "Red de Contactos Profesionales",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 2,
+	"fields": {
+		"text": "Crowdfunding social",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 3,
+	"fields": {
+		"text": "Sabueso de mascotas perdidas",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 4,
+	"fields": {
+		"text": "App para hacer carpooling",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 5,
+	"fields": {
+		"text": "Agente inteligente para celulares",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 6,
+	"fields": {
+		"text": "Localizador de objetos, animales y/o personas",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 7,
+	"fields": {
+		"text": "Ranking de Conductores y Veh\u00edculos",
+		"event": 2,
+		"votes": 0,
+		"is_active": true
+	}
+}]
