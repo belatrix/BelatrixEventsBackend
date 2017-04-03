@@ -1,0 +1,1 @@
+web: gunicorn BxEvents.wsgi --log-file -
