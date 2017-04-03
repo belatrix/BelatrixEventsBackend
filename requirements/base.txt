@@ -2,7 +2,7 @@ appdirs==1.4.3
 configparser==3.5.0
 Django==1.10.6
 django-rest-swagger==0.3.10
-djangorestframework==3.5.4
+djangorestframework==3.6.0
 enum34==1.1.6
 flake8==3.3.0
 mccabe==0.6.1
