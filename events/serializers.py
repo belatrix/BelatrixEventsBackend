@@ -6,6 +6,7 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = Event
         fields = '__all__'
+        depth = 1
 
 
 class InteractionSerializer(serializers.ModelSerializer):

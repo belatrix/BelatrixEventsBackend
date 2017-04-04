@@ -5,6 +5,19 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
+class Location(models.Model):
+    name = models.CharField(max_length=100)
+    latitude = models.CharField(max_length=11)
+    longitude = models.CharField(max_length=11)
+
+    def __str__(self):
+        return "%s, %s, %s" % (self.name, self.latitude, self.longitude)
+
+    class Meta(object):
+        verbose_name_plural = 'locations'
+
+
+@python_2_unicode_compatible
 class Event(models.Model):
     title = models.CharField(max_length=100)
     image = models.URLField()
@@ -13,7 +26,7 @@ class Event(models.Model):
     details = models.TextField()
     register_link = models.URLField(blank=True, null=True)
     sharing_text = models.CharField(max_length=140, blank=True, null=True)
-    location = models.CharField(max_length=100, blank=True, null=True)
+    location = models.ForeignKey(Location, blank=True, null=True)
     has_interactions = models.BooleanField(default=False)
     interaction_text = models.CharField(max_length=200, blank=True, null=True)
     interaction_confirmation_text = models.CharField(max_length=200, blank=True, null=True)
