@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Event, Interaction
+from .models import City, Event, Interaction
+
+
+class CitySerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = City
+        fields = '__all__'
 
 
 class EventSerializer(serializers.ModelSerializer):

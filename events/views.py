@@ -5,7 +5,17 @@ from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from .models import Event, Interaction, City
-from .serializers import EventSerializer, InteractionSerializer
+from .serializers import CitySerializer, EventSerializer, InteractionSerializer
+
+
+@api_view(['GET', ])
+def event_city_list(request):
+    """
+    Returns event city list
+    """
+    cities = City.objects.all()
+    serializer = CitySerializer(cities, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', ])
