@@ -2,6 +2,7 @@ from random import randint
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from .models import Event, Interaction
 from .serializers import EventSerializer, InteractionSerializer
@@ -37,8 +38,18 @@ def event_interaction(request, event_id):
     """
     event = get_object_or_404(Event, pk=event_id, is_active=True)
     interactions = Interaction.objects.filter(event=event, is_active=True)
-    serializer = InteractionSerializer(interactions, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    if request.GET.get('pagination'):
+        pagination = request.GET.get('pagination')
+        if pagination == 'true':
+            paginator = PageNumberPagination()
+            results = paginator.paginate_queryset(interactions, request)
+            serializer = EventSerializer(results, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        serializer = EventSerializer(interactions, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['PATCH', ])
@@ -60,8 +71,18 @@ def event_list(request):
     Returns event list
     """
     events = Event.objects.all()
-    serializer = EventSerializer(events, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    if request.GET.get('pagination'):
+        pagination = request.GET.get('pagination')
+        if pagination == 'true':
+            paginator = PageNumberPagination()
+            results = paginator.paginate_queryset(events, request)
+            serializer = EventSerializer(results, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', ])
@@ -70,8 +91,18 @@ def event_upcoming_list(request):
     Returns upcoming event list
     """
     events = Event.objects.filter(is_upcoming=True, is_active=True)
-    serializer = EventSerializer(events, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    if request.GET.get('pagination'):
+        pagination = request.GET.get('pagination')
+        if pagination == 'true':
+            paginator = PageNumberPagination()
+            results = paginator.paginate_queryset(events, request)
+            serializer = EventSerializer(results, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET', ])
@@ -80,5 +111,15 @@ def event_past_list(request):
     Returns past event list
     """
     events = Event.objects.filter(is_upcoming=False, is_active=True)
-    serializer = EventSerializer(events, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    if request.GET.get('pagination'):
+        pagination = request.GET.get('pagination')
+        if pagination == 'true':
+            paginator = PageNumberPagination()
+            results = paginator.paginate_queryset(events, request)
+            serializer = EventSerializer(results, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
