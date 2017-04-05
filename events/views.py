@@ -43,12 +43,12 @@ def event_interaction(request, event_id):
         if pagination == 'true':
             paginator = PageNumberPagination()
             results = paginator.paginate_queryset(interactions, request)
-            serializer = EventSerializer(results, many=True)
+            serializer = InteractionSerializer(results, many=True)
             return paginator.get_paginated_response(serializer.data)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
-        serializer = EventSerializer(interactions, many=True)
+        serializer = InteractionSerializer(interactions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
