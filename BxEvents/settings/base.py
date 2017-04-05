@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'events.apps.EventsConfig',
+    'employees.apps.EmployeesConfig',
 ]
 
 MIDDLEWARE = [

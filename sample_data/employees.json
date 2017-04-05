@@ -1,0 +1,25 @@
+[{
+	"model": "employees.employee",
+	"pk": 1,
+	"fields": {
+		"name": "Diego Velasquez",
+		"avatar": "https://pbs.twimg.com/profile_images/1144458057/avatar.jpg",
+		"email": "dvelasquez@belatrixsf.com",
+		"role": "Android Developer",
+		"twitter": "@diegoveloper",
+		"github": "@diegoveloper",
+		"website": "https://about.me/diegoveloper"
+	}
+}, {
+	"model": "employees.employee",
+	"pk": 2,
+	"fields": {
+		"name": "Sergio Infante",
+		"avatar": "https://pbs.twimg.com/profile_images/3655553620/cd32a4e0d3b571cdf955ca4f19349f53.jpeg",
+		"email": "sinfante@belatrixsf.com",
+		"role": "Software Developer",
+		"twitter": "@neosergio",
+		"github": "@neosergio",
+		"website": "http://neosergio.net"
+	}
+}]
