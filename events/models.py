@@ -5,6 +5,17 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
+class City(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta(object):
+        verbose_name_plural = 'cities'
+
+
+@python_2_unicode_compatible
 class Location(models.Model):
     name = models.CharField(max_length=100)
     latitude = models.CharField(max_length=11)
@@ -24,6 +35,7 @@ class Event(models.Model):
     datetime = models.DateTimeField()
     address = models.CharField(max_length=200, blank=True, null=True)
     details = models.TextField()
+    city = models.ManyToManyField(City)
     register_link = models.URLField(blank=True, null=True)
     sharing_text = models.CharField(max_length=140, blank=True, null=True)
     location = models.ForeignKey(Location, blank=True, null=True)

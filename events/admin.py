@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Event, Interaction, Location
+from .models import City, Event, Interaction, Location
+
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name', )
 
 
 class EventAdmin(admin.ModelAdmin):
@@ -14,6 +18,7 @@ class LocationAdmin(admin.ModelAdmin):
     list_display = ('name', 'latitude', 'longitude')
 
 
+admin.site.register(City, CityAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Interaction, InteractionAdmin)
 admin.site.register(Location, LocationAdmin)

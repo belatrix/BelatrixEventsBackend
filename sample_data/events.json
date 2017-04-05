@@ -16,7 +16,8 @@
 		"is_featured": false,
 		"is_upcoming": false,
 		"is_interaction_active": false,
-		"is_active": true
+		"is_active": true,
+		"city": [1]
 	}
 }, {
 	"model": "events.event",
@@ -36,6 +37,7 @@
 		"is_featured": true,
 		"is_upcoming": true,
 		"is_interaction_active": true,
-		"is_active": true
+		"is_active": true,
+		"city": [1]
 	}
 }]

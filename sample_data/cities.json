@@ -1,0 +1,25 @@
+[{
+	"model": "events.city",
+	"pk": 1,
+	"fields": {
+		"name": "Lima"
+	}
+}, {
+	"model": "events.city",
+	"pk": 2,
+	"fields": {
+		"name": "Mendoza"
+	}
+}, {
+	"model": "events.city",
+	"pk": 3,
+	"fields": {
+		"name": "Buenos Aires"
+	}
+}, {
+	"model": "events.city",
+	"pk": 4,
+	"fields": {
+		"name": "Bogota"
+	}
+}]
