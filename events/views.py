@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from .models import Event, Interaction
+from .models import Event, Interaction, City
 from .serializers import EventSerializer, InteractionSerializer
 
 
@@ -71,6 +71,10 @@ def event_list(request):
     Returns event list
     """
     events = Event.objects.all()
+    if request.GET.get('city'):
+        city_id = int(request.GET.get('city'))
+        city = get_object_or_404(City, pk=city_id)
+        events = Event.objects.filter(city__in=[city])
     if request.GET.get('pagination'):
         pagination = request.GET.get('pagination')
         if pagination == 'true':
@@ -91,6 +95,10 @@ def event_upcoming_list(request):
     Returns upcoming event list
     """
     events = Event.objects.filter(is_upcoming=True, is_active=True)
+    if request.GET.get('city'):
+        city_id = int(request.GET.get('city'))
+        city = get_object_or_404(City, pk=city_id)
+        events = events.filter(city__in=[city])
     if request.GET.get('pagination'):
         pagination = request.GET.get('pagination')
         if pagination == 'true':
@@ -111,6 +119,10 @@ def event_past_list(request):
     Returns past event list
     """
     events = Event.objects.filter(is_upcoming=False, is_active=True)
+    if request.GET.get('city'):
+        city_id = int(request.GET.get('city'))
+        city = get_object_or_404(City, pk=city_id)
+        events = events.filter(city__in=[city])
     if request.GET.get('pagination'):
         pagination = request.GET.get('pagination')
         if pagination == 'true':
