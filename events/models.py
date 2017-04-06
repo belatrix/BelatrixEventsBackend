@@ -35,7 +35,7 @@ class Event(models.Model):
     datetime = models.DateTimeField()
     address = models.CharField(max_length=200, blank=True, null=True)
     details = models.TextField()
-    city = models.ManyToManyField(City)
+    city = models.ManyToManyField('City')
     register_link = models.URLField(blank=True, null=True)
     sharing_text = models.CharField(max_length=140, blank=True, null=True)
     location = models.ForeignKey(Location, blank=True, null=True)
@@ -49,6 +49,9 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_cities(self):
+        return "\n".join([c.name for c in self.city.all()])
 
     class Meta(object):
         ordering = ['-datetime']

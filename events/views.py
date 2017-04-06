@@ -1,9 +1,9 @@
-from random import randint
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from utils.random_item import random_element_list
 from .models import Event, Interaction, City
 from .serializers import CitySerializer, EventSerializer, InteractionSerializer
 
@@ -33,10 +33,33 @@ def event_featured(request):
     """
     Returns event featured
     """
-    event_featured = Event.objects.filter(is_featured=True, is_active=True, is_upcoming=True).first()
-    if event_featured is None:
-        random_id = randint(0, Event.objects.count() - 1)
-        event_featured = Event.objects.filter(is_active=True, is_upcoming=True)[random_id]
+    events = Event.objects.filter(is_active=True, is_featured=True)
+
+    if request.GET.get('city'):
+        city_id = int(request.GET.get('city'))
+        city = get_object_or_404(City, pk=city_id)
+        events_city = events.filter(city__in=[city])
+        if events_city.count() > 0:
+            events = events_city
+        else:
+            events = Event.objects.filter(is_active=True, city__in=[city])
+
+    if events.count() > 0:
+        events_upcoming = events.filter(is_upcoming=True)
+        if events_upcoming.count() > 0:
+            if events_upcoming.count() > 1:
+                event_featured = random_element_list(events_upcoming)
+            else:
+                event_featured = events_upcoming[0]
+        else:
+            event_featured = random_element_list(events)
+    else:
+        events = Event.objects.filter(is_active=True)
+        if events.count() > 0:
+            event_featured = random_element_list(events)
+        else:
+            Response(status=status.HTTP_404_NOT_FOUND)
+
     serializer = EventSerializer(event_featured)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
