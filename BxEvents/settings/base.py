@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'events.apps.EventsConfig',
     'employees.apps.EmployeesConfig',
+    'notifications.apps.NotificationsConfig',
 ]
 
 MIDDLEWARE = [
