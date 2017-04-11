@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'events.apps.EventsConfig',
     'employees.apps.EmployeesConfig',
     'notifications.apps.NotificationsConfig',
+    'devices.apps.DevicesConfig',
 ]
 
 MIDDLEWARE = [
