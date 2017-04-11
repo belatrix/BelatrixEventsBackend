@@ -125,3 +125,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Push notifications
+FIREBASE_API_URL = 'https://fcm.googleapis.com/fcm/send'
+TITLE_PUSH_NOTIFICATIONS = 'BELATRIX Events'

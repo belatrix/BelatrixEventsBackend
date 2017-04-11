@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^device/', include('devices.urls', namespace='devices')),
     url(r'^employee/', include('employees.urls', namespace='employees')),
     url(r'^event/', include('events.urls', namespace='events')),
+    url(r'^notifications/', include('notifications.urls', namespace='notifications')),
 ]

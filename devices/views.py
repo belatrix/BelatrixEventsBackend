@@ -11,9 +11,10 @@ def android_device_registration(request):
     Register device
     """
     device_code = (request.data['device_code'] if 'device_code' in request.data.keys() else None)
+    city = (request.data['city'] if 'city' in request.data.keys() else 0)
     devices = Device.objects.filter(device_code=device_code)
     if devices.count() == 0:
-        device = Device.objects.create(device_code=device_code, type='android')
+        device = Device.objects.create(device_code=device_code, type='android', city=city)
         serializer = DeviceSerializer(device)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:

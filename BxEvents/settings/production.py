@@ -40,3 +40,6 @@ ALLOWED_HOSTS = ['*']
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# PUSH NOTIFICATIONS
+FIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY', '')

@@ -21,3 +21,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # noqa: F405
     }
 }
+
+# PUSH NOTIFICATIONS LOCAL
+FIREBASE_SERVER_KEY = ''

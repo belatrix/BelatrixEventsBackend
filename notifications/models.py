@@ -7,7 +7,6 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Message(models.Model):
     text = models.CharField(max_length=140)
-    event = models.ForeignKey('events.Event')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
