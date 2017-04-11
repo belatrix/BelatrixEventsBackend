@@ -6,14 +6,14 @@ from .serializers import DeviceSerializer
 
 
 @api_view(['POST', ])
-def device_registration(request):
+def android_device_registration(request):
     """
     Register device
     """
     device_code = (request.data['device_code'] if 'device_code' in request.data.keys() else None)
     devices = Device.objects.filter(device_code=device_code)
     if devices.count() == 0:
-        device = Device.objects.create(device_code=device_code)
+        device = Device.objects.create(device_code=device_code, type='android')
         serializer = DeviceSerializer(device)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:

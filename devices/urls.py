@@ -1,7 +1,7 @@
-from .views import device_registration
+from .views import android_device_registration
 from django.conf.urls import url
 
 
 urlpatterns = [
-    url(r'^register/$', device_registration, name='registration'),
+    url(r'^register/android/$', android_device_registration, name='android_registration'),
 ]
