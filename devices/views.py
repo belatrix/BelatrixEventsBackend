@@ -25,13 +25,12 @@ def android_device_registration(request):
 
 
 @api_view(['PATCH', ])
-def update_device_city(request):
+def update_device_city(request, device_id):
     """
     Update device city
     """
-    device_code = (request.data['device_code'] if 'device_code' in request.data.keys() else None)
     city = (request.data['city'] if 'city' in request.data.keys() else 0)
-    device = get_object_or_404(Device, device_code=device_code)
+    device = get_object_or_404(Device, pk=device_id)
     device.city = int(city)
     device.save()
     serializer = DeviceSerializer(device)
