@@ -1,0 +1,17 @@
+[{
+	"model": "events.location",
+	"pk": 1,
+	"fields": {
+		"name": "Facultad de Ingenieria y Arquitectura - USMP",
+		"latitude": "-12.072049",
+		"longitude": "-76.9443491"
+	}
+}, {
+	"model": "events.location",
+	"pk": 2,
+	"fields": {
+		"name": "BCP - Molina",
+		"latitude": "-12.1042623",
+		"longitude": "-76.9509311"
+	}
+}]
