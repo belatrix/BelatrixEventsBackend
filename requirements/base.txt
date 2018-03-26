@@ -1,6 +1,6 @@
 appdirs==1.4.3
 configparser==3.5.0
-Django==1.10.6
+Django==1.10.8
 django-rest-swagger==0.3.10
 djangorestframework==3.6.2
 enum34==1.1.6
