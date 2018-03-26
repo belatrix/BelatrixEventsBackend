@@ -3,15 +3,39 @@
 	"pk": 1,
 	"fields": {
 		"name": "Facultad de Ingenieria y Arquitectura - USMP",
-		"latitude": "-12.072049",
-		"longitude": "-76.9443491"
+		"latitude": "-12.0721883",
+		"longitude": "-76.9440187"
 	}
 }, {
 	"model": "events.location",
 	"pk": 2,
 	"fields": {
-		"name": "BCP - Molina",
-		"latitude": "-12.1042623",
-		"longitude": "-76.9509311"
+		"name": "BCP Sede Central",
+		"latitude": "-12.0689035",
+		"longitude": "-76.9370003"
+	}
+}, {
+	"model": "events.location",
+	"pk": 3,
+	"fields": {
+		"name": "Espacio Cultural Julio Le Parc",
+		"latitude": "-32.887902",
+		"longitude": "-68.8165977"
+	}
+}, {
+	"model": "events.location",
+	"pk": 4,
+	"fields": {
+		"name": "Edificio Tinkuy de la Pontificia Universidad Cat\u00f3lica del Per\u00fa.",
+		"latitude": "-12.0690764",
+		"longitude": "-77.0806257"
+	}
+}, {
+	"model": "events.location",
+	"pk": 5,
+	"fields": {
+		"name": "Universidad de Palermo",
+		"latitude": "-34.597316",
+		"longitude": "-58.4179587"
 	}
 }]

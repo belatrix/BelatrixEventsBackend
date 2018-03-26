@@ -8,7 +8,7 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ('text', 'is_active', 'city')
 
     def save_model(self, request, obj, form, change):
-        devices = Device.objects.filter(city=obj.city)
+        devices = Device.objects.filter(city=obj.city) | Device.objects.filter(city=0)
         send_push_notification(devices, obj.text)
         obj.save()
 
