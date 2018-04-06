@@ -34,8 +34,8 @@
 		"has_interactions": true,
 		"interaction_text": "Seg\u00fan tu opinion, \u00bfQu\u00e9 proyecto consideras que debe ganar la Hackatrix?",
 		"interaction_confirmation_text": "\u00bfEst\u00e1 seguro que desea votar  por el proyecto %s?",
-		"is_featured": true,
-		"is_upcoming": true,
+		"is_featured": false,
+		"is_upcoming": false,
 		"is_interaction_active": true,
 		"is_active": true,
 		"city": [1]
@@ -144,5 +144,47 @@
 		"is_interaction_active": false,
 		"is_active": true,
 		"city": [3]
+	}
+}, {
+	"model": "events.event",
+	"pk": 18,
+	"fields": {
+		"title": "Hackatrix Buenos Aires 2017",
+		"image": "http://hackatrix.belatrixsf.com/img/bsas/0016.jpg",
+		"datetime": "2017-10-07T16:00:00Z",
+		"address": "",
+		"details": "Es la Hackathon anual de Belatrix para promover el desarrollo colectivo de ideas sociales e innovadoras en un ambiente de diversi\u00f3n y adrenalina pura.\r\nTodo completamente GRATUITO",
+		"register_link": "http://hackatrix.belatrixsf.com/2017_argentina/#Registro",
+		"sharing_text": "http://hackatrix.belatrixsf.com/2017_argentina/#Registro",
+		"location": 6,
+		"has_interactions": false,
+		"interaction_text": "",
+		"interaction_confirmation_text": "",
+		"is_featured": true,
+		"is_upcoming": false,
+		"is_interaction_active": false,
+		"is_active": false,
+		"city": [3]
+	}
+}, {
+	"model": "events.event",
+	"pk": 19,
+	"fields": {
+		"title": "Hackatrix Lima 2018",
+		"image": "http://i.imgur.com/bTHbsu5.jpg",
+		"datetime": "2018-06-02T14:00:00Z",
+		"address": "Oficinas BCP",
+		"details": "Es la Hackathon anual de Belatrix para promover el desarrollo colectivo de ideas sociales e innovadoras en un ambiente de diversi\u00f3n y adrenalina pura.",
+		"register_link": "http://hackatrix.belatrixsf.com/",
+		"sharing_text": "http://hackatrix.belatrixsf.com/",
+		"location": 2,
+		"has_interactions": false,
+		"interaction_text": "",
+		"interaction_confirmation_text": "",
+		"is_featured": true,
+		"is_upcoming": true,
+		"is_interaction_active": false,
+		"is_active": true,
+		"city": [1]
 	}
 }]
