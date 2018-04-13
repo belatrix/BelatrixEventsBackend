@@ -1,17 +1,17 @@
 [{
-	"model": "auth.user",
-	"pk": 5,
+	"model": "participants.user",
+	"pk": 1,
 	"fields": {
-		"password": "pbkdf2_sha256$30000$XuQJbEtm4PNf$LJ05iN19doD4Jtc/Pz1qMgRR1ANW8zypugtsMF/ek1E=",
-		"last_login": "2018-04-06T17:27:50.392Z",
+		"password": "pbkdf2_sha256$30000$wck7Fjg9YlVJ$rMoCsMakvkI1oRmAlWCpvtNMmT6MVyOcrErcnaZWLOM=",
+		"last_login": "2018-04-13T03:28:53.690Z",
 		"is_superuser": true,
-		"username": "raulsergio",
-		"first_name": "",
-		"last_name": "",
-		"email": "",
+		"email": "sinfante@belatrixsf.com",
+		"first_name": "Sergio",
+		"last_name": "Infante",
+		"date_joined": "2018-04-13T03:28:41.467Z",
 		"is_staff": true,
 		"is_active": true,
-		"date_joined": "2018-03-26T22:03:57.993Z",
+		"is_participant": false,
 		"groups": [],
 		"user_permissions": []
 	}

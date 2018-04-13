@@ -35,10 +35,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'import_export',
     'events.apps.EventsConfig',
     'employees.apps.EmployeesConfig',
     'notifications.apps.NotificationsConfig',
     'devices.apps.DevicesConfig',
+    'participants.apps.ParticipantsConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +121,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# USER MODEL
+AUTH_USER_MODEL = "participants.User"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
