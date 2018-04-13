@@ -1,64 +1,289 @@
 [{
 	"model": "events.interaction",
-	"pk": 1,
+	"pk": 8,
 	"fields": {
-		"text": "Red de Contactos Profesionales",
+		"text": "Dale Go - App social de eventos deportivos",
+		"event": 2,
+		"votes": 45,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 9,
+	"fields": {
+		"text": "Sportify - App social para buscar gente que quiera jugar y este cerca de ti",
+		"event": 2,
+		"votes": 10,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 10,
+	"fields": {
+		"text": "Gento - Plataforma que cambia la forma de como compramos ropa por medio de machine learning",
+		"event": 2,
+		"votes": 4,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 11,
+	"fields": {
+		"text": "Medical Chain - Historiales m\u00e9dicos registrados en una red blockchain",
+		"event": 2,
+		"votes": 83,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 12,
+	"fields": {
+		"text": "Amor a Sofia - App para ayuda a los postulantes a universidades",
+		"event": 2,
+		"votes": 3,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 13,
+	"fields": {
+		"text": "B\u00fasqueda de Personas Perdidas - Plataforma para buscar personas por medio de reconocimiento facial",
+		"event": 2,
+		"votes": 47,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 14,
+	"fields": {
+		"text": "Mi Primer App - Participaci\u00f3n en proyectos para estudiantes de postgrado",
+		"event": 2,
+		"votes": 8,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 15,
+	"fields": {
+		"text": "iMetrics - Medidor de agua inteligente conectado a una red neural para optimizar facturaciones",
+		"event": 2,
+		"votes": 1,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 16,
+	"fields": {
+		"text": "iChancon - Red social para colaborar en la resoluci\u00f3n de problemas acad\u00e9micos",
+		"event": 2,
+		"votes": 47,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 17,
+	"fields": {
+		"text": "Hogar SOS - Marketplace de servicios para el hogar, como carpinter\u00eda, gasfiter\u00eda, entre otros",
 		"event": 2,
 		"votes": 0,
 		"is_active": true
 	}
 }, {
 	"model": "events.interaction",
-	"pk": 2,
+	"pk": 18,
 	"fields": {
-		"text": "Crowdfunding social",
+		"text": "YoTambien - Sistema de capacitaci\u00f3n para personas con discapacidades",
 		"event": 2,
-		"votes": 0,
+		"votes": 17,
 		"is_active": true
 	}
 }, {
 	"model": "events.interaction",
-	"pk": 3,
+	"pk": 19,
 	"fields": {
-		"text": "Sabueso de mascotas perdidas",
+		"text": "Regala una Sonrisa - Plataforma que gestiona donaciones de los usuarios para distribuir a ONG",
 		"event": 2,
-		"votes": 0,
+		"votes": 35,
 		"is_active": true
 	}
 }, {
 	"model": "events.interaction",
-	"pk": 4,
+	"pk": 20,
 	"fields": {
-		"text": "App para hacer carpooling",
+		"text": "You Study - Comunidad de aprendizaje a trav\u00e9s de grupos de estudio",
 		"event": 2,
-		"votes": 0,
+		"votes": 61,
 		"is_active": true
 	}
 }, {
 	"model": "events.interaction",
-	"pk": 5,
+	"pk": 21,
 	"fields": {
-		"text": "Agente inteligente para celulares",
+		"text": "Smart Cacao - IOT aplicado a la agricultura, automatizar parcelas agricolas",
 		"event": 2,
-		"votes": 0,
+		"votes": 53,
 		"is_active": true
 	}
 }, {
 	"model": "events.interaction",
-	"pk": 6,
+	"pk": 22,
 	"fields": {
-		"text": "Localizador de objetos, animales y/o personas",
+		"text": "Co-Aprendamos.pe - Retos para aprender",
 		"event": 2,
-		"votes": 0,
+		"votes": 10,
 		"is_active": true
 	}
 }, {
 	"model": "events.interaction",
-	"pk": 7,
+	"pk": 23,
 	"fields": {
-		"text": "Ranking de Conductores y Veh\u00edculos",
+		"text": "EcoFriends - App de retos ecol\u00f3gicos para minimizar el impacto con la naturaleza",
 		"event": 2,
-		"votes": 0,
+		"votes": 13,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 24,
+	"fields": {
+		"text": "ReciclaPe - App m\u00f3vil para mejorar el proceso de reciclaje",
+		"event": 2,
+		"votes": 4,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 25,
+	"fields": {
+		"text": "Parqueate - App para buscar zonas de estacionamiento",
+		"event": 2,
+		"votes": 1,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 26,
+	"fields": {
+		"text": "YoTeAyudo - App para voluntarios con el objetivo de ayudar y colaborar con los dem\u00e1s",
+		"event": 2,
+		"votes": 43,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 27,
+	"fields": {
+		"text": "Aprende, Responde, Gana",
+		"event": 2,
+		"votes": 12,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 28,
+	"fields": {
+		"text": "I do it - Plataforma para conectar personas que requieren servicios de utilidad",
+		"event": 2,
+		"votes": 17,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 29,
+	"fields": {
+		"text": "Ayllu FX - App para conectar y notificar personas para intercambiar divisas",
+		"event": 2,
+		"votes": 10,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 30,
+	"fields": {
+		"text": "Trappist - Plataforma que nos ayuda a optimizar el tiempo de espera en los bancos usando sensores",
+		"event": 2,
+		"votes": 53,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 31,
+	"fields": {
+		"text": "Blood care - Plataforma para encontrar una red de donantes de sangre voluntarios",
+		"event": 2,
+		"votes": 1,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 32,
+	"fields": {
+		"text": "Estudia Por Gusto - App que ayuda a intercambiar conocimiento de forma interactiva",
+		"event": 2,
+		"votes": 1,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 33,
+	"fields": {
+		"text": "Maiden Assistant - App que ofrece recomendaciones basados en la experiencia de la persona",
+		"event": 2,
+		"votes": 4,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 34,
+	"fields": {
+		"text": "Ayudame.pe - Plataforma que sirve como agente de cambio para mejorar la calidad de vida de personas",
+		"event": 2,
+		"votes": 16,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 35,
+	"fields": {
+		"text": "Entiende.pe - Plataforma para aprender de forma inteligente usando inteligencia artificial",
+		"event": 2,
+		"votes": 12,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 36,
+	"fields": {
+		"text": "Social Faith - Sistema para promocionar campa\u00f1as de donaciones para ONG",
+		"event": 2,
+		"votes": 17,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 37,
+	"fields": {
+		"text": "Encuentrame.pe - B\u00fasqueda de personas por medio de reconocimiento facial",
+		"event": 2,
+		"votes": 80,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 38,
+	"fields": {
+		"text": "Auto Check - App para obtener informaci\u00f3n del veh\u00edculo",
+		"event": 2,
+		"votes": 4,
+		"is_active": true
+	}
+}, {
+	"model": "events.interaction",
+	"pk": 39,
+	"fields": {
+		"text": "Agro IoT - Sistema en arduino para ver cultivos en tiempo real",
+		"event": 2,
+		"votes": 13,
 		"is_active": true
 	}
 }]
