@@ -133,3 +133,6 @@ STATIC_URL = '/static/'
 # Push notifications
 FIREBASE_API_URL = 'https://fcm.googleapis.com/fcm/send'
 TITLE_PUSH_NOTIFICATIONS = 'BELATRIX Events'
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backend.smtp.EnableBackend'
