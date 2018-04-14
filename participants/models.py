@@ -1,9 +1,13 @@
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
+from rest_framework.authtoken.models import Token
 
 from .managers import UserManager
 
@@ -44,3 +48,9 @@ class Participant(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField()
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def creat_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)

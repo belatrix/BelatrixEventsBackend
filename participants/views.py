@@ -2,6 +2,8 @@ from django.core.mail import EmailMessage
 from django.shortcuts import get_object_or_404
 from re import match as regex_match
 from rest_framework import status
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User
@@ -49,3 +51,20 @@ def user_creation(request):
 
         content = {'detail: Correo registrado correctamente'}
         return Response(content, status=status.HTTP_201_CREATED)
+
+
+class CustomAuthToken(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email,
+            'is_staff': user.is_staff,
+            'is_participant': user.is_participant
+        })
