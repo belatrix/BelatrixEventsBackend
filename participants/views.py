@@ -4,7 +4,9 @@ from re import match as regex_match
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import NotAcceptable
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import User
 from .serializers import UserSerializer
@@ -51,6 +53,28 @@ def user_creation(request):
 
         content = {'detail: Correo registrado correctamente'}
         return Response(content, status=status.HTTP_201_CREATED)
+
+
+@api_view(['PATCH', ])
+@permission_classes((IsAuthenticated, ))
+def user_update_password(request, user_id):
+    if request.method == 'PATCH':
+        try:
+            current_password = request.data['current_password']
+            new_password = request.data['new_password']
+        except Exception as e:
+            print (e)
+            raise NotAcceptable('Datos incompletos')
+        user = get_object_or_404(User, pk=user_id)
+        if current_password == new_password:
+            raise NotAcceptable('Passwords iguales')
+        elif user.check_password(current_password):
+            user.set_password(new_password)
+            user.save()
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        else:
+            raise NotAcceptable('Password actual incorrecto')
 
 
 class CustomAuthToken(ObtainAuthToken):
