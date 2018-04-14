@@ -45,7 +45,7 @@ def user_creation(request):
         except Exception as e:
             print(e)
             content = {'detail: Problemas con el envio de correo electronico'}
-            return Response(content, status=status.HTTP_503)
+            return Response(content, status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
         content = {'detail: Correo registrado correctamente'}
         return Response(content, status=status.HTTP_201_CREATED)
