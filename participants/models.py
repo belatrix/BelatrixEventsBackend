@@ -18,6 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_staff = models.BooleanField(_('is staff'), default=False)
+    is_jury = models.BooleanField(default=False)
     is_active = models.BooleanField(_('active'), default=True)
     is_participant = models.BooleanField(default=False)
 

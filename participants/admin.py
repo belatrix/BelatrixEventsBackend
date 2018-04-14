@@ -26,13 +26,14 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name',
-                                      'last_name',
-                                      'is_participant')}),
+                                      'last_name',)}),
         ('Permissions', {'fields': ('groups',
                                     'user_permissions',
                                     'is_superuser',
                                     'is_staff',
-                                    'is_active',)}),
+                                    'is_active',
+                                    'is_participant',
+                                    'is_jury')}),
         ('History', {'fields': ('date_joined', 'last_login')})
     )
     add_fieldsets = (
