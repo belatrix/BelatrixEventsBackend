@@ -1,3 +1,4 @@
+from django.core.mail import EmailMessage
 from django.shortcuts import get_object_or_404
 from re import match as regex_match
 from rest_framework import status
@@ -38,7 +39,13 @@ def user_creation(request):
             content = {'detail: Correo ya registrado'}
             return Response(content, status=status.HTTP_406_NOT_ACCEPTABLE)
 
-        #TODO: Implementing email sending flow
+        try:
+            send_email = EmailMessage(subject, message, to=[email])
+            send_email.send()
+        except Exception as e:
+            print(e)
+            content = {'detail: Problemas con el envio de correo electronico'}
+            return Response(content, status=status.HTTP_503)
 
         content = {'detail: Correo registrado correctamente'}
         return Response(content, status=status.HTTP_201_CREATED)
