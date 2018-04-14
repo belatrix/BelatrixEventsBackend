@@ -25,7 +25,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+CORE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -36,12 +36,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'import_export',
+]
+
+PROJECT_APPS = [
     'events.apps.EventsConfig',
     'employees.apps.EmployeesConfig',
     'notifications.apps.NotificationsConfig',
     'devices.apps.DevicesConfig',
     'participants.apps.ParticipantsConfig',
 ]
+
+INSTALLED_APPS = CORE_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
