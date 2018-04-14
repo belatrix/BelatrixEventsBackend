@@ -135,4 +135,5 @@ FIREBASE_API_URL = 'https://fcm.googleapis.com/fcm/send'
 TITLE_PUSH_NOTIFICATIONS = 'BELATRIX Events'
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backend.smtp.EnableBackend'
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
