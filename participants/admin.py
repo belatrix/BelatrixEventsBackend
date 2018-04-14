@@ -35,6 +35,11 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
                                     'is_active',)}),
         ('History', {'fields': ('date_joined', 'last_login')})
     )
+    add_fieldsets = (
+        (None, {
+            'fields': ('email', 'password1', 'password2'),
+        }),
+    )
     readonly_fields = ('date_joined',)
     ordering = ('email',)
 
