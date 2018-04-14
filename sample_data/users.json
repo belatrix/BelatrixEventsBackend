@@ -3,12 +3,63 @@
 	"pk": 1,
 	"fields": {
 		"password": "pbkdf2_sha256$30000$wck7Fjg9YlVJ$rMoCsMakvkI1oRmAlWCpvtNMmT6MVyOcrErcnaZWLOM=",
-		"last_login": "2018-04-13T03:28:53.690Z",
+		"last_login": "2018-04-14T14:05:36.519Z",
 		"is_superuser": true,
 		"email": "sinfante@belatrixsf.com",
 		"first_name": "Sergio",
 		"last_name": "Infante",
 		"date_joined": "2018-04-13T03:28:41.467Z",
+		"is_staff": true,
+		"is_active": true,
+		"is_participant": false,
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "participants.user",
+	"pk": 2,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$GVNoFmq7HBAh$kYWsK6gk5EZ8WM+Bu6TQUvX53aR9OE0hyhdVb0sxN9Y=",
+		"last_login": null,
+		"is_superuser": false,
+		"email": "participante@email.com",
+		"first_name": "Participante",
+		"last_name": "Registrado",
+		"date_joined": "2018-04-14T14:05:08.636Z",
+		"is_staff": false,
+		"is_active": true,
+		"is_participant": true,
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "participants.user",
+	"pk": 3,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$bj82kpsL5Khc$8s8F81uZBcgCONTrV92w5rFBoun8+/FRwU/qfwKTHmA=",
+		"last_login": null,
+		"is_superuser": false,
+		"email": "usuario@email.com",
+		"first_name": "Usuario",
+		"last_name": "No participante",
+		"date_joined": "2018-04-14T14:08:13.983Z",
+		"is_staff": false,
+		"is_active": true,
+		"is_participant": false,
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "participants.user",
+	"pk": 4,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$lpEO2AEPQxh3$GKZoH60ijw5WZp1IE9QNxS/Fj80u47yJjD50Ux4d9xo=",
+		"last_login": null,
+		"is_superuser": false,
+		"email": "organizador@email.com",
+		"first_name": "Organizador",
+		"last_name": "Hackatrix",
+		"date_joined": "2018-04-14T14:10:13.543Z",
 		"is_staff": true,
 		"is_active": true,
 		"is_participant": false,
