@@ -6,16 +6,7 @@ DJANGO_SETTINGS_MODULE=BxEvents.settings.production
 
 import dj_database_url
 from .base import *  # noqa: F403
-from os import environ
-
-
-# Function to get environment variables value if they exist.
-def env(e, d):
-    if e in environ:
-        return environ[e]
-    else:
-        return d
-
+from utils.environment import env
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
