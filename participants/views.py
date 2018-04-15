@@ -1,4 +1,6 @@
 from django.core.mail import EmailMessage
+from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 from django.shortcuts import get_object_or_404
 from re import match as regex_match
 from rest_framework import status
@@ -75,6 +77,43 @@ def user_update_password(request, user_id):
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         else:
             raise ValidationError('Password actual incorrecto')
+
+
+@api_view(['POST', ])
+def user_password_recovery_request(request):
+    if request.method == 'POST':
+        try:
+            email = request.data['email']
+        except Exception as e:
+            print(e)
+            raise ValidationError('Datos incompletos')
+
+        user = get_object_or_404(User, email=email)
+
+        user.generate_reset_password_code()
+
+        subject = "[Hackatrix] Password nuevo solicitado"
+
+        draft_message = """
+        Una solicitud de restablecimiento de password ha sido recibida.
+            Su password temporal es: %s
+            Confirme su solicitud dando clic en el siguiente enlace: %s
+        Si usted no solicito ningun restablecimiento, ignore este correo."""
+
+        current_site = Site.objects.get_current()
+        user_reset_confirmation_api = reverse("users:user_password_recovery_request")
+        reset_url = current_site.domain + user_reset_confirmation_api + user.reset_password_code
+        message = draft_message % (user.temporary_password, reset_url)
+
+        try:
+            send_email = EmailMessage(subject, message, to=[user.email])
+            send_email.send()
+        except Exception as e:
+            print(e)
+            content = {'detail: Problemas con el envio de correo electronico'}
+            return Response(content, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+        return Response(status=status.HTTP_200_OK)
 
 
 class CustomAuthToken(ObtainAuthToken):

@@ -9,6 +9,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
+from uuid import uuid4
 
 from .managers import UserManager
 
@@ -50,6 +51,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         Returns the short name for the user.
         '''
         return self.first_name
+
+    def generate_reset_password_code(self):
+        '''
+        Returns UUID string to be sent by email when user require a password recovery action
+        '''
+        uuid_code = uuid4()
+        self.reset_password_code = str(uuid_code)
+        self.temporary_password = get_random_string(4, "hacktrx23456789")
+        self.save()
+        return self.reset_password_code
 
 
 class Participant(models.Model):

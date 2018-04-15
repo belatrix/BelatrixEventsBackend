@@ -31,6 +31,7 @@ CORE_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
@@ -131,6 +132,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+SITE_ID = 1
 
 # USER MODEL
 AUTH_USER_MODEL = "participants.User"
