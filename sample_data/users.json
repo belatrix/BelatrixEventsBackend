@@ -16,6 +16,7 @@
 		"is_blocked": false,
 		"is_password_reset_required": false,
 		"reset_password_code": null,
+		"temporary_password": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -37,6 +38,7 @@
 		"is_blocked": false,
 		"is_password_reset_required": true,
 		"reset_password_code": null,
+		"temporary_password": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -58,6 +60,7 @@
 		"is_blocked": false,
 		"is_password_reset_required": true,
 		"reset_password_code": null,
+		"temporary_password": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -79,6 +82,7 @@
 		"is_blocked": false,
 		"is_password_reset_required": true,
 		"reset_password_code": null,
+		"temporary_password": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -100,6 +104,7 @@
 		"is_blocked": false,
 		"is_password_reset_required": true,
 		"reset_password_code": null,
+		"temporary_password": null,
 		"groups": [],
 		"user_permissions": []
 	}

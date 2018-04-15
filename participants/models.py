@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.utils.crypto import get_random_string
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
@@ -26,6 +27,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     is_password_reset_required = models.BooleanField(default=True)
     reset_password_code = models.UUIDField(default=None, blank=True, null=True)
+    temporary_password = models.CharField(max_length=4, blank=True, null=True)
 
     objects = UserManager()
 
