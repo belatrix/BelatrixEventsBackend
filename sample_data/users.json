@@ -3,7 +3,7 @@
 	"pk": 1,
 	"fields": {
 		"password": "pbkdf2_sha256$30000$wck7Fjg9YlVJ$rMoCsMakvkI1oRmAlWCpvtNMmT6MVyOcrErcnaZWLOM=",
-		"last_login": "2018-04-14T15:43:12Z",
+		"last_login": "2018-04-15T13:20:22Z",
 		"is_superuser": true,
 		"email": "sinfante@belatrixsf.com",
 		"first_name": "Sergio",
@@ -11,8 +11,11 @@
 		"date_joined": "2018-04-13T03:28:41.467Z",
 		"is_staff": true,
 		"is_jury": true,
-		"is_active": true,
 		"is_participant": true,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": false,
+		"reset_password_code": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -29,8 +32,11 @@
 		"date_joined": "2018-04-14T14:05:08.636Z",
 		"is_staff": false,
 		"is_jury": false,
-		"is_active": true,
 		"is_participant": true,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": true,
+		"reset_password_code": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -47,8 +53,11 @@
 		"date_joined": "2018-04-14T14:08:13.983Z",
 		"is_staff": false,
 		"is_jury": false,
-		"is_active": true,
 		"is_participant": false,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": true,
+		"reset_password_code": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -65,8 +74,11 @@
 		"date_joined": "2018-04-14T14:10:13.543Z",
 		"is_staff": true,
 		"is_jury": false,
-		"is_active": true,
 		"is_participant": false,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": true,
+		"reset_password_code": null,
 		"groups": [],
 		"user_permissions": []
 	}
@@ -83,8 +95,11 @@
 		"date_joined": "2018-04-14T15:28:12.191Z",
 		"is_staff": true,
 		"is_jury": true,
-		"is_active": true,
 		"is_participant": false,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": true,
+		"reset_password_code": null,
 		"groups": [],
 		"user_permissions": []
 	}
