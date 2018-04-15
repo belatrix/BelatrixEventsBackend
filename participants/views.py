@@ -32,7 +32,7 @@ def user_creation(request):
             return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
         random_password = User.objects.make_random_password(length=4, allowed_chars='hacktrx23456789')
-        subject = "Usuario creado para la Hackatrix"
+        subject = "[Hackatrix] Usuario creado para la Hackatrix"
         message = "Su clave temporal, que debe cambiar es: %s" % (random_password)
 
         try:
