@@ -1,0 +1,25 @@
+[{
+	"model": "participants.participant",
+	"pk": 1,
+	"fields": {
+		"first_name": "Otro Participante",
+		"last_name": "Registrado",
+		"email": "otroparticipante@email.com"
+	}
+}, {
+	"model": "participants.participant",
+	"pk": 2,
+	"fields": {
+		"first_name": "Segundo",
+		"last_name": "Participante",
+		"email": "participante02@email.com"
+	}
+}, {
+	"model": "participants.participant",
+	"pk": 3,
+	"fields": {
+		"first_name": "Tercer",
+		"last_name": "Participante",
+		"email": "participante03@email.com"
+	}
+}]

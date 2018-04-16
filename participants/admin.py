@@ -49,5 +49,9 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
     ordering = ('email',)
 
 
-admin.site.register(Participant)
+class ParticipantForm(admin.ModelAdmin):
+    list_display = ("email", "first_name", "last_name")
+
+
+admin.site.register(Participant, ParticipantForm)
 admin.site.register(User, UserCustomAdmin)
