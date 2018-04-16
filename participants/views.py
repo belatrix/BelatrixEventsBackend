@@ -6,9 +6,10 @@ from re import match as regex_match
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
 from .models import User
 from .serializers import UserSerializer
@@ -72,6 +73,7 @@ def user_update_password(request, user_id):
             raise ValidationError('Passwords iguales')
         elif user.check_password(current_password):
             user.set_password(new_password)
+            user.is_password_reset_required = False
             user.save()
             serializer = UserSerializer(user)
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
@@ -114,6 +116,20 @@ def user_password_recovery_request(request):
             return Response(content, status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
         return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['GET', ])
+@renderer_classes((StaticHTMLRenderer,))
+def user_password_recovery_confirmation(request, user_uuid):
+    if request.method == 'GET':
+        user = get_object_or_404(User, reset_password_code=user_uuid)
+        user.set_password(user.temporary_password)
+        user.reset_password_code = None
+        user.temporary_password = None
+        user.is_password_reset_required = True
+        user.save()
+        data = "<h1>Solicitud de reestablecimiento de password confirmada.</h1>"
+        return Response(data)
 
 
 class CustomAuthToken(ObtainAuthToken):
