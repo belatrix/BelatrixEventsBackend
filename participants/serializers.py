@@ -12,3 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
                   'is_staff',
                   'is_active',
                   'is_participant')
+
+
+class UserCreationSerializer(serializers.Serializer):
+    email = serializers.CharField(max_length=50)
