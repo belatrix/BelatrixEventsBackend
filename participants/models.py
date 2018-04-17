@@ -66,7 +66,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Participant(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

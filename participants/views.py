@@ -11,7 +11,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
-from .models import User
+from .models import User, Participant
 from .serializers import UserSerializer
 
 
@@ -45,6 +45,11 @@ def user_creation(request):
             print(e)
             content = {'detail: Correo ya registrado'}
             return Response(content, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+        participant = Participant.objects.filter(email=new_user.email)
+        if len(participant) == 1:
+            new_user.is_participant = True
+            new_user.save()
 
         try:
             send_email = EmailMessage(subject, message, to=[email])
