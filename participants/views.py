@@ -7,12 +7,12 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import NotAcceptable, ParseError, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
 from .models import User, Participant
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserCreationSerializer
 
 
 @api_view(['GET', ])
@@ -30,12 +30,20 @@ def user_detail(request, user_id):
 
 @api_view(['POST', ])
 def user_creation(request):
+    """
+    Create user account
+    ---
+    POST:
+        serializer: participants.serializers.UserCreationSerializer
+        response_serializer: participants.serializers.UserSerializer
+    """
     if request.method == 'POST':
-        email = request.data['email'].lower()
+        serializer = UserCreationSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            email = str(serializer.validated_data['email']).lower()
 
         if not regex_match(r"[^@]+@[^@]+\.[^@]+", email):
-            content = {'detail: Correo invalido'}
-            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+            raise ParseError("Correo invalido.")
 
         random_password = User.objects.make_random_password(length=4, allowed_chars='hacktrx23456789')
         subject = "[Hackatrix] Usuario creado para la Hackatrix"
@@ -46,8 +54,7 @@ def user_creation(request):
             new_user.save()
         except Exception as e:
             print(e)
-            content = {'detail: Correo ya registrado'}
-            return Response(content, status=status.HTTP_406_NOT_ACCEPTABLE)
+            raise NotAcceptable('Correo ya registrado.')
 
         participant = Participant.objects.filter(email=new_user.email)
         if len(participant) == 1:
@@ -62,8 +69,8 @@ def user_creation(request):
             content = {'detail: Problemas con el envio de correo electronico'}
             return Response(content, status=status.HTTP_503_SERVICE_UNAVAILABLE)
 
-        content = {'detail: Correo registrado correctamente'}
-        return Response(content, status=status.HTTP_201_CREATED)
+        serializer = UserSerializer(new_user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['PATCH', ])
