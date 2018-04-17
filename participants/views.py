@@ -19,6 +19,9 @@ from .serializers import UserSerializer
 def user_detail(request, user_id):
     """
     Returns user detail
+    ---
+    GET:
+        response_serializer: participants.serializers.UserSerializer
     """
     user = get_object_or_404(User, pk=user_id)
     serializer = UserSerializer(user)
