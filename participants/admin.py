@@ -49,7 +49,7 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
     ordering = ('email',)
 
 
-class ParticipantForm(admin.ModelAdmin):
+class ParticipantForm(ImportExportMixin, admin.ModelAdmin):
     list_display = ("email", "first_name", "last_name")
 
 
