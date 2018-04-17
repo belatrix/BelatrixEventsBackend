@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
 from .models import User, Participant
-from .serializers import UserSerializer, UserCreationSerializer
+from .serializers import UserSerializer, UserCreationSerializer, UserUpdatePasswordSerializer
 
 
 @api_view(['GET', ])
@@ -76,14 +76,22 @@ def user_creation(request):
 @api_view(['PATCH', ])
 @permission_classes((IsAuthenticated, ))
 def user_update_password(request, user_id):
+    """
+    Update user password
+    ---
+    PATCH:
+        serializer: participants.serializers.UserUpdatePasswordSerializer
+        response_serializer: participants.serializers.UserSerializer
+    """
     if request.method == 'PATCH':
-        try:
-            current_password = request.data['current_password']
-            new_password = request.data['new_password']
-        except Exception as e:
-            print (e)
-            raise ValidationError('Datos incompletos')
+        serializer = UserUpdatePasswordSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            current_password = serializer.validated_data['current_password']
+            new_password = serializer.validated_data['new_password']
+
         user = get_object_or_404(User, pk=user_id)
+
         if current_password == new_password:
             raise ValidationError('Passwords iguales')
         elif user.check_password(current_password):
@@ -98,6 +106,12 @@ def user_update_password(request, user_id):
 
 @api_view(['POST', ])
 def user_password_recovery_request(request):
+    """
+    Request user password recovery
+    ---
+    POST:
+        serializer: participants.serializers.UserCreationSerializer
+    """
     if request.method == 'POST':
         try:
             email = request.data['email']
@@ -136,6 +150,9 @@ def user_password_recovery_request(request):
 @api_view(['GET', ])
 @renderer_classes((StaticHTMLRenderer,))
 def user_password_recovery_confirmation(request, user_uuid):
+    """
+    Confirm password recovery action
+    """
     if request.method == 'GET':
         user = get_object_or_404(User, reset_password_code=user_uuid)
         user.set_password(user.temporary_password)

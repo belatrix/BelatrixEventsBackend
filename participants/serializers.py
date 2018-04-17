@@ -16,3 +16,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserCreationSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=50)
+
+
+class UserUpdatePasswordSerializer(serializers.Serializer):
+    current_password = serializers.CharField(max_length=50)
+    new_password = serializers.CharField(max_length=50)
