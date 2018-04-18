@@ -183,4 +183,5 @@ class CustomAuthToken(ObtainAuthToken):
             'email': user.email,
             'is_staff': user.is_staff,
             'is_jury': user.is_jury,
+            'is_password_reset_required': user.is_password_reset_required,
         })

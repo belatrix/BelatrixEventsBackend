@@ -22,7 +22,7 @@ class UserChangeForm(forms.ModelForm):
 
 class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
     form = UserChangeForm
-    list_display = ("email", "first_name", "last_name", "is_participant", "is_staff", "is_jury", "is_blocked")
+    list_display = ("email", "first_name", "last_name", "is_staff", "is_jury", "is_password_reset_required")
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name',
@@ -31,7 +31,6 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
                                     'is_staff',
                                     'is_active',
                                     'is_blocked',
-                                    'is_participant',
                                     'is_jury',
                                     'groups',
                                     'user_permissions')}),
