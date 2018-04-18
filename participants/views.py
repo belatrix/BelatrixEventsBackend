@@ -165,8 +165,13 @@ def user_password_recovery_confirmation(request, user_uuid):
 
 
 class CustomAuthToken(ObtainAuthToken):
-
     def post(self, request, *args, **kwargs):
+        """
+        Authenticate user with provided credentials
+        ---
+        serializer: participants.serializers.UserAuthenticationSerializer
+        response_serializer: participants.serializers.UserAuthenticationResponseSerializer
+        """
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
@@ -177,5 +182,6 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email,
             'is_staff': user.is_staff,
-            'is_participant': user.is_participant
+            'is_participant': user.is_participant,
+            'is_jury': user.is_jury,
         })

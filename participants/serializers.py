@@ -18,6 +18,20 @@ class UserCreationSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=50)
 
 
+class UserAuthenticationSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=100)
+    password = serializers.CharField(max_length=100)
+
+
+class UserAuthenticationResponseSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=100)
+    user_id = serializers.IntegerField()
+    email = serializers.CharField(max_length=100)
+    is_staff = serializers.BooleanField()
+    is_participant = serializers.BooleanField()
+    is_jury = serializers.BooleanField()
+
+
 class UserUpdatePasswordSerializer(serializers.Serializer):
     current_password = serializers.CharField(max_length=50)
     new_password = serializers.CharField(max_length=50)
