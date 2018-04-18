@@ -22,7 +22,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     is_staff = models.BooleanField(_('is staff'), default=False)
     is_jury = models.BooleanField(default=False)
-    is_participant = models.BooleanField(default=False)
     is_active = models.BooleanField(_('active'), default=True)
     is_blocked = models.BooleanField(default=False)
 
@@ -67,6 +66,7 @@ class Participant(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
+    event_id = models.IntegerField(default=0)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

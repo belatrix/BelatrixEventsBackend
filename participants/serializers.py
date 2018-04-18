@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
                   'last_name',
                   'is_staff',
                   'is_active',
-                  'is_participant')
+                  'is_password_reset_required')
 
 
 class UserCreationSerializer(serializers.Serializer):
@@ -28,8 +28,8 @@ class UserAuthenticationResponseSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
     email = serializers.CharField(max_length=100)
     is_staff = serializers.BooleanField()
-    is_participant = serializers.BooleanField()
     is_jury = serializers.BooleanField()
+    is_password_reset_required = serializers.BooleanField()
 
 
 class UserUpdatePasswordSerializer(serializers.Serializer):

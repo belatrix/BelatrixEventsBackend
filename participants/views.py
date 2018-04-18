@@ -11,7 +11,7 @@ from rest_framework.exceptions import NotAcceptable, ParseError, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
-from .models import User, Participant
+from .models import User
 from .serializers import UserSerializer, UserCreationSerializer, UserUpdatePasswordSerializer
 
 
@@ -56,10 +56,10 @@ def user_creation(request):
             print(e)
             raise NotAcceptable('Correo ya registrado.')
 
-        participant = Participant.objects.filter(email=new_user.email)
-        if len(participant) == 1:
-            new_user.is_participant = True
-            new_user.save()
+        # participant = Participant.objects.filter(email=new_user.email)
+        # if len(participant) == 1:
+        #     new_user.is_participant = True
+        #     new_user.save()
 
         try:
             send_email = EmailMessage(subject, message, to=[email])
@@ -182,6 +182,5 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email,
             'is_staff': user.is_staff,
-            'is_participant': user.is_participant,
             'is_jury': user.is_jury,
         })
