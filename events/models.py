@@ -58,6 +58,11 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
 
+class EventParticipant(models.Model):
+    event = models.ForeignKey(Event)
+    participant = models.ForeignKey('participants.User')
+
+
 @python_2_unicode_compatible
 class Interaction(models.Model):
     text = models.CharField(max_length=100)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import City, Event, Interaction, Location
+from .models import City, Event, Interaction, Location, EventParticipant
 
 
 class CityAdmin(admin.ModelAdmin):
@@ -8,6 +8,10 @@ class CityAdmin(admin.ModelAdmin):
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'datetime', 'image', 'details', 'is_upcoming', 'is_featured', 'get_cities')
+
+
+class EventParticipantAdmin(admin.ModelAdmin):
+    list_display = ('event', 'participant')
 
 
 class InteractionAdmin(admin.ModelAdmin):
@@ -20,5 +24,6 @@ class LocationAdmin(admin.ModelAdmin):
 
 admin.site.register(City, CityAdmin)
 admin.site.register(Event, EventAdmin)
+admin.site.register(EventParticipant, EventParticipantAdmin)
 admin.site.register(Interaction, InteractionAdmin)
 admin.site.register(Location, LocationAdmin)
