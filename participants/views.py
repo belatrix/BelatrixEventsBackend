@@ -11,8 +11,9 @@ from rest_framework.exceptions import NotAcceptable, ParseError, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
-from .models import User
+from .models import User, Participant
 from .serializers import UserSerializer, UserCreationSerializer, UserUpdatePasswordSerializer
+from events.models import Event, EventParticipant
 
 
 @api_view(['GET', ])
@@ -56,10 +57,11 @@ def user_creation(request):
             print(e)
             raise NotAcceptable('Correo ya registrado.')
 
-        # participant = Participant.objects.filter(email=new_user.email)
-        # if len(participant) == 1:
-        #     new_user.is_participant = True
-        #     new_user.save()
+        participant = Participant.objects.filter(email=new_user.email)
+        if len(participant) == 1:
+            event = Event.objects.filter(pk=participant[0].event_id)
+            if len(event) == 1:
+                EventParticipant.objects.create(event=event[0], participant=new_user)
 
         try:
             send_email = EmailMessage(subject, message, to=[email])

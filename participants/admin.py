@@ -49,7 +49,7 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
 
 
 class ParticipantForm(ImportExportMixin, admin.ModelAdmin):
-    list_display = ("email", "first_name", "last_name")
+    list_display = ("email", "first_name", "last_name", "event_id")
 
 
 admin.site.register(Participant, ParticipantForm)
