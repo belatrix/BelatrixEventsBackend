@@ -46,6 +46,7 @@ PROJECT_APPS = [
     'notifications.apps.NotificationsConfig',
     'devices.apps.DevicesConfig',
     'participants.apps.ParticipantsConfig',
+    'ideas.apps.IdeasConfig',
 ]
 
 INSTALLED_APPS = CORE_APPS + PROJECT_APPS
