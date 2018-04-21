@@ -1,0 +1,289 @@
+[{
+	"model": "ideas.idea",
+	"pk": 1,
+	"fields": {
+		"title": "Agro IoT - Sistema en arduino para ver cultivos en tiempo real",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 2,
+	"fields": {
+		"title": "Auto Check - App para obtener informaci\u00f3n del veh\u00edculo",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 3,
+	"fields": {
+		"title": "Encuentrame.pe - B\u00fasqueda de personas por medio de reconocimiento facial",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 4,
+	"fields": {
+		"title": "Social Faith - Sistema para promocionar campa\u00f1as de donaciones para ONG",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 5,
+	"fields": {
+		"title": "Entiende.pe - Plataforma para aprender de forma inteligente usando inteligencia artificial",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 6,
+	"fields": {
+		"title": "Ayudame.pe - Plataforma que sirve como agente de cambio para mejorar la calidad de vida de personas",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 7,
+	"fields": {
+		"title": "Maiden Assistant - App que ofrece recomendaciones basados en la experiencia de la persona",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 8,
+	"fields": {
+		"title": "Estudia Por Gusto - App que ayuda a intercambiar conocimiento de forma interactiva",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 9,
+	"fields": {
+		"title": "Blood care - Plataforma para encontrar una red de donantes de sangre voluntarios",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 10,
+	"fields": {
+		"title": "Trappist - Plataforma que nos ayuda a optimizar el tiempo de espera en los bancos usando sensores",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 11,
+	"fields": {
+		"title": "Ayllu FX - App para conectar y notificar personas para intercambiar divisas",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 12,
+	"fields": {
+		"title": "I do it - Plataforma para conectar personas que requieren servicios de utilidad",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 13,
+	"fields": {
+		"title": "Aprende, Responde, Gana",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 14,
+	"fields": {
+		"title": "YoTeAyudo - App para voluntarios con el objetivo de ayudar y colaborar con los dem\u00e1s",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 15,
+	"fields": {
+		"title": "Parqueate - App para buscar zonas de estacionamiento",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 16,
+	"fields": {
+		"title": "ReciclaPe - App m\u00f3vil para mejorar el proceso de reciclaje",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 17,
+	"fields": {
+		"title": "EcoFriends - App de retos ecol\u00f3gicos para minimizar el impacto con la naturaleza",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 18,
+	"fields": {
+		"title": "Co-Aprendamos.pe - Retos para aprender",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 19,
+	"fields": {
+		"title": "Smart Cacao - IOT aplicado a la agricultura, automatizar parcelas agricolas",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 20,
+	"fields": {
+		"title": "You Study - Comunidad de aprendizaje a trav\u00e9s de grupos de estudio",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 21,
+	"fields": {
+		"title": "Regala una Sonrisa - Plataforma que gestiona donaciones de los usuarios para distribuir a ONG",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 22,
+	"fields": {
+		"title": "YoTambien - Sistema de capacitaci\u00f3n para personas con discapacidades",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 23,
+	"fields": {
+		"title": "Hogar SOS - Marketplace de servicios para el hogar, como carpinter\u00eda, gasfiter\u00eda, entre otros",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 24,
+	"fields": {
+		"title": "iChancon - Red social para colaborar en la resoluci\u00f3n de problemas acad\u00e9micos",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 25,
+	"fields": {
+		"title": "iMetrics - Medidor de agua inteligente conectado a una red neural para optimizar facturaciones",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 26,
+	"fields": {
+		"title": "Mi Primer App - Participaci\u00f3n en proyectos para estudiantes de postgrado",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 27,
+	"fields": {
+		"title": "B\u00fasqueda de Personas Perdidas - Plataforma para buscar personas por medio de reconocimiento facial",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 28,
+	"fields": {
+		"title": "Amor a Sofia - App para ayuda a los postulantes a universidades",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 29,
+	"fields": {
+		"title": "Medical Chain - Historiales m\u00e9dicos registrados en una red blockchain",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 30,
+	"fields": {
+		"title": "Gento - Plataforma que cambia la forma de como compramos ropa por medio de machine learning",
+		"description": "",
+		"author": 4,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 31,
+	"fields": {
+		"title": "Sportify - App social para buscar gente que quiera jugar y este cerca de ti",
+		"description": "",
+		"author": 1,
+		"event": 19
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 32,
+	"fields": {
+		"title": "Dale Go - App social de eventos deportivos",
+		"description": "",
+		"author": 2,
+		"event": 19
+	}
+}]
