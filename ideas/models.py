@@ -19,3 +19,14 @@ class IdeaParticipant(models.Model):
     idea = models.ForeignKey(Idea)
     user = models.ForeignKey('participants.User')
 
+    class Meta(object):
+        verbose_name_plural = 'groups'
+
+
+class IdeaVotes(models.Model):
+    event = models.ForeignKey('events.Event')
+    idea = models.ForeignKey(Idea)
+    participant = models.ForeignKey('participants.User')
+
+    class Meta(object):
+        verbose_name_plural = 'votes'
