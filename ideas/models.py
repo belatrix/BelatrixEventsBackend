@@ -13,3 +13,9 @@ class Idea(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class IdeaParticipant(models.Model):
+    idea = models.ForeignKey(Idea)
+    user = models.ForeignKey('participants.User')
+
