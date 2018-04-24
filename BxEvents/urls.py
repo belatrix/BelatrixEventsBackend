@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^event/', include('events.urls', namespace='events')),
     url(r'^notifications/', include('notifications.urls', namespace='notifications')),
     url(r'^user/', include('participants.urls', namespace='users')),
+    url(r'^idea/', include('ideas.urls', namespace='ideas')),
 ]
