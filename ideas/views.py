@@ -40,8 +40,8 @@ def idea_create(request):
     if request.method == 'POST':
         serializer = IdeaCreationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            author = get_object_or_404(User, pk=serializer.data['author'])
-            event = get_object_or_404(Event, pk=serializer.data['event'])
+            author = get_object_or_404(User, pk=serializer.validated_data['author'])
+            event = get_object_or_404(Event, pk=serializer.validated_data['event'])
             title = serializer.data['title']
             description = serializer.data['description']
             try:
