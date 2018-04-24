@@ -15,11 +15,17 @@ class Idea(models.Model):
         return self.title
 
 
+@python_2_unicode_compatible
 class IdeaParticipant(models.Model):
     idea = models.ForeignKey(Idea)
     user = models.ForeignKey('participants.User')
 
+    def __str__(self):
+        return self.idea.title
+
     class Meta(object):
+        unique_together = ('idea', 'user')
+        verbose_name = 'team member'
         verbose_name_plural = 'groups'
 
 

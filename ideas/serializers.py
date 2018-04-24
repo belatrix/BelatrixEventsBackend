@@ -40,3 +40,7 @@ class IdeaParticipantsSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = IdeaParticipant
         fields = ('user', )
+
+
+class IdeaRegistrationSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()

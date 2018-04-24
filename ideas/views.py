@@ -10,6 +10,7 @@ from participants.models import User
 
 from .models import Idea, IdeaParticipant
 from .serializers import IdeaCreationSerializer, IdeaSerializer, IdeaParticipantsSerializer
+from .serializers import IdeaRegistrationSerializer
 
 
 @api_view(['GET'])
@@ -65,6 +66,30 @@ def idea_participants(request, idea_id):
     participants = get_list_or_404(IdeaParticipant, idea=idea)
     serializer = IdeaParticipantsSerializer(participants, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
+def idea_register(request, idea_id):
+    """
+    Endpoint to register user into an idea
+    ---
+    POST:
+        serializer: ideas.serializers.IdeaRegistrationSerializer
+        response_serializer: ideas.serializers.IdeaParticipantsSerializer
+    """
+    serializer = IdeaRegistrationSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        idea = get_object_or_404(Idea, pk=idea_id)
+        user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
+        try:
+            IdeaParticipant.objects.create(idea=idea, user=user)
+        except Exception as e:
+            print(e)
+            raise NotAcceptable('Ya registrado.')
+        participants = get_list_or_404(IdeaParticipant, idea=idea)
+        serializer = IdeaParticipantsSerializer(participants, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])
