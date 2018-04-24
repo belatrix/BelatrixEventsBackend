@@ -46,6 +46,7 @@ def idea_create(request):
             try:
                 new_idea = Idea.objects.create(author=author, event=event, title=title, description=description)
             except Exception as e:
+                print(e)
                 raise NotAcceptable('Esta idea ya existe.')
             serializer = IdeaSerializer(new_idea)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
