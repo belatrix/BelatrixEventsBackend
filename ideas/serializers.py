@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from events.models import Event
 from participants.models import User
-from .models import Idea
+
+from .models import Idea, IdeaParticipant
 
 
-class AuthorSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = User
         fields = ('id', 'first_name', 'last_name', 'email')
@@ -24,10 +25,18 @@ class IdeaCreationSerializer(serializers.Serializer):
 
 
 class IdeaSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer()
+    author = UserSerializer()
     event = EventSerializer()
 
     class Meta(object):
         model = Idea
         fields = ('id', 'author', 'title', 'description', 'event')
         depth = 1
+
+
+class IdeaParticipantsSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta(object):
+        model = IdeaParticipant
+        fields = ('user', )

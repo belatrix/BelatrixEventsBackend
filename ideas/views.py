@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from events.models import Event
 from participants.models import User
 
-from .models import Idea
-from .serializers import IdeaCreationSerializer, IdeaSerializer
+from .models import Idea, IdeaParticipant
+from .serializers import IdeaCreationSerializer, IdeaSerializer, IdeaParticipantsSerializer
 
 
 @api_view(['GET'])
@@ -52,12 +52,27 @@ def idea_create(request):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticatedOrReadOnly, ))
+def idea_participants(request, idea_id):
+    """
+    Endpoint to get participant list group by idea
+    ---
+    GET:
+        response_serializer: ideas.serializers.IdeaParticipantsSerializer
+    """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    participants = get_list_or_404(IdeaParticipant, idea=idea)
+    serializer = IdeaParticipantsSerializer(participants, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 def idea_list(request, event_id):
     """
     Returns idea list by event
     ---
     GET:
-        serializer: ideas.serializers.IdeaSerializer
+        response_serializer: ideas.serializers.IdeaSerializer
     """
     ideas = get_list_or_404(Idea, event=event_id)
     serializer = IdeaSerializer(ideas, many=True)
