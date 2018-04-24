@@ -16,6 +16,13 @@ class EventSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'image')
 
 
+class IdeaCreationSerializer(serializers.Serializer):
+    author = serializers.IntegerField()
+    event = serializers.IntegerField()
+    title = serializers.CharField()
+    description = serializers.CharField()
+
+
 class IdeaSerializer(serializers.ModelSerializer):
     author = AuthorSerializer()
     event = EventSerializer()
