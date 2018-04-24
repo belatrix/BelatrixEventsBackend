@@ -17,6 +17,7 @@ from events.models import Event, EventParticipant
 
 
 @api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
 def user_detail(request, user_id):
     """
     Returns user detail
