@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^device/', include('devices.urls', namespace='devices')),
-    url(r'^employee/', include('employees.urls', namespace='employees')),
+    # url(r'^employee/', include('employees.urls', namespace='employees')),
     url(r'^event/', include('events.urls', namespace='events')),
     url(r'^notifications/', include('notifications.urls', namespace='notifications')),
     url(r'^user/', include('participants.urls', namespace='users')),
