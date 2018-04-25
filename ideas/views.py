@@ -60,12 +60,17 @@ def idea_participants(request, idea_id):
     Endpoint to get participant list group by idea
     ---
     GET:
-        response_serializer: ideas.serializers.IdeaParticipantsSerializer
+        serializer: ideas.serializers.IdeaParticipantsSerializer
     """
     idea = get_object_or_404(Idea, pk=idea_id)
     participants = get_list_or_404(IdeaParticipant, idea=idea)
+    if len(IdeaParticipant.objects.filter(idea=idea, user=request.user)) > 0:
+        is_registered = True
+    else:
+        is_registered = False
     serializer = IdeaParticipantsSerializer(participants, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response({"is_registered": is_registered,
+                     "team_members": serializer.data}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -76,7 +81,6 @@ def idea_register(request, idea_id):
     ---
     POST:
         serializer: ideas.serializers.IdeaRegistrationSerializer
-        response_serializer: ideas.serializers.IdeaParticipantsSerializer
     """
     serializer = IdeaRegistrationSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
@@ -89,7 +93,8 @@ def idea_register(request, idea_id):
             raise NotAcceptable('Ya registrado.')
         participants = get_list_or_404(IdeaParticipant, idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({"is_registered": True,
+                         "team_members": serializer.data}, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])
@@ -100,7 +105,6 @@ def idea_unregister(request, idea_id):
     ---
     POST:
         serializer: ideas.serializers.IdeaRegistrationSerializer
-        response_serializer: ideas.serializers.IdeaParticipantsSerializer
     """
     serializer = IdeaRegistrationSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
@@ -109,7 +113,8 @@ def idea_unregister(request, idea_id):
         get_object_or_404(IdeaParticipant, idea=idea, user=user).delete()
         participants = get_list_or_404(IdeaParticipant, idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({"is_registered": False,
+                         "team_members": serializer.data}, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])
