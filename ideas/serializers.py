@@ -21,7 +21,7 @@ class IdeaCreationSerializer(serializers.Serializer):
     author = serializers.IntegerField()
     event = serializers.IntegerField()
     title = serializers.CharField()
-    description = serializers.CharField()
+    description = serializers.CharField(required=False)
 
 
 class IdeaSerializer(serializers.ModelSerializer):

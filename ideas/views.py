@@ -42,8 +42,11 @@ def idea_create(request):
         if serializer.is_valid(raise_exception=True):
             author = get_object_or_404(User, pk=serializer.validated_data['author'])
             event = get_object_or_404(Event, pk=serializer.validated_data['event'])
-            title = serializer.data['title']
-            description = serializer.data['description']
+            title = serializer.validated_data['title']
+            try:
+                description = serializer.validated_data['description']
+            except:
+                description = None
             try:
                 new_idea = Idea.objects.create(author=author, event=event, title=title, description=description)
             except Exception as e:
@@ -63,7 +66,7 @@ def idea_participants(request, idea_id):
         serializer: ideas.serializers.IdeaParticipantsSerializer
     """
     idea = get_object_or_404(Idea, pk=idea_id)
-    participants = get_list_or_404(IdeaParticipant, idea=idea)
+    participants = IdeaParticipant.objects.filter(idea=idea)
     if len(IdeaParticipant.objects.filter(idea=idea, user=request.user)) > 0:
         is_registered = True
     else:
@@ -91,7 +94,7 @@ def idea_register(request, idea_id):
         except Exception as e:
             print(e)
             raise NotAcceptable('Ya registrado.')
-        participants = get_list_or_404(IdeaParticipant, idea=idea)
+        participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": True,
                          "team_members": serializer.data}, status=status.HTTP_201_CREATED)
@@ -111,7 +114,7 @@ def idea_unregister(request, idea_id):
         idea = get_object_or_404(Idea, pk=idea_id)
         user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
         get_object_or_404(IdeaParticipant, idea=idea, user=user).delete()
-        participants = get_list_or_404(IdeaParticipant, idea=idea)
+        participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": False,
                          "team_members": serializer.data}, status=status.HTTP_201_CREATED)
