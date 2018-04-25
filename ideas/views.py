@@ -92,6 +92,26 @@ def idea_register(request, idea_id):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
+def idea_unregister(request, idea_id):
+    """
+    Endpoint to register user into an idea
+    ---
+    POST:
+        serializer: ideas.serializers.IdeaRegistrationSerializer
+        response_serializer: ideas.serializers.IdeaParticipantsSerializer
+    """
+    serializer = IdeaRegistrationSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        idea = get_object_or_404(Idea, pk=idea_id)
+        user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
+        get_object_or_404(IdeaParticipant, idea=idea, user=user).delete()
+        participants = get_list_or_404(IdeaParticipant, idea=idea)
+        serializer = IdeaParticipantsSerializer(participants, many=True)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 @api_view(['GET'])
 def idea_list(request, event_id):
     """
