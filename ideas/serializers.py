@@ -44,3 +44,13 @@ class IdeaParticipantsSerializer(serializers.ModelSerializer):
 
 class IdeaRegistrationSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
+
+
+class IdeaVoteSerializer(serializers.Serializer):
+    idea_id = serializers.IntegerField()
+
+
+class IdeaSerializerWithVotes(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField()
+    votes = serializers.IntegerField()
