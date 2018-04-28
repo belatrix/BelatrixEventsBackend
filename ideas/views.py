@@ -11,9 +11,10 @@ from participants.models import User
 from .models import Idea, IdeaParticipant, IdeaVotes
 from .serializers import IdeaCreationSerializer, IdeaSerializer, IdeaParticipantsSerializer
 from .serializers import IdeaRegistrationSerializer, IdeaVoteSerializer, IdeaSerializerWithVotes
+from .serializers import IdeaUpdateSerializer
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PATCH'])
 @permission_classes((IsAuthenticatedOrReadOnly, ))
 def idea(request, idea_id):
     """
@@ -21,7 +22,20 @@ def idea(request, idea_id):
     ---
     GET:
         serializer: ideas.serializers.IdeaSerializer
+    PATCH:
+        serializer: ideas.serializers.IdeaUpdateSerializer
     """
+    if request.method == 'PATCH':
+        serializer = IdeaUpdateSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = request.user
+            idea = get_object_or_404(Idea, pk=idea_id)
+            if user == idea.author:
+                idea.title = serializer.validated_data['title']
+                idea.description = serializer.validated_data['description']
+                idea.save()
+            else:
+                raise NotAcceptable('No puedes editar esta idea')
     idea = get_object_or_404(Idea, pk=idea_id)
     serializer = IdeaSerializer(idea)
     return Response(serializer.data, status=status.HTTP_200_OK)

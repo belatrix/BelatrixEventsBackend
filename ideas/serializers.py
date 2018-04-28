@@ -50,6 +50,11 @@ class IdeaVoteSerializer(serializers.Serializer):
     idea_id = serializers.IntegerField()
 
 
+class IdeaUpdateSerializer(serializers.Serializer):
+    title = serializers.CharField()
+    description = serializers.CharField(required=False)
+
+
 class IdeaSerializerWithVotes(serializers.Serializer):
     id = serializers.IntegerField()
     title = serializers.CharField()
