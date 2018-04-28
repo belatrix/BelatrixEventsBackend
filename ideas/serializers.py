@@ -30,7 +30,7 @@ class IdeaSerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = Idea
-        fields = ('id', 'author', 'title', 'description', 'event')
+        fields = ('id', 'author', 'title', 'description', 'event', 'is_completed')
         depth = 1
 
 

@@ -10,6 +10,7 @@ class Idea(models.Model):
     description = models.TextField(blank=True, null=True)
     author = models.ForeignKey('participants.User')
     event = models.ForeignKey('events.Event')
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

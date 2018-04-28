@@ -29,6 +29,10 @@ def idea(request, idea_id):
     """
     user = request.user
     idea = get_object_or_404(Idea, pk=idea_id)
+    if request.method == 'GET':
+        idea = get_object_or_404(Idea, pk=idea_id)
+        serializer = IdeaSerializer(idea)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     if user == idea.author:
         if request.method == 'DELETE':
             idea.delete()
@@ -40,11 +44,11 @@ def idea(request, idea_id):
                 idea.title = serializer.validated_data['title']
                 idea.description = serializer.validated_data['description']
                 idea.save()
+        idea = get_object_or_404(Idea, pk=idea_id)
+        serializer = IdeaSerializer(idea)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         raise ValidationError('No puedes editar o borrar esta idea')
-    idea = get_object_or_404(Idea, pk=idea_id)
-    serializer = IdeaSerializer(idea)
-    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -110,14 +114,17 @@ def idea_register(request, idea_id):
         idea = get_object_or_404(Idea, pk=idea_id)
         user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
         number_participants = IdeaParticipant.objects.filter(idea=idea).count()
-        if config.TEAM_MAX_SIZE > number_participants:
+        if config.TEAM_MAX_SIZE > number_participants and idea.is_completed is False:
             try:
                 IdeaParticipant.objects.create(idea=idea, user=user)
+                if IdeaParticipant.objects.filter(idea=idea).count() == config.TEAM_MAX_SIZE:
+                    idea.is_completed = True
+                    idea.save()
             except Exception as e:
                 print(e)
                 raise NotAcceptable('Ya registrado.')
         else:
-            raise ValidationError('Se alcanzó el número máximo de participantes por idea.')
+            raise ValidationError('Se alcanzó el número máximo de participantes por idea o ya está completo.')
         participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": True,
@@ -138,10 +145,59 @@ def idea_unregister(request, idea_id):
         idea = get_object_or_404(Idea, pk=idea_id)
         user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
         get_object_or_404(IdeaParticipant, idea=idea, user=user).delete()
+        if IdeaParticipant.objects.filter(idea=idea).count() < config.TEAM_MIN_SIZE:
+            idea.is_completed = False
+            idea.save()
         participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": False,
                          "team_members": serializer.data}, status=status.HTTP_201_CREATED)
+
+
+@api_view(['PATCH'])
+@permission_classes((IsAuthenticated, ))
+def idea_open(request, idea_id):
+    """
+    Endpoint to set an idea as open and allow more registrants.
+    ---
+    PATCH:
+        response_serializer: ideas.serializers.IdeaSerializer
+    """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    user = request.user
+    if idea.author == user:
+        if IdeaParticipant.objects.filter(idea=idea).count() < config.TEAM_MAX_SIZE:
+            idea.is_completed = False
+            idea.save()
+        else:
+            raise ValidationError('Número máximo de integrantes alcanzado.')
+    else:
+        raise ValidationError('No tienes permiso para marcar como abierto.')
+    serializer = IdeaSerializer(idea)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['PATCH'])
+@permission_classes((IsAuthenticated, ))
+def idea_completed(request, idea_id):
+    """
+    Endpoint to set an idea as completed, no more registrants allowed.
+    ---
+    PATCH:
+        response_serializer: ideas.serializers.IdeaSerializer
+    """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    user = request.user
+    if idea.author == user:
+        if IdeaParticipant.objects.filter(idea=idea).count() >= config.TEAM_MIN_SIZE:
+            idea.is_completed = True
+            idea.save()
+        else:
+            raise ValidationError('No tienes el número mínimo de integrantes.')
+    else:
+        raise ValidationError('No tienes permiso para marcar como completado.')
+    serializer = IdeaSerializer(idea)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @api_view(['GET'])
