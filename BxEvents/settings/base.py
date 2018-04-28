@@ -38,6 +38,8 @@ CORE_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'import_export',
+    'constance',
+    'constance.backends.database',
 ]
 
 PROJECT_APPS = [
@@ -82,6 +84,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BxEvents.wsgi.application'
 
+# Constance
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'TEAM_MIN_SIZE': (5, 'Mininum number of team members.', int),
+    'TEAM_MAX_SIZE': (8, 'Maximum number of team members.', int),
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases

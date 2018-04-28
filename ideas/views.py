@@ -1,4 +1,6 @@
+# encoding: utf-8
 from django.shortcuts import get_object_or_404, get_list_or_404
+from constance import config
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.exceptions import NotAcceptable, ValidationError
@@ -107,11 +109,15 @@ def idea_register(request, idea_id):
     if serializer.is_valid(raise_exception=True):
         idea = get_object_or_404(Idea, pk=idea_id)
         user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
-        try:
-            IdeaParticipant.objects.create(idea=idea, user=user)
-        except Exception as e:
-            print(e)
-            raise NotAcceptable('Ya registrado.')
+        number_participants = IdeaParticipant.objects.filter(idea=idea).count()
+        if config.TEAM_MAX_SIZE > number_participants:
+            try:
+                IdeaParticipant.objects.create(idea=idea, user=user)
+            except Exception as e:
+                print(e)
+                raise NotAcceptable('Ya registrado.')
+        else:
+            raise ValidationError('Se alcanzó el número máximo de participantes por idea.')
         participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": True,
