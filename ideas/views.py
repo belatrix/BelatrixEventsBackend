@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, get_list_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.exceptions import NotAcceptable
+from rest_framework.exceptions import NotAcceptable, ValidationError
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
 
@@ -14,28 +14,32 @@ from .serializers import IdeaRegistrationSerializer, IdeaVoteSerializer, IdeaSer
 from .serializers import IdeaUpdateSerializer
 
 
-@api_view(['GET', 'PATCH'])
+@api_view(['DELETE', 'GET', 'PATCH'])
 @permission_classes((IsAuthenticatedOrReadOnly, ))
 def idea(request, idea_id):
     """
-    Endpoint for ideas
+    Endpoint for get, update and delete an idea.
     ---
     GET:
         serializer: ideas.serializers.IdeaSerializer
     PATCH:
         serializer: ideas.serializers.IdeaUpdateSerializer
     """
-    if request.method == 'PATCH':
-        serializer = IdeaUpdateSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            user = request.user
-            idea = get_object_or_404(Idea, pk=idea_id)
-            if user == idea.author:
+    user = request.user
+    idea = get_object_or_404(Idea, pk=idea_id)
+    if user == idea.author:
+        if request.method == 'DELETE':
+            idea.delete()
+            content = {'detail': 'Idea eliminada.'}
+            return Response(content, status=status.HTTP_200_OK)
+        if request.method == 'PATCH':
+            serializer = IdeaUpdateSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
                 idea.title = serializer.validated_data['title']
                 idea.description = serializer.validated_data['description']
                 idea.save()
-            else:
-                raise NotAcceptable('No puedes editar esta idea')
+    else:
+        raise ValidationError('No puedes editar o borrar esta idea')
     idea = get_object_or_404(Idea, pk=idea_id)
     serializer = IdeaSerializer(idea)
     return Response(serializer.data, status=status.HTTP_200_OK)
