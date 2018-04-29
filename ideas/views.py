@@ -125,7 +125,8 @@ def idea_register(request, idea_id):
                 print(e)
                 raise NotAcceptable('Ya registrado.')
         else:
-            raise ValidationError({'detail':'Se alcanzó el número máximo de participantes por idea o ya está completo.'})
+            raise ValidationError(
+                {'detail': 'Se alcanzó el número máximo de participantes por idea o ya está completo.'})
         participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": True,
@@ -171,9 +172,9 @@ def idea_open(request, idea_id):
             idea.is_completed = False
             idea.save()
         else:
-            raise ValidationError({'detail':'Número máximo de integrantes alcanzado.'})
+            raise ValidationError({'detail': 'Número máximo de integrantes alcanzado.'})
     else:
-        raise ValidationError({'detail':'No tienes permiso para marcar como abierto.'})
+        raise ValidationError({'detail': 'No tienes permiso para marcar como abierto.'})
     serializer = IdeaSerializer(idea)
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
@@ -194,9 +195,9 @@ def idea_completed(request, idea_id):
             idea.is_completed = True
             idea.save()
         else:
-            raise ValidationError({'detail':'No tienes el número mínimo de integrantes.'})
+            raise ValidationError({'detail': 'No tienes el número mínimo de integrantes.'})
     else:
-        raise ValidationError({'detail':'No tienes permiso para marcar como completado.'})
+        raise ValidationError({'detail': 'No tienes permiso para marcar como completado.'})
     serializer = IdeaSerializer(idea)
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
@@ -246,28 +247,41 @@ def idea_vote(request, event_id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
+@api_view(['GET', 'PATCH', 'POST'])
 @permission_classes((IsAuthenticated, IsJury))
 def idea_rate(request, idea_id):
     """
     Endpoint to set rate to an idea by a jury
     ---
+    GET:
+        response_serializer: ideas.serializers.IdeaScoreModelSerializer
+    PATCH:
+        serializer: ideas.serializers.IdeaScoreSerializer
+        response_serializer: ideas.serializers.IdeaScoreModelSerializer
     POST:
         serializer: ideas.serializers.IdeaScoreSerializer
         response_serializer: ideas.serializers.IdeaScoreModelSerializer
     """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    user = request.user
     if request.method == "POST":
         serializer = IdeaScoreSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            idea = get_object_or_404(Idea, pk=idea_id)
             category = get_object_or_404(IdeaScoresCriteria, pk=serializer.validated_data['category_id'])
             value = serializer.validated_data['value']
-            user = request.user
             try:
                 IdeaScores.objects.create(idea=idea, jury=user, category=category, value=value)
             except Exception as e:
                 print(e)
-                raise ValidationError({'detail':'Ya fue evaluado en esta categoria.'})
-            idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
-            serializer = IdeaScoreModelSerializer(idea_scores, many=True)
-            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+                raise ValidationError({'detail': 'Ya fue evaluado en esta categoria.'})
+    if request.method == "PATCH":
+        serializer = IdeaScoreSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            category = get_object_or_404(IdeaScoresCriteria, pk=serializer.validated_data['category_id'])
+            value = serializer.validated_data['value']
+            idea_score = get_object_or_404(IdeaScores, idea=idea, jury=user, category=category)
+            idea_score.value = value
+            idea_score.save()
+    idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
+    serializer = IdeaScoreModelSerializer(idea_scores, many=True)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

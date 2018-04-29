@@ -20,7 +20,7 @@ class IdeaScoresCriteriaAdmin(admin.ModelAdmin):
     list_display = ('name', 'weight')
 
 
-class IdeaScoresAdmin(admin.ModelAdmin):
+class IdeaScoresAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('idea', 'jury', 'category', 'value')
 
 

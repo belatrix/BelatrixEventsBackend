@@ -34,6 +34,12 @@ class IdeaSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class SimpleIdeaSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = Idea
+        fields = ('id', 'title')
+
+
 class IdeaParticipantsSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
@@ -63,7 +69,7 @@ class IdeaSerializerWithVotes(serializers.Serializer):
 
 class IdeaScoreModelSerializer(serializers.ModelSerializer):
     jury = UserSerializer()
-    idea = IdeaSerializer()
+    idea = SimpleIdeaSerializer()
 
     class Meta(object):
         model = IdeaScores
@@ -74,4 +80,3 @@ class IdeaScoreModelSerializer(serializers.ModelSerializer):
 class IdeaScoreSerializer(serializers.Serializer):
     category_id = serializers.IntegerField()
     value = serializers.IntegerField()
-
