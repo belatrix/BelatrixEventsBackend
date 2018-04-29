@@ -2,7 +2,7 @@ from rest_framework import serializers
 from events.models import Event
 from participants.models import User
 
-from .models import Idea, IdeaParticipant, IdeaScores
+from .models import Idea, IdeaParticipant, IdeaScores, IdeaScoresCriteria
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -67,9 +67,16 @@ class IdeaSerializerWithVotes(serializers.Serializer):
     votes = serializers.IntegerField()
 
 
+class IdeaScoresCriteriaSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = IdeaScoresCriteria
+        fields = '__all__'
+
+
 class IdeaScoreModelSerializer(serializers.ModelSerializer):
     jury = UserSerializer()
     idea = SimpleIdeaSerializer()
+    category = IdeaScoresCriteriaSerializer()
 
     class Meta(object):
         model = IdeaScores

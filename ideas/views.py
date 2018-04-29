@@ -15,6 +15,7 @@ from .models import Idea, IdeaParticipant, IdeaVotes, IdeaScores, IdeaScoresCrit
 from .serializers import IdeaCreationSerializer, IdeaSerializer, IdeaParticipantsSerializer
 from .serializers import IdeaRegistrationSerializer, IdeaVoteSerializer, IdeaSerializerWithVotes
 from .serializers import IdeaUpdateSerializer, IdeaScoreSerializer, IdeaScoreModelSerializer
+from .serializers import IdeaScoresCriteriaSerializer
 
 
 @api_view(['DELETE', 'GET', 'PATCH'])
@@ -247,11 +248,25 @@ def idea_vote(request, event_id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, IsJury))
+def idea_scores_criteria(request):
+    """
+    Endpoint to get a list of assessment criteria for jury
+    ---
+    GET:
+        response_serializer: ideas.serializers.IdeaScoresCriteriaSerializer
+    """
+    score_criteria_list = IdeaScoresCriteria.objects.all()
+    serializer = IdeaScoresCriteriaSerializer(score_criteria_list, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 @api_view(['GET', 'PATCH', 'POST'])
 @permission_classes((IsAuthenticated, IsJury))
 def idea_rate(request, idea_id):
     """
-    Endpoint to set rate to an idea by a jury
+    Endpoint to set, get and edit rates to an idea by a jury
     ---
     GET:
         response_serializer: ideas.serializers.IdeaScoreModelSerializer
