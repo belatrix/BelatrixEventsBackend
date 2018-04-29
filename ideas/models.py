@@ -38,3 +38,28 @@ class IdeaVotes(models.Model):
     class Meta(object):
         unique_together = ('idea', 'participant')
         verbose_name_plural = 'votes'
+
+
+@python_2_unicode_compatible
+class IdeaScoresCriteria(models.Model):
+    name = models.CharField(max_length=200)
+    weight = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return self.name
+
+    class Meta(object):
+        verbose_name = 'Score category'
+        verbose_name_plural = 'Score categories'
+
+
+class IdeaScores(models.Model):
+    idea = models.ForeignKey(Idea)
+    jury = models.ForeignKey('participants.User')
+    category = models.ForeignKey(IdeaScoresCriteria)
+    value = models.PositiveIntegerField(default=0)
+
+    class Meta(object):
+        unique_together = ('idea', 'jury', 'category')
+        verbose_name = 'Idea score'
+        verbose_name_plural = 'Idea scores'

@@ -1,0 +1,29 @@
+[{
+	"model": "ideas.ideascorescriteria",
+	"pk": 1,
+	"fields": {
+		"name": "Innovaci\u00f3n",
+		"weight": 4
+	}
+}, {
+	"model": "ideas.ideascorescriteria",
+	"pk": 2,
+	"fields": {
+		"name": "Funcionalidad",
+		"weight": 3
+	}
+}, {
+	"model": "ideas.ideascorescriteria",
+	"pk": 3,
+	"fields": {
+		"name": "Presentaci\u00f3n",
+		"weight": 1
+	}
+}, {
+	"model": "ideas.ideascorescriteria",
+	"pk": 4,
+	"fields": {
+		"name": "Complejidad",
+		"weight": 2
+	}
+}]

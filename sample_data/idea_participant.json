@@ -1,0 +1,22 @@
+[{
+	"model": "ideas.ideaparticipant",
+	"pk": 1,
+	"fields": {
+		"idea": 1,
+		"user": 2
+	}
+}, {
+	"model": "ideas.ideaparticipant",
+	"pk": 2,
+	"fields": {
+		"idea": 1,
+		"user": 7
+	}
+}, {
+	"model": "ideas.ideaparticipant",
+	"pk": 3,
+	"fields": {
+		"idea": 1,
+		"user": 6
+	}
+}]

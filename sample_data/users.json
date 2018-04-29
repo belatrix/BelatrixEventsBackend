@@ -3,7 +3,7 @@
 	"pk": 1,
 	"fields": {
 		"password": "pbkdf2_sha256$30000$wck7Fjg9YlVJ$rMoCsMakvkI1oRmAlWCpvtNMmT6MVyOcrErcnaZWLOM=",
-		"last_login": "2018-04-24T15:06:41.658Z",
+		"last_login": "2018-04-29T05:16:11.294Z",
 		"is_superuser": true,
 		"email": "sinfante@belatrixsf.com",
 		"first_name": "Sergio",
@@ -93,13 +93,13 @@
 		"first_name": "Jurado",
 		"last_name": "Hackatrix",
 		"date_joined": "2018-04-14T15:28:12.191Z",
-		"is_staff": true,
+		"is_staff": false,
 		"is_jury": true,
 		"is_active": true,
 		"is_blocked": false,
 		"is_password_reset_required": true,
 		"reset_password_code": null,
-		"temporary_password": null,
+		"temporary_password": "",
 		"groups": [],
 		"user_permissions": []
 	}
@@ -140,6 +140,48 @@
 		"is_active": true,
 		"is_blocked": false,
 		"is_password_reset_required": false,
+		"reset_password_code": null,
+		"temporary_password": "",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "participants.user",
+	"pk": 8,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$45tMEtlmIdU7$K4+JzPqpHdk2FijwdMLs4A8rE2VXoVnH7q9jLAmmklQ=",
+		"last_login": null,
+		"is_superuser": false,
+		"email": "jurado02@email.com",
+		"first_name": "Segundo",
+		"last_name": "Jurado",
+		"date_joined": "2018-04-29T05:16:38.638Z",
+		"is_staff": false,
+		"is_jury": true,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": true,
+		"reset_password_code": null,
+		"temporary_password": "",
+		"groups": [],
+		"user_permissions": []
+	}
+}, {
+	"model": "participants.user",
+	"pk": 9,
+	"fields": {
+		"password": "pbkdf2_sha256$30000$EP1ljeWhWX5P$2MRihIIIndmcVUvwEGRsGHlVfBcvTyW9OMC6C7m7gn0=",
+		"last_login": null,
+		"is_superuser": false,
+		"email": "participante02@email.com",
+		"first_name": "Segundo",
+		"last_name": "Participante",
+		"date_joined": "2018-04-29T05:17:34.685Z",
+		"is_staff": false,
+		"is_jury": false,
+		"is_active": true,
+		"is_blocked": false,
+		"is_password_reset_required": true,
 		"reset_password_code": null,
 		"temporary_password": "",
 		"groups": [],
