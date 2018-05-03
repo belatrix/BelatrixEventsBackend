@@ -6,16 +6,7 @@ DJANGO_SETTINGS_MODULE=BxEvents.settings.production
 
 import dj_database_url
 from .base import *  # noqa: F403
-from os import environ
-
-
-# Function to get environment variables value if they exist.
-def env(e, d):
-    if e in environ:
-        return environ[e]
-    else:
-        return d
-
+from utils.environment import env
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,3 +34,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # PUSH NOTIFICATIONS
 FIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY', '')
+
+# Email
+EMAIL_HOST = env('EMAIL_HOST', '')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', '')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', '')
+EMAIL_PORT = env('EMAIL_PORT', '')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', '')

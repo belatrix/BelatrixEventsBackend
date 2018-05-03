@@ -1,0 +1,82 @@
+[{
+	"model": "notifications.message",
+	"pk": 1,
+	"fields": {
+		"text": "Ven al Kick Off hoy viernes 19 y forma un equipo, elige una idea y diviertete!!! y no te olvides ma\u00f1ana la #Hackatrix2017 en Lima!",
+		"datetime": "2017-05-19T19:33:52.469Z",
+		"city": 0,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 2,
+	"fields": {
+		"text": "A pocas horas para el Kick Off de la #Hackatrix2017 Lima en la Av. Rep\u00fablica de Panam\u00e1 3591- Piso 20. *Ingreso s\u00f3lo a personas registradas.",
+		"datetime": "2017-05-19T19:36:57.188Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 6,
+	"fields": {
+		"text": "S\u00f3lo quedan 30 minutos para que empiece el registro de la Hackatrix 2017, te esperamos!!!",
+		"datetime": "2017-05-20T12:38:52.349Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 7,
+	"fields": {
+		"text": "Y arranc\u00f3 el registro para la Hackatrix 2017, recuerda que los 30 primeros tendr\u00e1n un premio sorpresa!",
+		"datetime": "2017-05-20T13:06:58.383Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 8,
+	"fields": {
+		"text": "Ya todos estamos preparados para codear! solo unos minutos para que empiece la Hackatrix 2017",
+		"datetime": "2017-05-20T14:00:20.643Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 9,
+	"fields": {
+		"text": "Y se inicia esta gran fiesta de ideas, programaci\u00f3n y compartir, hoy en la Hackatrix 2017, organizado por Belatrix y el BCP",
+		"datetime": "2017-05-20T14:21:01.106Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 10,
+	"fields": {
+		"text": "\u00bfTienes una duda t\u00e9cnica? \u00a1No olvides que tenemos Technical Leads a los que puedes acudir ante cualquier duda!",
+		"datetime": "2017-05-20T15:34:40.146Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 11,
+	"fields": {
+		"text": "Toda la fiesta de la Hackatrix 2017 se desarrolla sin problemas, hagamos una pausa para poder disfrutar de un delicioso almuerzo",
+		"datetime": "2017-05-20T17:33:08.473Z",
+		"city": 1,
+		"is_active": true
+	}
+}, {
+	"model": "notifications.message",
+	"pk": 12,
+	"fields": {
+		"text": "Y con las eneg\u00edas recargadas, continuemos nuestra fiesta!!! Hackatrix 2017, organizado por Belatrix y el BCP",
+		"datetime": "2017-05-20T18:55:09.192Z",
+		"city": 1,
+		"is_active": true
+	}
+}]

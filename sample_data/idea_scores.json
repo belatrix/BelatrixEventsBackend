@@ -1,0 +1,73 @@
+[{
+	"model": "ideas.ideascores",
+	"pk": 1,
+	"fields": {
+		"idea": 1,
+		"jury": 5,
+		"category": 1,
+		"value": 5
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 2,
+	"fields": {
+		"idea": 1,
+		"jury": 5,
+		"category": 2,
+		"value": 5
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 3,
+	"fields": {
+		"idea": 1,
+		"jury": 5,
+		"category": 3,
+		"value": 10
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 4,
+	"fields": {
+		"idea": 1,
+		"jury": 5,
+		"category": 4,
+		"value": 2
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 5,
+	"fields": {
+		"idea": 1,
+		"jury": 8,
+		"category": 1,
+		"value": 6
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 6,
+	"fields": {
+		"idea": 1,
+		"jury": 8,
+		"category": 2,
+		"value": 3
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 7,
+	"fields": {
+		"idea": 1,
+		"jury": 8,
+		"category": 3,
+		"value": 6
+	}
+}, {
+	"model": "ideas.ideascores",
+	"pk": 8,
+	"fields": {
+		"idea": 1,
+		"jury": 8,
+		"category": 4,
+		"value": 10
+	}
+}]

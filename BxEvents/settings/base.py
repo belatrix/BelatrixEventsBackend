@@ -25,21 +25,34 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+CORE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_swagger',
+    'import_export',
+    'constance',
+    'constance.backends.database',
+]
+
+PROJECT_APPS = [
     'events.apps.EventsConfig',
     'employees.apps.EmployeesConfig',
     'notifications.apps.NotificationsConfig',
     'devices.apps.DevicesConfig',
+    'participants.apps.ParticipantsConfig',
+    'ideas.apps.IdeasConfig',
+    'reports.apps.ReportsConfig',
 ]
+
+INSTALLED_APPS = CORE_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,6 +85,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BxEvents.wsgi.application'
 
+# Constance
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'TEAM_MIN_SIZE': (5, 'Mininum number of team members.', int),
+    'TEAM_MAX_SIZE': (8, 'Maximum number of team members.', int),
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -102,6 +121,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Djangorestframework settings
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 30
 }
@@ -119,6 +143,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
+# USER MODEL
+AUTH_USER_MODEL = "participants.User"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -129,3 +157,7 @@ STATIC_URL = '/static/'
 # Push notifications
 FIREBASE_API_URL = 'https://fcm.googleapis.com/fcm/send'
 TITLE_PUSH_NOTIFICATIONS = 'BELATRIX Events'
+
+# Email
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

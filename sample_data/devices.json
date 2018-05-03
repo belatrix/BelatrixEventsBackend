@@ -1,0 +1,201 @@
+[{
+	"model": "devices.device",
+	"pk": 1,
+	"fields": {
+		"device_code": "dUBAbh2DOv8:APA91bFzEebDq3XvW68fMi5aQSArnISwMx5uuW6h0orlxQm8Bz7AwQpbh0nSea4dHgKP95AsXSB4YJohXjyxsnssd-z4PfLILMguEIXFPvVFD0VuqHGPpt5YcEleov55vIXr6kIXBMp4",
+		"type": "android",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 2,
+	"fields": {
+		"device_code": "co6-ymWSBt8:APA91bHrBfJK0iWo5Wjg6FtXzCwcBF6h6RiFIepxm07HrQQhCsNxeLy87jN7hv6s9CERfxVXnoO9516M6GhFzITG1ENF7NI_cs78oAFnWob6lzKIFKnVXnwKiw5rYRVOCL8xbTMQJetn",
+		"type": "android",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 3,
+	"fields": {
+		"device_code": "cUeEAgASLqg:APA91bEgf530WT_ZwkCxBgPAB7awnZq7Ur8BO1f7K2O5Tvc6o_8neY9R9b2-JwLJgZtnZvZ3R-8a371RSzzfp3f6vwREjIryfcm4unh0j_M_KBGiw04WqStRIwmSrLqT3SwxgxosdfIS",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 4,
+	"fields": {
+		"device_code": "c3sbWnpkWBA:APA91bEuEI2Db06E7yA3GqKMIi7fBNwvZpIV6f57m7RCXjJUdIqCc8RAwhk7Qx3Vlw9apYwSDjUht-WeypapAfM0sJIn9GgnESyHN8fhC_aAx_KCfnjG6vawr7JTTCeTCpGDggBOAsYV",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 5,
+	"fields": {
+		"device_code": "ep3XDjnK-x4:APA91bGY5jIf8xWzZ2fSuibayoOz5apWnnK43Ia8riPQqaJh6HLKpWKKkbP818j2srKc3CVt-dI2xE39xj_8g8oBIGlCE_HdLe_kDn9pjOklb5MJuZBupi3IpxvGIvpfcHQorbGuimUp",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 6,
+	"fields": {
+		"device_code": "c26XtPrPCjo:APA91bG6Idni_TeYNVhVMWGUKT1lKTtGhg1FkfWXd2JD3XLvIX-Qm9-EVGfjq4iE358o1hZu9Ie93l51lJe3wgbD_nM_UOwE3OqbEFjlt9TDL-Z9ByAG6I43j9wuD6aQ0hIEsN5zOCH_",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 7,
+	"fields": {
+		"device_code": "cJdpfJdPQY0:APA91bFeul8ktD6u50PYOdvam4nkflzPQCIJ7ZGTh3juuWSUMNEsN5LYvkZVjUyLR7yXLAjd2ugbP0MKE9hmFVomeS4wlcyc2nOmRCtKIP3r0fokiBtlvl4X7K7F8uRZdGs65-zHtZrD",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 8,
+	"fields": {
+		"device_code": "e_HrOCg-sPE:APA91bEoU_qQCi1bBWEQphYsEs3VM7Y_klVz85D-kGJAJfKyqoYsBmyhdCetfQFvnNC9eyv-dS6IHbiIgb6fiC3i25K9HzDWwLsGQbV7QN8NyKRUoZ2ixW8Mkut2Ycl_hQKnn_1hOejO",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 9,
+	"fields": {
+		"device_code": "cV5ySoStQdI:APA91bEMTqyRlvfMfM4ggE2STWyP35DLyB0R7gyFaEJZy1S1TrZfdf8mrggohvGkeLWVLfTqohCqy0lhXxiJyE-_KiWOymW7UqtNYlQicboWa3-X4uvqcbIqOfIMKUmLkBLySOQpF-fv",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 10,
+	"fields": {
+		"device_code": "croun6e4Kgw:APA91bE6xD5lyFysQwfrlvISTjDoywD_7RMayqfkpJEHmRTE2WLHWuVCzDN7TPb3O9Tfbg3IeuJ-S4P6AIlG-pYqVvlhzB95ztUj8jv244ExH1uEKXrtCMo97vrTAyiy3WTfuJPNLihW",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 11,
+	"fields": {
+		"device_code": "fEYKZLCg8w0:APA91bHY51cpcioVjwbCsv87c05ITtZ5eHd47FsX4Fya9hWSbcZrRzZ0v8BS8wrzGnXmIUvHDMcl9dYXksph66hfSq4Ro__xioMzgiypqhgD5waKUEGZu6kPlVaznRsA1yJqueU0MiKF",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 12,
+	"fields": {
+		"device_code": "fl7s9hCYa6M:APA91bEx9--XDdCjoKXz_TeAxDUCs1gJChB1QnO4v0w6qq2doGrhjWX41hOHmAPCZ1c3Ggg1GhFpnKMIJHr12XuO1wrfTh4pHEde9QgjlAWCsIUkH1_QbDqNWkgP60sREn7EFoRaw9Vy",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 13,
+	"fields": {
+		"device_code": "fXu56yB-6gI:APA91bGYGVOpJgvFYq-NLc2Dx_qhAzBokgtXeBxTJGuN4OuPqQOptBxnvnKkdcKAaagOOoUFM6cek7XrIIt6R9BQeHYHz8yuUUrtng6hj6PLuouBC47MdkK5p1nt15djvf21O1lh8wDI",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 14,
+	"fields": {
+		"device_code": "eX4fcqD_cCs:APA91bFigt4Jun6NJaJPy7pqjJYegqwqeRdGUpf2JqoYERvVeEoUyy91B4Ji0HW3wEpn_X2hdt0MRzBmZSp0RQapnhGBDBAXbohLIplW8SsJNBnVodM5sqaQVFEqf1mc_KROouOndznH",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 15,
+	"fields": {
+		"device_code": "eWeihaBVVpI:APA91bE9hCEkVliH7WAg8LAfhAcZs3abZUQDRdG1WusoaQNMUpqo_B-g7tfd5y8i5A_vLYBc2TGep1thHZuMJjkC-VpwmGPzXSKdM21baFvDAeUcpE5pSXsrABP-bs-1ziIacxeLweVJ",
+		"type": "android",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 16,
+	"fields": {
+		"device_code": "c3hePOUySBk:APA91bFgzVVjKOYXTE3vFyOlif4s0YWqF_1Aa8YqF0mSEGShcMjHJYp0kBnJH_xCxTfNyrMY9XSwIJ0QOulTrfp1H57sJUsbLy51JIn8qD_FcUg-qayeEDB-wBcvoSvhfGJk-b5ZV5l_",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 17,
+	"fields": {
+		"device_code": "cnFCgPdAI7Q:APA91bHDk_EHahwy8AMnVkSLC5GH7MnNr0lQ50If3la1MLwmLtjVuw_bPOuNFt_9kMJYs3Wp9Tgb7Icb_H7N3LS8smTag2r_Mk5rZA5IiUTtf0QXSKi_iPDX75utYDbRqck4IKN7RmR-",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 18,
+	"fields": {
+		"device_code": "cGp2z_NMO_Y:APA91bFwTTGRCO-PAxM1PEs9-Zi2nSKedEJ0xalhcFoEf50WzHDXtlXm-iepLBvZCDUMOj1sCag6RceUC0Rv1kFwWCPM_LRAkfipa0oQEw--SkM-Rpu6dO-ScB0zjI1h_u87kLqvU19r",
+		"type": "android",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 19,
+	"fields": {
+		"device_code": "d24WArUmlzs:APA91bGyNP6UsSp1Jsn84DZXVrH7fTtAkSWMYBfoVKYw9Mnyr2u7XQYv1qJqq_9WDL93iEa-YEk88L4fUBDdclNCuK0sBI7MJYKJUFBmVGDj680WN9nmelQ5Eru_Ufcudc6Lp2_PPG98",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 20,
+	"fields": {
+		"device_code": "fHX663qiv0Q:APA91bHS5xIC5xYbAVBzbMxS1NBjx14pOWtDI8wj4o4yh8cEQVsNQVoXJAVrgdotODq8b6dthrIvzSVa4ZOLirObWLOK4_laUTW0m8SfGVSAqTWky9rm1J6D2vupE4OMwnC4QQUl_zDN",
+		"type": "ios",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 21,
+	"fields": {
+		"device_code": "dTSj_NnQ244:APA91bHpDDsHIeL3qWwFrY936MhwxFM1f202t9reIiDHX-uhUsaSifN4_ZHY01PMKU1FzxKb4er7x8m-nnf2_E-_6N7uItGKpphXJ91TOcS67x9fLM_fZDhT2M8-SPQi_xDJ3thn7VES",
+		"type": "android",
+		"city": 0
+	}
+}, {
+	"model": "devices.device",
+	"pk": 22,
+	"fields": {
+		"device_code": "cazj7sXHE-o:APA91bFq8-kkh5JXBF75wdoE-DecANVSoGnsJRVrzgje9HXnVgrdJON39BdOk-WG5t1-nmIJB-_LxXcwWODCh6R1u6fC2tyTqBqIN6sWmDVT-p839Sule7Frp7hX6dSxLjf9Svo0KaOj",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 23,
+	"fields": {
+		"device_code": "dwU9wsuUGj0:APA91bH4nGnf23MOo-BGT1fRu5DmJZdTPjX6JULv6XsNb_mc3io-k02oS0H4G0QJFkiz1SJwjLD0RU9p_iW-LI2qXIMwrROTzgfJV_M9ucbGLx_C7Q9f8E1F4rDGTv2hlzxalkbzhG4s",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 24,
+	"fields": {
+		"device_code": "eGVFVqbDNJE:APA91bFGdv5GojxBX9IoLQSuGCYbH8FESp4H7kZVdQz4Yp6W0GvV5gfFr_M4OGJheVGcw9c9UMPkNRlI3N9eC9F7Qfss3MkMZqHT9FXq6ComAdvGOELfWVjwx6pTxb902FPzLdXQJVMu",
+		"type": "android",
+		"city": 1
+	}
+}, {
+	"model": "devices.device",
+	"pk": 25,
+	"fields": {
+		"device_code": "cMveg50zXss:APA91bEoV08DBoMI0KcVhZNkLJpLVI5yj5iH_hfAb4mP0bLIQHpi4XLZr4iVxkNiIYDoI_35dC7oMLN4Kxcs33JAXjqyEPpCDzscoEQGGqyZP1FEF1wjSVatEjsarFoQG6MONTy7r_30",
+		"type": "android",
+		"city": 0
+	}
+}]

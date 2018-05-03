@@ -38,4 +38,12 @@
 		"latitude": "-34.597316",
 		"longitude": "-58.4179587"
 	}
+}, {
+	"model": "events.location",
+	"pk": 6,
+	"fields": {
+		"name": "Belatrix Buenos Aires",
+		"latitude": "-34.597656",
+		"longitude": "-58.370656"
+	}
 }]

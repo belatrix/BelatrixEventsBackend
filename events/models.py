@@ -58,6 +58,23 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
 
+class EventParticipant(models.Model):
+    event = models.ForeignKey(Event)
+    participant = models.ForeignKey('participants.User')
+
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            existing_record = EventParticipant.objects.filter(event=self.event, participant=self.participant)
+            if len(existing_record) > 0:
+                # raise an IntegrityError is another possibility to handle duplicated records
+                # from django.db import IntegrityError
+                # message = "%s ya registrado en %s" % (self.participant.email, self.event.title)
+                # raise IntegrityError("message")
+                return
+
+        return super(EventParticipant, self).save(*args, **kwargs)
+
+
 @python_2_unicode_compatible
 class Interaction(models.Model):
     text = models.CharField(max_length=100)

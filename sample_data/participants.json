@@ -1,0 +1,37 @@
+[{
+	"model": "participants.participant",
+	"pk": 1,
+	"fields": {
+		"first_name": "Otro Participante",
+		"last_name": "Registrado",
+		"email": "otroparticipante@email.com",
+		"event_id": 19
+	}
+}, {
+	"model": "participants.participant",
+	"pk": 2,
+	"fields": {
+		"first_name": "Segundo",
+		"last_name": "Participante",
+		"email": "participante02@email.com",
+		"event_id": 19
+	}
+}, {
+	"model": "participants.participant",
+	"pk": 3,
+	"fields": {
+		"first_name": "Tercer",
+		"last_name": "Participante",
+		"email": "participante03@email.com",
+		"event_id": 19
+	}
+}, {
+	"model": "participants.participant",
+	"pk": 4,
+	"fields": {
+		"first_name": "Participante",
+		"last_name": "Registrado",
+		"email": "participante@email.com",
+		"event_id": 19
+	}
+}]
