@@ -25,6 +25,7 @@ class IdeaParticipant(models.Model):
         return self.idea.title
 
     class Meta(object):
+        ordering = ['idea']
         unique_together = ('idea', 'user')
         verbose_name = 'team member'
         verbose_name_plural = 'groups'

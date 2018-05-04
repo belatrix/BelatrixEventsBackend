@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Idea Title</th>
+            <th>Participant Firstname</th>
+            <th>Participant Lastname</th>
+            <th>Participant email</th>
+        </tr>
+        {% for register in participants_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ register.idea }}</td>
+            <td>{{ register.user.first_name }}</td>
+            <td>{{ register.user.last_name }}</td>
+            <td>{{ register.user.email }}</td>
+        </tr>
+    {% empty %}
+        <tr><td>no content.</td></tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'reports:index' %}">Back</a></p>
+{% endblock content %}
