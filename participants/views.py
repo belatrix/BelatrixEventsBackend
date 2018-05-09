@@ -1,5 +1,6 @@
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
+from django.contrib.auth import logout
 from django.contrib.sites.models import Site
 from django.shortcuts import get_object_or_404
 from re import match as regex_match
@@ -213,3 +214,13 @@ class CustomAuthToken(ObtainAuthToken):
             'is_jury': user.is_jury,
             'is_password_reset_required': user.is_password_reset_required,
         })
+
+
+@api_view(['POST', ])
+@permission_classes((IsAuthenticated, ))
+def user_logout(request):
+    """
+    Logout current user
+    """
+    logout(request)
+    return Response(status=status.HTTP_202_ACCEPTED)
