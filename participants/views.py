@@ -32,6 +32,19 @@ def user_detail(request, user_id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def user_profile(request):
+    """
+    Returns user profile
+    ---
+    GET:
+        response_serializer: participants.serializers.UserSerializer
+    """
+    serializer = UserSerializer(request.user)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 @api_view(['POST', ])
 def user_creation(request):
     """
