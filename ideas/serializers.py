@@ -8,7 +8,7 @@ from .models import Idea, IdeaParticipant, IdeaScores, IdeaScoresCriteria
 class UserSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = User
-        fields = ('id', 'first_name', 'last_name', 'email')
+        fields = ('id', 'full_name', 'email')
 
 
 class EventSerializer(serializers.ModelSerializer):
