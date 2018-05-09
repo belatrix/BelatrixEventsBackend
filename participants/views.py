@@ -12,7 +12,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
 from .models import User, Participant
-from .serializers import UserSerializer, UserCreationSerializer, UserUpdatePasswordSerializer
+from .serializers import UserSerializer, UserCreationSerializer
+from .serializers import UserUpdatePasswordSerializer, UserFullnameSerializer
 from events.models import Event, EventParticipant
 
 
@@ -76,6 +77,28 @@ def user_creation(request):
 
         serializer = UserSerializer(new_user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['PATCH', ])
+@permission_classes((IsAuthenticated, ))
+def user_update(request):
+    """
+    Update user data
+    ---
+    PATCH:
+        serializer: participants.serializers.UserFullnameSerializer
+        response_serializer: participants.serializers.UserSerializer
+    """
+    if request.method == 'PATCH':
+        serializer = UserFullnameSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            full_name = serializer.validated_data['full_name']
+            current_user = request.user
+            current_user.full_name = full_name
+            current_user.save()
+            serializer = UserSerializer(current_user)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @api_view(['PATCH', ])
