@@ -65,8 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Participant(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    full_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     event_id = models.IntegerField(default=0)
 

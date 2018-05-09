@@ -62,6 +62,8 @@ def user_creation(request):
         if len(participant) == 1:
             event = Event.objects.filter(pk=participant[0].event_id)
             if len(event) == 1:
+                new_user.full_name = participant[0].full_name
+                new_user.save()
                 EventParticipant.objects.create(event=event[0], participant=new_user)
 
         try:

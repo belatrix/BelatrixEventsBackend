@@ -17,6 +17,8 @@ class Command(BaseCommand):
             user = User.objects.filter(email=participant.email)
             if len(user) == 1:
                 user_registered = user[0]
+                user_registered.full_name = participant.full_name
+                user_registered.save()
                 EventParticipant.objects.create(event=event, participant=user_registered)
 
     def handle(self, *args, **options):
