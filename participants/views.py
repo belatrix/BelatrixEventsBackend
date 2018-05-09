@@ -103,7 +103,7 @@ def user_update(request):
 
 @api_view(['PATCH', ])
 @permission_classes((IsAuthenticated, ))
-def user_update_password(request, user_id):
+def user_update_password(request):
     """
     Update user password
     ---
@@ -118,7 +118,7 @@ def user_update_password(request, user_id):
             current_password = serializer.validated_data['current_password']
             new_password = serializer.validated_data['new_password']
 
-        user = get_object_or_404(User, pk=user_id)
+        user = request.user
 
         if current_password == new_password:
             raise ValidationError('Passwords iguales')
