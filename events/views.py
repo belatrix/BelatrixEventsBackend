@@ -32,6 +32,14 @@ def event_detail(request, event_id):
 def event_featured(request):
     """
     Returns event featured
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.filter(is_active=True, is_featured=True)
 
@@ -68,6 +76,14 @@ def event_featured(request):
 def event_interaction(request, event_id):
     """
     Returns event interactions
+    ---
+    GET:
+        parameters:
+            - name: pagination
+              description: set true if you want paginated results
+              type: string
+              required: false
+              paramType: query
     """
     event = get_object_or_404(Event, pk=event_id, is_active=True)
     interactions = Interaction.objects.filter(event=event, is_active=True)
@@ -102,6 +118,14 @@ def event_interaction_vote(request, interaction_id):
 def event_list(request):
     """
     Returns event list
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.all()
     if request.GET.get('city'):
@@ -126,6 +150,14 @@ def event_list(request):
 def event_upcoming_list(request):
     """
     Returns upcoming event list
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.filter(is_upcoming=True, is_active=True)
     if request.GET.get('city'):
@@ -150,6 +182,14 @@ def event_upcoming_list(request):
 def event_past_list(request):
     """
     Returns past event list
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.filter(is_upcoming=False, is_active=True)
     if request.GET.get('city'):
