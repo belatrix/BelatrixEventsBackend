@@ -11,9 +11,13 @@ class Idea(models.Model):
     author = models.ForeignKey('participants.User')
     event = models.ForeignKey('events.Event')
     is_completed = models.BooleanField(default=False)
+    is_valid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+
+    class Meta(object):
+        ordering = ['title']
 
 
 @python_2_unicode_compatible

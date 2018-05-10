@@ -5,7 +5,7 @@ from .models import Idea, IdeaParticipant, IdeaVotes, IdeaScoresCriteria, IdeaSc
 
 
 class IdeaAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('title', 'author', 'event', 'is_completed')
+    list_display = ('title', 'author', 'event', 'is_valid', 'is_completed')
 
 
 class IdeaParticipantAdmin(admin.ModelAdmin):
