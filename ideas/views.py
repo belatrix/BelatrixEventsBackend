@@ -9,7 +9,7 @@ from rest_framework.response import Response
 
 from events.models import Event
 from participants.models import User
-from participants.permissions import IsJury
+from participants.permissions import IsJury, IsModerator
 
 from .models import Idea, IdeaParticipant, IdeaVotes, IdeaScores, IdeaScoresCriteria
 from .serializers import IdeaCreationSerializer, IdeaSerializer, IdeaParticipantsSerializer
@@ -218,6 +218,20 @@ def idea_list(request, event_id):
     GET:
         response_serializer: ideas.serializers.IdeaSerializer
     """
+    ideas = get_list_or_404(Idea, event=event_id, is_valid=True)
+    serializer = IdeaSerializer(ideas, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes((IsModerator, ))
+def idea_draft_list(request, event_id):
+    """
+    Returns idea list by event without filter
+    ---
+    GET:
+        response_serializer: ideas.serializers.IdeaSerializer
+    """
     ideas = get_list_or_404(Idea, event=event_id)
     serializer = IdeaSerializer(ideas, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -244,7 +258,7 @@ def idea_vote(request, event_id):
                 print(e)
                 raise NotAcceptable('Usuario ya voto')
     event_ideas = []
-    ideas = get_list_or_404(Idea, event=event_id)
+    ideas = get_list_or_404(Idea, event=event_id, is_valid=True)
     for idea in ideas:
         votes = IdeaVotes.objects.filter(idea=idea).count()
         idea_response = {'id': idea.id,
@@ -253,6 +267,25 @@ def idea_vote(request, event_id):
         event_ideas.append(idea_response)
     serializer = IdeaSerializerWithVotes(event_ideas, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['PATCH', ])
+@permission_classes((IsModerator, ))
+def idea_validate(request, idea_id):
+    """
+    Mark idea as valid or invalid
+    ---
+    PATCH:
+        response_serializer: ideas.serializers.IdeaSerializer
+    """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    if idea.is_valid:
+        idea.is_valid = False
+    else:
+        idea.is_valid = True
+    idea.save()
+    serializer = IdeaSerializer(idea)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
 @api_view(['GET', ])

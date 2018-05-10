@@ -41,7 +41,7 @@ class IdeaVotes(models.Model):
     participant = models.ForeignKey('participants.User')
 
     class Meta(object):
-        unique_together = ('idea', 'participant')
+        unique_together = ('event', 'participant')
         verbose_name_plural = 'votes'
 
 
