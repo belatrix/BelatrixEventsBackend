@@ -237,6 +237,20 @@ def idea_draft_list(request, event_id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+def my_ideas(request):
+    """
+    Returns user idea list, not validation required and is not public.
+    ---
+    GET:
+        response_serializer: ideas.serializers.IdeaSerializer
+    """
+    ideas = Idea.objects.filter(author=request.user)
+    serializer = IdeaSerializer(ideas, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 @api_view(['GET', 'POST'])
 @permission_classes((IsAuthenticatedOrReadOnly, ))
 def idea_vote(request, event_id):
