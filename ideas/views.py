@@ -115,6 +115,13 @@ def idea_register(request, idea_id):
     if serializer.is_valid(raise_exception=True):
         idea = get_object_or_404(Idea, pk=idea_id)
         user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
+
+        previous_records = IdeaParticipant.objects.filter(user=user)
+        if len(previous_records) > 0:
+            for record in previous_records:
+                if record.idea.event == idea.event:
+                    raise NotAcceptable('Ya se registro en una idea para este evento.')
+
         number_participants = IdeaParticipant.objects.filter(idea=idea).count()
         if config.TEAM_MAX_SIZE > number_participants and idea.is_completed is False:
             try:
