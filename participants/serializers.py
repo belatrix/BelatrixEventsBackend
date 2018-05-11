@@ -1,13 +1,23 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Role
+
+
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = Role
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
+    role = RoleSerializer()
+
     class Meta(object):
         model = User
         fields = ('id',
                   'email',
                   'full_name',
+                  'phone_number',
+                  'role',
                   'is_moderator',
                   'is_staff',
                   'is_active',
@@ -19,8 +29,10 @@ class UserCreationSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=50)
 
 
-class UserFullnameSerializer(serializers.Serializer):
+class UserProfileSerializer(serializers.Serializer):
     full_name = serializers.CharField(max_length=255)
+    phone_number = serializers.IntegerField()
+    role_id = serializers.IntegerField()
 
 
 class UserAuthenticationSerializer(serializers.Serializer):

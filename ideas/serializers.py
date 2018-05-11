@@ -1,14 +1,17 @@
 from rest_framework import serializers
 from events.models import Event
 from participants.models import User
+from participants.serializers import RoleSerializer
 
 from .models import Idea, IdeaParticipant, IdeaScores, IdeaScoresCriteria
 
 
 class UserSerializer(serializers.ModelSerializer):
+    role = RoleSerializer()
+
     class Meta(object):
         model = User
-        fields = ('id', 'full_name', 'email')
+        fields = ('id', 'full_name', 'email', 'phone_number', 'role')
 
 
 class EventSerializer(serializers.ModelSerializer):

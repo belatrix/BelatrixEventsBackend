@@ -33,8 +33,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     full_name = models.CharField(max_length=255, blank=True, null=True, unique=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    phone_regex = RegexValidator(regex=r'^\d{9}$',
-                                 message="Phone number must be entered in the format: '999999999'. Up to 9 digits allowed.")
+    phone_regex = RegexValidator(
+        regex=r'^\d{9}$',
+        message="Phone number must be entered in the format: '999999999'. Up to 9 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], max_length=9, blank=True, null=True)
     role = models.ForeignKey(Role, blank=True, null=True)
 

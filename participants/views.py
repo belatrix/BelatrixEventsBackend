@@ -12,9 +12,9 @@ from rest_framework.exceptions import NotAcceptable, ParseError, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
-from .models import User, Participant
+from .models import User, Participant, Role
 from .serializers import UserSerializer, UserCreationSerializer
-from .serializers import UserUpdatePasswordSerializer, UserFullnameSerializer
+from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer
 from events.models import Event, EventParticipant
 
 
@@ -100,16 +100,21 @@ def user_update(request):
     Update user data
     ---
     PATCH:
-        serializer: participants.serializers.UserFullnameSerializer
+        serializer: participants.serializers.UserProfileSerializer
         response_serializer: participants.serializers.UserSerializer
     """
     if request.method == 'PATCH':
-        serializer = UserFullnameSerializer(data=request.data)
+        serializer = UserProfileSerializer(data=request.data)
 
         if serializer.is_valid(raise_exception=True):
             full_name = serializer.validated_data['full_name']
+            phone_number = serializer.validated_data['phone_number']
+            role_id = serializer.validated_data['role_id']
+            role = Role.objects.get(pk=role_id)
             current_user = request.user
             current_user.full_name = full_name
+            current_user.phone_number = phone_number
+            current_user.role = role
             current_user.save()
             serializer = UserSerializer(current_user)
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
