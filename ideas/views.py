@@ -190,9 +190,29 @@ def idea_register(request, idea_id):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated, ))
+def idea_unregister_candidate(request, idea_id):
+    """
+    Endpoint to unregister user as a candidate into an idea
+    ---
+    POST:
+        serializer: ideas.serializers.IdeaCandidateRegistrationSerializer
+    """
+    serializer = IdeaCandidateRegistrationSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        idea = get_object_or_404(Idea, pk=idea_id)
+        user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
+        get_object_or_404(IdeaCandidate, idea=idea, user=user).delete()
+        candidates = IdeaCandidate.objects.filter(idea=idea)
+        serializer = IdeaCandidatesSerializer(candidates, many=True)
+        return Response({"is_candidate": False,
+                         "candidates": serializer.data}, status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
 def idea_unregister(request, idea_id):
     """
-    Endpoint to register user into an idea
+    Endpoint to unregister user into an idea
     ---
     POST:
         serializer: ideas.serializers.IdeaRegistrationSerializer
@@ -208,7 +228,7 @@ def idea_unregister(request, idea_id):
         participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": False,
-                         "team_members": serializer.data}, status=status.HTTP_201_CREATED)
+                         "team_members": serializer.data}, status=status.HTTP_202_ACCEPTED)
 
 
 @api_view(['PATCH'])
