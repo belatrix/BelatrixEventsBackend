@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from .views import idea, idea_create, idea_register, idea_participants, idea_unregister
+from .views import idea, idea_create, idea_register, idea_unregister
+from .views import idea_candidates, idea_participants
 from .views import idea_completed, idea_open, idea_rate, idea_scores_criteria
 from .views import idea_validate, idea_draft_list
 
@@ -11,6 +12,7 @@ urlpatterns = [
     url(r'^(?P<idea_id>\d+)/register/$', idea_register, name='idea_register'),
     url(r'^(?P<idea_id>\d+)/unregister/$', idea_unregister, name='idea_unregister'),
     url(r'^(?P<idea_id>\d+)/validate/$', idea_validate, name='idea_validate'),
+    url(r'^(?P<idea_id>\d+)/candidates/$', idea_candidates, name='idea_candidates'),
     url(r'^(?P<idea_id>\d+)/participants/$', idea_participants, name='idea_participants'),
     url(r'^(?P<idea_id>\d+)/rate/$', idea_rate, name='idea_rate'),
     # url(r'^(?P<idea_id>\d+)/vote/$', idea_vote, name='idea_vote'),

@@ -3,7 +3,7 @@ from events.models import Event
 from participants.models import User
 from participants.serializers import RoleSerializer
 
-from .models import Idea, IdeaParticipant, IdeaScores, IdeaScoresCriteria
+from .models import Idea, IdeaCandidate, IdeaParticipant, IdeaScores, IdeaScoresCriteria
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -48,6 +48,14 @@ class IdeaParticipantsSerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = IdeaParticipant
+        fields = ('user', )
+
+
+class IdeaCandidatesSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta(object):
+        model = IdeaCandidate
         fields = ('user', )
 
 

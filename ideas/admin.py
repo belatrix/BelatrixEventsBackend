@@ -1,7 +1,8 @@
 from django.contrib import admin
 from import_export.admin import ImportExportMixin
 
-from .models import Idea, IdeaParticipant, IdeaVotes, IdeaScoresCriteria, IdeaScores
+from .models import Idea, IdeaVotes, IdeaScoresCriteria, IdeaScores
+from .models import IdeaParticipant, IdeaCandidate
 
 
 class IdeaAdmin(ImportExportMixin, admin.ModelAdmin):
@@ -11,6 +12,8 @@ class IdeaAdmin(ImportExportMixin, admin.ModelAdmin):
 class IdeaParticipantAdmin(admin.ModelAdmin):
     list_display = ('user', 'idea')
 
+class IdeaCandidateAdmin(admin.ModelAdmin):
+    list_display = ('user', 'idea', 'is_accepted')
 
 class IdeaVotesAdmin(admin.ModelAdmin):
     list_display = ('participant', 'idea', 'event')
@@ -26,6 +29,7 @@ class IdeaScoresAdmin(ImportExportMixin, admin.ModelAdmin):
 
 admin.site.register(Idea, IdeaAdmin)
 admin.site.register(IdeaParticipant, IdeaParticipantAdmin)
+admin.site.register(IdeaCandidate, IdeaCandidateAdmin)
 admin.site.register(IdeaVotes, IdeaVotesAdmin)
 admin.site.register(IdeaScoresCriteria, IdeaScoresCriteriaAdmin)
 admin.site.register(IdeaScores, IdeaScoresAdmin)

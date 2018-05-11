@@ -35,6 +35,21 @@ class IdeaParticipant(models.Model):
         verbose_name_plural = 'groups'
 
 
+@python_2_unicode_compatible
+class IdeaCandidate(models.Model):
+    idea = models.ForeignKey(Idea)
+    user = models.ForeignKey('participants.User')
+    is_accepted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.idea.title
+
+    class Meta(object):
+        ordering = ['idea']
+        verbose_name = 'candidate'
+        verbose_name_plural = 'candidates'
+
+
 class IdeaVotes(models.Model):
     event = models.ForeignKey('events.Event')
     idea = models.ForeignKey(Idea)

@@ -11,8 +11,10 @@ from events.models import Event
 from participants.models import User
 from participants.permissions import IsJury, IsModerator
 
-from .models import Idea, IdeaParticipant, IdeaVotes, IdeaScores, IdeaScoresCriteria
-from .serializers import IdeaCreationSerializer, IdeaSerializer, IdeaParticipantsSerializer
+from .models import Idea, IdeaVotes, IdeaScores, IdeaScoresCriteria
+from .models import IdeaCandidate, IdeaParticipant
+from .serializers import IdeaCreationSerializer, IdeaSerializer
+from .serializers import IdeaCandidatesSerializer, IdeaParticipantsSerializer
 from .serializers import IdeaRegistrationSerializer, IdeaVoteSerializer, IdeaSerializerWithVotes
 from .serializers import IdeaUpdateSerializer, IdeaScoreSerializer, IdeaScoreModelSerializer
 from .serializers import IdeaScoresCriteriaSerializer
@@ -80,6 +82,26 @@ def idea_create(request):
                 raise NotAcceptable('Esta idea ya existe.')
             serializer = IdeaSerializer(new_idea)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+def idea_candidates(request, idea_id):
+    """
+    Endpoint to get candidate list group by idea
+    ---
+    GET:
+        serializer: ideas.serializers.IdeaCandidatesSerializer
+    """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    candidates = IdeaCandidate.objects.filter(idea=idea)
+    if len(IdeaCandidate.objects.filter(idea=idea, user=request.user)) > 0:
+        is_candidate = True
+    else:
+        is_candidate = False
+    serializer = IdeaCandidatesSerializer(candidates, many=True)
+    return Response({"is_candidate": is_candidate,
+                     "candidates": serializer.data}, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
