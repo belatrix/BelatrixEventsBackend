@@ -12,7 +12,9 @@ from rest_framework.exceptions import NotAcceptable, ParseError, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
+
 from .models import User, Participant, Role
+from .permissions import IsModerator
 from .serializers import UserSerializer, UserCreationSerializer
 from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer
 from events.models import Event, EventParticipant
@@ -29,6 +31,20 @@ def user_detail(request, user_id):
     """
     user = get_object_or_404(User, pk=user_id)
     serializer = UserSerializer(user)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, IsModerator))
+def user_list(request):
+    """
+    Returns user list
+    ---
+    GET:
+        response_serializer: participants.serializers.UserSerializer
+    """
+    users = User.objects.filter(is_active=True)
+    serializer = UserSerializer(users, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
