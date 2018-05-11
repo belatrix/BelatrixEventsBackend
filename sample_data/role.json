@@ -1,0 +1,37 @@
+[{
+	"model": "participants.role",
+	"pk": 1,
+	"fields": {
+		"name": "Backend Developer"
+	}
+}, {
+	"model": "participants.role",
+	"pk": 2,
+	"fields": {
+		"name": "Frontend Developer"
+	}
+}, {
+	"model": "participants.role",
+	"pk": 3,
+	"fields": {
+		"name": "Mobile Developer"
+	}
+}, {
+	"model": "participants.role",
+	"pk": 4,
+	"fields": {
+		"name": "UX"
+	}
+}, {
+	"model": "participants.role",
+	"pk": 5,
+	"fields": {
+		"name": "QA"
+	}
+}, {
+	"model": "participants.role",
+	"pk": 6,
+	"fields": {
+		"name": "Fullstack Developer"
+	}
+}]

@@ -1,17 +1,30 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
+from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.crypto import get_random_string
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 from uuid import uuid4
 
 from .managers import UserManager
+
+
+@python_2_unicode_compatible
+class Role(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta(object):
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -20,6 +33,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last_name'), max_length=30, blank=True)
     full_name = models.CharField(max_length=255, blank=True, null=True, unique=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
+    phone_regex = RegexValidator(regex=r'^\d{9}$',
+                                 message="Phone number must be entered in the format: '999999999'. Up to 9 digits allowed.")
+    phone_number = models.CharField(validators=[phone_regex], max_length=9, blank=True, null=True)
+    role = models.ForeignKey(Role, blank=True, null=True)
 
     is_staff = models.BooleanField(_('is staff'), default=False)
     is_jury = models.BooleanField(default=False)

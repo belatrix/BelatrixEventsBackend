@@ -3,7 +3,11 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from import_export.admin import ImportExportMixin
-from .models import Participant, User
+from .models import Participant, User, Role
+
+
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('name', )
 
 
 class UserChangeForm(forms.ModelForm):
@@ -27,7 +31,9 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name',
                                       'last_name',
-                                      'full_name',)}),
+                                      'full_name',
+                                      'phone_number',
+                                      'role')}),
         ('Permissions', {'fields': ('is_superuser',
                                     'is_staff',
                                     'is_moderator',
@@ -55,4 +61,5 @@ class ParticipantForm(ImportExportMixin, admin.ModelAdmin):
 
 
 admin.site.register(Participant, ParticipantForm)
+admin.site.register(Role, RoleAdmin)
 admin.site.register(User, UserCustomAdmin)
