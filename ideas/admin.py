@@ -12,8 +12,10 @@ class IdeaAdmin(ImportExportMixin, admin.ModelAdmin):
 class IdeaParticipantAdmin(admin.ModelAdmin):
     list_display = ('user', 'idea')
 
+
 class IdeaCandidateAdmin(admin.ModelAdmin):
     list_display = ('user', 'idea', 'is_accepted')
+
 
 class IdeaVotesAdmin(admin.ModelAdmin):
     list_display = ('participant', 'idea', 'event')

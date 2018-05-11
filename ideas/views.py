@@ -15,7 +15,8 @@ from .models import Idea, IdeaVotes, IdeaScores, IdeaScoresCriteria
 from .models import IdeaCandidate, IdeaParticipant
 from .serializers import IdeaCreationSerializer, IdeaSerializer
 from .serializers import IdeaCandidatesSerializer, IdeaParticipantsSerializer
-from .serializers import IdeaRegistrationSerializer, IdeaVoteSerializer, IdeaSerializerWithVotes
+from .serializers import IdeaCandidateRegistrationSerializer, IdeaRegistrationSerializer
+from .serializers import IdeaVoteSerializer, IdeaSerializerWithVotes
 from .serializers import IdeaUpdateSerializer, IdeaScoreSerializer, IdeaScoreModelSerializer
 from .serializers import IdeaScoresCriteriaSerializer
 
@@ -122,6 +123,30 @@ def idea_participants(request, idea_id):
     serializer = IdeaParticipantsSerializer(participants, many=True)
     return Response({"is_registered": is_registered,
                      "team_members": serializer.data}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
+def idea_register_candidate(request, idea_id):
+    """
+    Endpoint to register user as a candidate into an idea
+    ---
+    POST:
+        serializer: ideas.serializers.IdeaCandidateRegistrationSerializer
+    """
+    serializer = IdeaCandidateRegistrationSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        idea = get_object_or_404(Idea, pk=idea_id)
+        user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
+        try:
+            IdeaCandidate.objects.create(idea=idea, user=user)
+        except Exception as e:
+            print(e)
+            raise NotAcceptable("Ya se registró como candidato.")
+    candidates = IdeaCandidate.objects.filter(idea=idea)
+    serializer = IdeaCandidatesSerializer(candidates, many=True)
+    return Response({"is_candidate": True,
+                     "candidates": serializer.data}, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])

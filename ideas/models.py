@@ -46,6 +46,7 @@ class IdeaCandidate(models.Model):
 
     class Meta(object):
         ordering = ['idea']
+        unique_together = ('idea', 'user')
         verbose_name = 'candidate'
         verbose_name_plural = 'candidates'
 

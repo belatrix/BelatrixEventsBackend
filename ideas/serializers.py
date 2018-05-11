@@ -59,6 +59,10 @@ class IdeaCandidatesSerializer(serializers.ModelSerializer):
         fields = ('user', )
 
 
+class IdeaCandidateRegistrationSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+
+
 class IdeaRegistrationSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
 
