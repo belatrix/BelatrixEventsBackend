@@ -190,6 +190,36 @@ def idea_register(request, idea_id):
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated, ))
+def idea_candidate_approval(request, idea_id):
+    """
+    Endpoint to accept candidate as a participant
+    ---
+    POST:
+        serializer: ideas.serializers.IdeaRegistrationSerializer
+    """
+    idea = get_object_or_404(Idea, pk=idea_id)
+    if request.user == idea.author:
+        serializer = IdeaRegistrationSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
+            candidate = get_object_or_404(IdeaCandidate, idea=idea, user=user)
+            if candidate.is_accepted:
+                # TODO: flow to delete idea participant
+                candidate.is_accepted = False
+            else:
+                participants = IdeaParticipant.objects.filter(idea=idea)
+                if len(participants) < config.TEAM_MAX_SIZE:
+                    IdeaParticipant.objects.create(idea=idea, user=user)
+                    candidate.is_accepted = True
+            candidate.save()
+            # TODO: Flow to mark idea completed or not
+            return Response({'detail': 'eres el dueño'}, status=status.HTTP_202_ACCEPTED)
+    else:
+        raise NotAcceptable('No eres el autor de la idea.')
+
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated, ))
 def idea_unregister_candidate(request, idea_id):
     """
     Endpoint to unregister user as a candidate into an idea
