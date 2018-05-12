@@ -204,16 +204,30 @@ def idea_candidate_approval(request, idea_id):
             user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
             candidate = get_object_or_404(IdeaCandidate, idea=idea, user=user)
             if candidate.is_accepted:
-                # TODO: flow to delete idea participant
+                get_object_or_404(IdeaParticipant, idea=idea, user=user).delete()
                 candidate.is_accepted = False
             else:
                 participants = IdeaParticipant.objects.filter(idea=idea)
-                if len(participants) < config.TEAM_MAX_SIZE:
-                    IdeaParticipant.objects.create(idea=idea, user=user)
-                    candidate.is_accepted = True
+                if len(participants) < config.TEAM_MAX_SIZE and idea.is_completed is False:
+                    try:
+                        IdeaParticipant.objects.create(idea=idea, user=user)
+                        candidate.is_accepted = True
+                    except Exception as e:
+                        print(e)
+                        raise NotAcceptable("Ya se encuentra inscrito.")
+                else:
+                    raise NotAcceptable("Alcanzó el número máximo por equipo.")
             candidate.save()
-            # TODO: Flow to mark idea completed or not
-            return Response({'detail': 'eres el dueño'}, status=status.HTTP_202_ACCEPTED)
+
+            participants = IdeaParticipant.objects.filter(idea=idea)
+            if len(participants) == config.TEAM_MAX_SIZE:
+                idea.is_completed = True
+            else:
+                idea.is_completed = False
+            idea.save()
+
+            serializer = IdeaParticipantsSerializer(participants, many=True)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     else:
         raise NotAcceptable('No eres el autor de la idea.')
 
