@@ -105,3 +105,13 @@ class Meeting(models.Model):
 
     class Meta(object):
         ordering = ['-start_date']
+
+
+class Attendance(models.Model):
+    meeting = models.ForeignKey(Meeting)
+    participant = models.ForeignKey('participants.User')
+    datetime = models.DateTimeField(auto_now_add=True)
+
+    class Meta(object):
+        unique_together = ('meeting', 'participant')
+        ordering = ["-datetime"]

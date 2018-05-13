@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import City, Event, Interaction, Location, EventParticipant, Meeting
+from .models import City, Event, Interaction, Location, EventParticipant
+from .models import Meeting, Attendance
 
 
 class CityAdmin(admin.ModelAdmin):
@@ -26,9 +27,14 @@ class MeetingAdmin(admin.ModelAdmin):
     list_display = ('name', 'start_date', 'end_date', 'event', 'is_over', 'is_active')
 
 
+class AttendanceAdmin(admin.ModelAdmin):
+    list_display = ('datetime', 'meeting', 'participant')
+
+
 admin.site.register(City, CityAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(EventParticipant, EventParticipantAdmin)
 admin.site.register(Interaction, InteractionAdmin)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Meeting, MeetingAdmin)
+admin.site.register(Attendance, AttendanceAdmin)
