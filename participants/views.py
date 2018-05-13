@@ -2,6 +2,7 @@ from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
 from django.contrib.sites.models import Site
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from re import match as regex_match
 from rest_framework import status
@@ -42,8 +43,24 @@ def user_list(request):
     ---
     GET:
         response_serializer: participants.serializers.UserSerializer
+        parameters:
+            - name: search
+              description: search terms
+              type: string
+              required: false
+              paramType: query
     """
     users = User.objects.filter(is_active=True)
+
+    if request.GET.get('search'):
+
+        full_search_terms = request.GET.get('search')
+        search_terms_array = full_search_terms.split()
+
+        if len(search_terms_array) > 0:
+            for term in search_terms_array:
+                users = users.filter(Q(full_name__icontains=term) | Q(email__icontains=term))
+
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
