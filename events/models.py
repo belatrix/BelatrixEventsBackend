@@ -89,3 +89,19 @@ class Interaction(models.Model):
         ordering = ['-pk']
         verbose_name = 'interaction item'
         verbose_name_plural = 'interaction items'
+
+
+@python_2_unicode_compatible
+class Meeting(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    event = models.ForeignKey(Event)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    is_active = models.BooleanField(default=True)
+    is_over = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+    class Meta(object):
+        ordering = ['-start_date']
