@@ -1,11 +1,15 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from utils.random_item import random_element_list
-from .models import Event, Interaction, City
-from .serializers import CitySerializer, EventSerializer, InteractionSerializer
+
+from participants.permissions import IsStaff
+
+from .models import Event, Interaction, City, Meeting
+from .serializers import CitySerializer, EventSerializer, InteractionSerializer, MeetingSerializer
 
 
 @api_view(['GET', ])
@@ -208,3 +212,17 @@ def event_past_list(request):
     else:
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, IsStaff))
+def meeting_list(request):
+    """
+    Returns meetings list to register attendance
+    ---
+    GET:
+        response_serializer: events.serializers.MeetingSerializer
+    """
+    meetings = Meeting.objects.all().filter(is_active=True)
+    serializer = MeetingSerializer(meetings, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
