@@ -106,7 +106,7 @@ def idea_candidates(request, idea_id):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated, ))
+@permission_classes((IsAuthenticatedOrReadOnly, ))
 def idea_participants(request, idea_id):
     """
     Endpoint to get participant list group by idea
