@@ -116,10 +116,13 @@ def idea_participants(request, idea_id):
     """
     idea = get_object_or_404(Idea, pk=idea_id)
     participants = IdeaParticipant.objects.filter(idea=idea)
-    if len(IdeaParticipant.objects.filter(idea=idea, user=request.user)) > 0:
-        is_registered = True
-    else:
+    if request.user.is_anonymous:
         is_registered = False
+    else:
+        if len(IdeaParticipant.objects.filter(idea=idea, user=request.user)) > 0:
+            is_registered = True
+        else:
+            is_registered = False
     serializer = IdeaParticipantsSerializer(participants, many=True)
     return Response({"is_registered": is_registered,
                      "team_members": serializer.data}, status=status.HTTP_200_OK)
