@@ -263,6 +263,9 @@ class CustomAuthToken(ObtainAuthToken):
             'email': user.email,
             'is_staff': user.is_staff,
             'is_jury': user.is_jury,
+            'is_moderator': user.is_moderator,
+            'is_active': user.is_active,
+            'is_blocked': user.is_blocked,
             'is_password_reset_required': user.is_password_reset_required,
         })
 
