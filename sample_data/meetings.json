@@ -1,1 +1,23 @@
-[{"model": "events.meeting", "pk": 1, "fields": {"name": "Kick Off - Hackatrix 2018", "event": 19, "start_date": "2018-05-25T23:00:00Z", "end_date": "2018-05-26T01:00:00Z", "is_active": true, "is_over": false}}, {"model": "events.meeting", "pk": 2, "fields": {"name": "Full Day - Hackatrix 2018", "event": 19, "start_date": "2018-05-26T14:00:00Z", "end_date": "2018-05-27T01:00:00Z", "is_active": true, "is_over": false}}]
+[{
+	"model": "events.meeting",
+	"pk": 1,
+	"fields": {
+		"name": "Kick Off - Hackatrix 2018",
+		"event": 19,
+		"start_date": "2018-05-25T23:00:00Z",
+		"end_date": "2018-05-26T01:00:00Z",
+		"is_active": true,
+		"is_over": false
+	}
+}, {
+	"model": "events.meeting",
+	"pk": 2,
+	"fields": {
+		"name": "Full Day - Hackatrix 2018",
+		"event": 19,
+		"start_date": "2018-05-26T14:00:00Z",
+		"end_date": "2018-05-27T01:00:00Z",
+		"is_active": true,
+		"is_over": false
+	}
+}]

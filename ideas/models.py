@@ -6,7 +6,7 @@ from django.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class Idea(models.Model):
-    title = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
     author = models.ForeignKey('participants.User')
     event = models.ForeignKey('events.Event')
