@@ -24,3 +24,10 @@ class IsModerator(permissions.BasePermission):
 
     def has_permission(self, request, view):
         return request.user and request.user.is_moderator
+
+
+class IsStaff(permissions.BasePermission):
+    message = 'Staff restricted'
+
+    def has_permission(self, request, view):
+        return request.user and request.user.is_staff

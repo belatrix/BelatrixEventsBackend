@@ -51,6 +51,14 @@ class IdeaParticipantsSerializer(serializers.ModelSerializer):
         fields = ('user', )
 
 
+class IdeaParticipantsIdeasSerializer(serializers.ModelSerializer):
+    idea = SimpleIdeaSerializer()
+
+    class Meta(object):
+        model = IdeaParticipant
+        fields = ('idea', )
+
+
 class IdeaCandidatesSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
