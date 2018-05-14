@@ -1,15 +1,21 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import NotAcceptable
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from utils.random_item import random_element_list
 
+from ideas.models import IdeaParticipant
+from ideas.serializers import IdeaParticipantsIdeasSerializer
+from participants.models import User
 from participants.permissions import IsStaff
+from participants.serializers import UserSerializer
 
-from .models import Event, Interaction, City, Meeting
+from .models import Event, Interaction, City, Meeting, Attendance
 from .serializers import CitySerializer, EventSerializer, InteractionSerializer, MeetingSerializer
+from .serializers import AttendanceRegisterSerializer
 
 
 @api_view(['GET', ])
@@ -226,3 +232,29 @@ def meeting_list(request):
     meetings = Meeting.objects.all().filter(is_active=True)
     serializer = MeetingSerializer(meetings, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST', ])
+@permission_classes((IsAuthenticated, IsStaff))
+def register_attendance(request):
+    """
+    Register attendance to a meeting
+    ---
+    POST:
+        serializer: events.serializers.AttendanceRegisterSerializer
+    """
+    serializer = AttendanceRegisterSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        meeting = get_object_or_404(Meeting, pk=serializer.validated_data['meeting_id'])
+        user = get_object_or_404(User, email=serializer.validated_data['user_email'])
+        try:
+            Attendance.objects.create(meeting=meeting, participant=user)
+        except Exception as e:
+            print(e)
+            raise NotAcceptable('Participante ya registrado.')
+
+        idea_participant = IdeaParticipant.objects.filter(user=user)
+        user_serializer = UserSerializer(user)
+        idea_serializer = IdeaParticipantsIdeasSerializer(idea_participant, many=True)
+        return Response({'user': user_serializer.data,
+                         'ideas': idea_serializer.data}, status=status.HTTP_200_OK)

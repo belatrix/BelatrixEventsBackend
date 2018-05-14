@@ -1,5 +1,5 @@
 from .views import event_detail, event_list, event_upcoming_list, event_past_list, event_featured, event_city_list
-from .views import meeting_list
+from .views import meeting_list, register_attendance
 # from .views import event_interaction, event_interaction_vote
 from django.conf.urls import url
 from ideas.views import idea_list, idea_vote
@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^meeting/list/$', meeting_list, name='meeting_list'),
     url(r'^upcoming/list/$', event_upcoming_list, name='event_upcoming_list'),
     url(r'^past/list/$', event_past_list, name='event_past_list'),
+    url(r'^register/attendance/$', register_attendance, name='register_attendance'),
 ]
