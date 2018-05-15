@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import User, Role
 
+from events.models import Event, EventParticipant
+
 
 class RoleSerializer(serializers.ModelSerializer):
     class Meta(object):
@@ -52,3 +54,17 @@ class UserAuthenticationResponseSerializer(serializers.Serializer):
 class UserUpdatePasswordSerializer(serializers.Serializer):
     current_password = serializers.CharField(max_length=50)
     new_password = serializers.CharField(max_length=50)
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = Event
+        fields = ('id', 'title')
+
+
+class EventProfileSerializer(serializers.ModelSerializer):
+    event = EventSerializer()
+
+    class Meta(object):
+        model = EventParticipant
+        fields = ('event',)

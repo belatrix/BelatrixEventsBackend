@@ -18,6 +18,7 @@ from .models import User, Participant, Role
 from .permissions import IsModerator
 from .serializers import UserSerializer, UserCreationSerializer
 from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer, RoleSerializer
+from .serializers import EventProfileSerializer
 
 from events.models import Event, EventParticipant, Attendance
 from ideas.models import IdeaCandidate, IdeaParticipant, Idea
@@ -79,13 +80,15 @@ def user_profile(request):
     user = request.user
 
     events = EventParticipant.objects.filter(participant=user)
+    events_serializer = EventProfileSerializer(events, many=True)
     candidate_ideas = IdeaCandidate.objects.filter(user=user)
     participant_ideas = IdeaParticipant.objects.filter(user=user)
     attendances = Attendance.objects.filter(participant=user)
     author_ideas = Idea.objects.filter(author=user)
     serializer = UserSerializer(user)
 
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response({"user": serializer.data,
+                     "events": events_serializer.data}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST', ])
