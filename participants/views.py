@@ -18,7 +18,8 @@ from .models import User, Participant, Role
 from .permissions import IsModerator
 from .serializers import UserSerializer, UserCreationSerializer
 from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer, RoleSerializer
-from .serializers import EventProfileSerializer
+from .serializers import EventProfileSerializer, IdeaProfileSerializer, AttendanceProfileSerializer
+from .serializers import AuthorProfileSerializer
 
 from events.models import Event, EventParticipant, Attendance
 from ideas.models import IdeaCandidate, IdeaParticipant, Idea
@@ -82,13 +83,21 @@ def user_profile(request):
     events = EventParticipant.objects.filter(participant=user)
     events_serializer = EventProfileSerializer(events, many=True)
     candidate_ideas = IdeaCandidate.objects.filter(user=user)
+    candidate_serializer = IdeaProfileSerializer(candidate_ideas, many=True)
     participant_ideas = IdeaParticipant.objects.filter(user=user)
+    participant_serializer = IdeaProfileSerializer(participant_ideas, many=True)
     attendances = Attendance.objects.filter(participant=user)
+    attendance_serializer = AttendanceProfileSerializer(attendances, many=True)
     author_ideas = Idea.objects.filter(author=user)
+    author_serializer = AuthorProfileSerializer(author_ideas, many=True)
     serializer = UserSerializer(user)
 
     return Response({"user": serializer.data,
-                     "events": events_serializer.data}, status=status.HTTP_200_OK)
+                     "events": events_serializer.data,
+                     "candidate": candidate_serializer.data,
+                     "participant": participant_serializer.data,
+                     "author": author_serializer.data,
+                     "attendance": attendance_serializer.data}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST', ])

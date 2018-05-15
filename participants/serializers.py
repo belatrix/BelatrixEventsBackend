@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import User, Role
 
-from events.models import Event, EventParticipant
+from events.models import Event, Meeting
+from ideas.models import Idea
 
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -62,9 +63,31 @@ class EventSerializer(serializers.ModelSerializer):
         fields = ('id', 'title')
 
 
-class EventProfileSerializer(serializers.ModelSerializer):
+class EventProfileSerializer(serializers.Serializer):
     event = EventSerializer()
 
+
+class IdeaSerializer(serializers.ModelSerializer):
     class Meta(object):
-        model = EventParticipant
-        fields = ('event',)
+        model = Idea
+        fields = ('id', 'title')
+
+
+class IdeaProfileSerializer(serializers.Serializer):
+    idea = IdeaSerializer()
+
+
+class AuthorProfileSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = Idea
+        fields = ('id', 'title')
+
+
+class MeetingSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = Meeting
+        fields = ('id', 'name')
+
+
+class AttendanceProfileSerializer(serializers.Serializer):
+    meeting = MeetingSerializer()
