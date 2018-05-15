@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from .views import user_profile, user_detail, user_list
 from .views import user_creation, user_update, user_update_password, CustomAuthToken
-from .views import user_password_recovery_request, user_password_recovery_confirmation, user_logout
+from .views import user_password_recovery_request, user_password_recovery_confirmation, user_logout, user_roles
 from ideas.views import my_ideas
 
 
@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^profile/$', user_profile, name='user_profile'),
     url(r'^ideas/$', my_ideas, name='my_ideas'),
     url(r'^recover/$', user_password_recovery_request, name='user_password_recovery_request'),
+    url(r'^role/list/$', user_roles, name='user_roles'),
     url(r'^update/$', user_update, name='user_update'),
     url(r'^update/password/$', user_update_password, name='user_update_password'),
     url(r'^recover/(?P<user_uuid>[0-9a-z-]+)$',

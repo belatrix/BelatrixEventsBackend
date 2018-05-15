@@ -17,7 +17,7 @@ from rest_framework.response import Response
 from .models import User, Participant, Role
 from .permissions import IsModerator
 from .serializers import UserSerializer, UserCreationSerializer
-from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer
+from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer, RoleSerializer
 
 from events.models import Event, EventParticipant, Attendance
 from ideas.models import IdeaCandidate, IdeaParticipant, Idea
@@ -84,7 +84,7 @@ def user_profile(request):
     attendances = Attendance.objects.filter(participant=user)
     author_ideas = Idea.objects.filter(author=user)
     serializer = UserSerializer(user)
-    
+
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
@@ -252,6 +252,20 @@ def user_password_recovery_confirmation(request, user_uuid):
         user.save()
         data = "<h1>Solicitud de reestablecimiento de password confirmada.</h1>"
         return Response(data)
+
+
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def user_roles(request):
+    """
+    Return user roles
+    ---
+    GET:
+        response_serializer: participants.serializers.RoleSerializer
+    """
+    roles = Role.objects.all()
+    serializer = RoleSerializer(roles, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class CustomAuthToken(ObtainAuthToken):
