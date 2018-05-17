@@ -4,16 +4,14 @@
         <tr>
             <th>#</th>
             <th>Idea Title</th>
-            <th>Participant Firstname</th>
-            <th>Participant Lastname</th>
+            <th>Participant Full Name</th>
             <th>Participant email</th>
         </tr>
         {% for register in participants_list %}
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ register.idea }}</td>
-            <td>{{ register.user.first_name }}</td>
-            <td>{{ register.user.last_name }}</td>
+            <td>{{ register.user.full_name }}</td>
             <td>{{ register.user.email }}</td>
         </tr>
     {% empty %}

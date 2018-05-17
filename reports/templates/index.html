@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Reports</h1>
-<p>
-    <ul><li><a href="{% url 'reports:participants_idea' %}">Participants by Projects</a></li></ul>
-</p>
+<div>
+    <h2>Events</h2>
+    <p>
+        <ul><li><a href="{% url 'reports:idea_list' event_id=19 %}">Hackatrix 2018 Valid Ideas</a></li></ul>
+    </p>
+</div>
+<div>
+    <h2>Participants</h2>
+    <p>
+        <ul><li><a href="{% url 'reports:participants_idea' %}">Participants by Projects</a></li></ul>
+    </p>
+</div>
 {% endblock content %}
 
