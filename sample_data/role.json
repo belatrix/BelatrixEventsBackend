@@ -34,4 +34,16 @@
 	"fields": {
 		"name": "Fullstack Developer"
 	}
+}, {
+	"model": "participants.role",
+	"pk": 7,
+	"fields": {
+		"name": "Project Leader"
+	}
+}, {
+	"model": "participants.role",
+	"pk": 8,
+	"fields": {
+		"name": "Other"
+	}
 }]
