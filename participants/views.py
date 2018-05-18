@@ -162,14 +162,17 @@ def user_update(request):
         serializer = UserProfileSerializer(data=request.data)
 
         if serializer.is_valid(raise_exception=True):
-            full_name = serializer.validated_data['full_name']
-            phone_number = serializer.validated_data['phone_number']
-            role_id = serializer.validated_data['role_id']
-            role = Role.objects.get(pk=role_id)
             current_user = request.user
-            current_user.full_name = full_name
-            current_user.phone_number = phone_number
-            current_user.role = role
+            if 'full_name' in serializer.validated_data:
+                full_name = serializer.validated_data['full_name']
+                current_user.full_name = full_name
+            if 'phone_number' in serializer.validated_data:
+                phone_number = serializer.validated_data['phone_number']
+                current_user.phone_number = phone_number
+            if 'role_id' in serializer.validated_data:
+                role_id = serializer.validated_data['role_id']
+                role = Role.objects.get(pk=role_id)
+                current_user.role = role
             current_user.save()
             serializer = UserSerializer(current_user)
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

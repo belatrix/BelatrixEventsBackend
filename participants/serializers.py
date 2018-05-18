@@ -33,9 +33,9 @@ class UserCreationSerializer(serializers.Serializer):
 
 
 class UserProfileSerializer(serializers.Serializer):
-    full_name = serializers.CharField(max_length=255)
-    phone_number = serializers.IntegerField()
-    role_id = serializers.IntegerField()
+    full_name = serializers.CharField(max_length=255, required=False)
+    phone_number = serializers.IntegerField(required=False)
+    role_id = serializers.IntegerField(required=False)
 
 
 class UserAuthenticationSerializer(serializers.Serializer):
