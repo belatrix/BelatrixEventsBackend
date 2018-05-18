@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
 
 from events.models import Attendance, Event, Meeting
-from ideas.models import Idea, IdeaParticipant, IdeaVotes
+from ideas.models import Idea, IdeaParticipant, IdeaVotes, IdeaScores
 
 
 def index(request):
@@ -33,6 +33,12 @@ def idea_vote_results(request):
                                              'idea__id').annotate(total=Count('participant')).order_by('-total')
     context = {'results': results}
     return render(request, 'idea_vote_results.html', context)
+
+
+def idea_jury_results(request):
+    results = IdeaScores.objects.all().order_by('idea')
+    context = {'results': results}
+    return render(request, 'idea_jury_results.html', context)
 
 
 def meeting_list(request):
