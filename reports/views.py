@@ -1,7 +1,8 @@
+from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
 
 from events.models import Attendance, Event, Meeting
-from ideas.models import Idea, IdeaParticipant
+from ideas.models import Idea, IdeaParticipant, IdeaVotes
 
 
 def index(request):
@@ -25,6 +26,13 @@ def idea_in_development(request):
     list = Idea.objects.filter(is_completed=True)
     context = {'idea_list': list}
     return render(request, 'idea_list.html', context)
+
+
+def idea_vote_results(request):
+    results = IdeaVotes.objects.all().values('idea__title',
+                                             'idea__id').annotate(total=Count('participant')).order_by('-total')
+    context = {'results': results}
+    return render(request, 'idea_vote_results.html', context)
 
 
 def meeting_list(request):
