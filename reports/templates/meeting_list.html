@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Event</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Is Over?</th>
+            <th>Is Active?</th>
+        </tr>
+        {% for register in meeting_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'reports:attendance_list' meeting_id=register.id %}">{{ register.name }}</a></td>
+            <td>{{ register.event.title }}</td>
+            <td>{{ register.start_date }}</td>
+            <td>{{ register.end_date }}</td>
+            <td>{{ register.is_over }}</td>
+            <td>{{ register.is_active }}</td>
+        </tr>
+    {% empty %}
+        <tr><td>no content.</td></tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'reports:index' %}">Back</a></p>
+{% endblock content %}
