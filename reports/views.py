@@ -21,6 +21,12 @@ def idea_list(request, event_id):
     return render(request, 'idea_list.html', context)
 
 
+def idea_in_development(request):
+    list = Idea.objects.filter(is_completed=True)
+    context = {'idea_list': list}
+    return render(request, 'idea_list.html', context)
+
+
 def meeting_list(request):
     meetings = Meeting.objects.all()
     context = {'meeting_list': meetings}
