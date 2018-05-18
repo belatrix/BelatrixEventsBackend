@@ -15,7 +15,7 @@ from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
 
 from .models import User, Participant, Role
-from .permissions import IsModerator
+from .permissions import IsModerator, IsStaff
 from .serializers import UserSerializer, UserCreationSerializer
 from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer, RoleSerializer
 from .serializers import EventProfileSerializer, IdeaProfileSerializer, AttendanceProfileSerializer
@@ -314,3 +314,22 @@ def user_logout(request):
     """
     logout(request)
     return Response(status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['PATCH', ])
+@permission_classes((IsStaff, ))
+def user_activation(request, user_id):
+    """
+    Deactivate user
+    ---
+    PATCH:
+        response_serializer: participants.serializers.UserSerializer
+    """
+    user = get_object_or_404(User, pk=user_id)
+    if user.is_active:
+        user.is_active = False
+    else:
+        user.is_active = True
+    user.save()
+    serializer = UserSerializer(user)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
