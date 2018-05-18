@@ -22,5 +22,5 @@ urlpatterns = [
     # url(r'^(?P<idea_id>\d+)/vote/$', idea_vote, name='idea_vote'),
     url(r'^create/$', idea_create, name='idea_create'),
     url(r'^rate/category/list/$', idea_scores_criteria, name='idea_scores_criteria'),
-    url(r'^draft/event/(?P<event_id>\d+)/list$', idea_draft_list, name='idea_draft_list'),
+    url(r'^draft/event/(?P<event_id>\d+)/list/$', idea_draft_list, name='idea_draft_list'),
 ]
