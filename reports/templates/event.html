@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr><th colspan="2">Event</th></tr>
+        <tr><th>Title</th><td>{{ event.title }}</td></tr>
+        <tr><th>Datetime</th><td>{{ event.datetime }}</td></tr>
+        <tr><th>Address</th><td>{{ event.address }}</td></tr>
+        <tr><th>Participants Registered</th><td>{{ participants_registered | length }}</td></tr>
+        <tr><th>Proposed ideas</th><td>{{ ideas_proposed | length }}</td></tr>
+        <tr><th>Valid Ideas </th><td>{{ ideas_valid | length }}</td></tr>
+        <tr><th>Team members</th><td>{{ team_members | length }}</td></tr>
+        <tr><th>Votes</th><td>{{ votes | length }}</td></tr>
+    </table>
+
+    <table border="1">
+        <tr><th colspan="3">Meetings Attendance</th></tr>
+            <tr><th>#</th><th>Meeting</th><th>Assistants</th></tr>
+        {% for register in attendances %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ register.meeting__name }}</td>
+                <td>{{ register.total }}</td>
+            </tr>
+        {% empty %}
+            <tr><td>no content.</td></tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{% url 'reports:index' %}">Back</a></p>
+{% endblock content %}
