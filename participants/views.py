@@ -77,8 +77,17 @@ def user_profile(request):
     ---
     GET:
         response_serializer: participants.serializers.UserSerializer
+        parameters:
+            - name: id
+              description: user id
+              type: int
+              required: false
+              paramType: query
     """
-    user = request.user
+    if request.GET.get('id'):
+        user = get_object_or_404(User, pk=request.GET.get('id'))
+    else:
+        user = request.user
 
     events = EventParticipant.objects.filter(participant=user)
     events_serializer = EventProfileSerializer(events, many=True)
