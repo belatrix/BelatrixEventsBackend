@@ -270,9 +270,12 @@ def idea_unregister(request, idea_id):
         user = get_object_or_404(User, pk=serializer.validated_data['user_id'])
         get_object_or_404(IdeaParticipant, idea=idea, user=user).delete()
 
-        candidate = get_object_or_404(IdeaCandidate, idea=idea, user=user)
-        candidate.is_accepted = False
-        candidate.save()
+        try:
+            candidate = IdeaCandidate.objects.get(idea=idea, user=user)
+            candidate.is_accepted = False
+            candidate.save()
+        except:
+            pass
 
         if IdeaParticipant.objects.filter(idea=idea).count() < config.TEAM_MIN_SIZE:
             idea.is_completed = False
