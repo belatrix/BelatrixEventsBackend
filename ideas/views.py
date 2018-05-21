@@ -473,6 +473,12 @@ def idea_rate(request, idea_id):
             idea_score = get_object_or_404(IdeaScores, idea=idea, jury=user, category=category)
             idea_score.value = value
             idea_score.save()
-    idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
+    if request.method == "GET":
+        idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
+        if len(idea_scores) == 0:
+            categories = IdeaScoresCriteria.objects.all()
+            for category in categories:
+                IdeaScores.objects.create(idea=idea, jury=user, category=category, value=0)
+            idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
     serializer = IdeaScoreModelSerializer(idea_scores, many=True)
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
