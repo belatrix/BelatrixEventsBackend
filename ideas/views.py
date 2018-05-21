@@ -479,6 +479,6 @@ def idea_rate(request, idea_id):
             categories = IdeaScoresCriteria.objects.all()
             for category in categories:
                 IdeaScores.objects.create(idea=idea, jury=user, category=category, value=0)
-            idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
+    idea_scores = IdeaScores.objects.filter(idea=idea, jury=user)
     serializer = IdeaScoreModelSerializer(idea_scores, many=True)
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
