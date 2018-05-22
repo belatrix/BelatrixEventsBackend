@@ -1,3 +1,4 @@
+from constance import config
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -251,7 +252,7 @@ def register_attendance(request):
             Attendance.objects.create(meeting=meeting, participant=user)
         except Exception as e:
             print(e)
-            raise NotAcceptable('Participante ya registrado.')
+            raise NotAcceptable(config.PARTICIPANT_REGISTERED)
 
         idea_participant = IdeaParticipant.objects.filter(user=user)
         user_serializer = UserSerializer(user)

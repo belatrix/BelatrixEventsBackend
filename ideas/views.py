@@ -1,4 +1,3 @@
-# encoding: utf-8
 from django.shortcuts import get_object_or_404, get_list_or_404
 from constance import config
 from rest_framework import status
@@ -41,7 +40,7 @@ def idea(request, idea_id):
     if user == idea.author:
         if request.method == 'DELETE':
             idea.delete()
-            content = {'detail': 'Idea eliminada.'}
+            content = {'detail': config.IDEA_DELETED}
             return Response(content, status=status.HTTP_200_OK)
         if request.method == 'PATCH':
             serializer = IdeaUpdateSerializer(data=request.data)
@@ -53,7 +52,7 @@ def idea(request, idea_id):
         serializer = IdeaSerializer(idea)
         return Response(serializer.data, status=status.HTTP_200_OK)
     else:
-        raise NotAcceptable('No puedes editar o borrar esta idea')
+        raise NotAcceptable(config.IDEA_EDIT_RESTRICTION)
 
 
 @api_view(['POST'])
@@ -80,7 +79,7 @@ def idea_create(request):
                 new_idea = Idea.objects.create(author=author, event=event, title=title, description=description)
             except Exception as e:
                 print(e)
-                raise NotAcceptable('Esta idea ya existe.')
+                raise NotAcceptable(config.IDEA_EXISTS)
             serializer = IdeaSerializer(new_idea)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -145,7 +144,7 @@ def idea_register_candidate(request, idea_id):
             IdeaCandidate.objects.create(idea=idea, user=user)
         except Exception as e:
             print(e)
-            raise NotAcceptable("Ya se registró como candidato.")
+            raise NotAcceptable(config.CANDIDATE_ALREADY)
     candidates = IdeaCandidate.objects.filter(idea=idea)
     serializer = IdeaCandidatesSerializer(candidates, many=True)
     return Response({"is_candidate": True,
@@ -170,7 +169,7 @@ def idea_register(request, idea_id):
         if len(previous_records) > 0:
             for record in previous_records:
                 if record.idea.event == idea.event:
-                    raise NotAcceptable('Ya se registro en una idea para este evento.')
+                    raise NotAcceptable(config.PARTICIPANT_IDEA_RESTRICTION)
 
         number_participants = IdeaParticipant.objects.filter(idea=idea).count()
         if config.TEAM_MAX_SIZE > number_participants and idea.is_completed is False:
@@ -181,10 +180,10 @@ def idea_register(request, idea_id):
                     idea.save()
             except Exception as e:
                 print(e)
-                raise NotAcceptable('Ya registrado.')
+                raise NotAcceptable(config.PARTICIPANT_REGISTERED)
         else:
             raise ValidationError(
-                {'detail': 'Se alcanzó el número máximo de participantes por idea o ya está completo.'})
+                {'detail': config.TEAM_MAX_SIZE_MESSAGE})
         participants = IdeaParticipant.objects.filter(idea=idea)
         serializer = IdeaParticipantsSerializer(participants, many=True)
         return Response({"is_registered": True,
@@ -217,9 +216,9 @@ def idea_candidate_approval(request, idea_id):
                         candidate.is_accepted = True
                     except Exception as e:
                         print(e)
-                        raise NotAcceptable("Ya se encuentra inscrito.")
+                        raise NotAcceptable(config.PARTICIPANT_REGISTERED)
                 else:
-                    raise NotAcceptable("Alcanzó el número máximo por equipo.")
+                    raise NotAcceptable(config.TEAM_MAX_SIZE_MESSAGE)
             candidate.save()
 
             participants = IdeaParticipant.objects.filter(idea=idea)
@@ -232,7 +231,7 @@ def idea_candidate_approval(request, idea_id):
             serializer = IdeaParticipantsSerializer(participants, many=True)
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     else:
-        raise NotAcceptable('No eres el autor de la idea.')
+        raise NotAcceptable(config.NOT_IDEA_OWNER)
 
 
 @api_view(['POST'])
@@ -302,9 +301,9 @@ def idea_open(request, idea_id):
             idea.is_completed = False
             idea.save()
         else:
-            raise ValidationError({'detail': 'Número máximo de integrantes alcanzado.'})
+            raise ValidationError({'detail': config.TEAM_MAX_SIZE_MESSAGE})
     else:
-        raise ValidationError({'detail': 'No tienes permiso para marcar como abierto.'})
+        raise ValidationError({'detail': config.NOT_IDEA_OWNER})
     serializer = IdeaSerializer(idea)
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
@@ -325,9 +324,9 @@ def idea_completed(request, idea_id):
             idea.is_completed = True
             idea.save()
         else:
-            raise ValidationError({'detail': 'No tienes el número mínimo de integrantes.'})
+            raise ValidationError({'detail': config.TEAM_MIN_SIZE_MESSAGE})
     else:
-        raise ValidationError({'detail': 'No tienes permiso para marcar como completado.'})
+        raise ValidationError({'detail': config.NOT_IDEA_OWNER})
     serializer = IdeaSerializer(idea)
     return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
@@ -392,7 +391,7 @@ def idea_vote(request, event_id):
                 IdeaVotes.objects.create(event=event, idea=idea, participant=user)
             except Exception as e:
                 print(e)
-                raise NotAcceptable('Usuario ya voto')
+                raise NotAcceptable(config.USER_VOTED)
     event_ideas = []
     ideas = get_list_or_404(Idea, event=event_id, is_valid=True)
     for idea in ideas:
@@ -464,7 +463,7 @@ def idea_rate(request, idea_id):
                 IdeaScores.objects.create(idea=idea, jury=user, category=category, value=value)
             except Exception as e:
                 print(e)
-                raise ValidationError({'detail': 'Ya fue evaluado en esta categoria.'})
+                raise ValidationError({'detail': config.IDEA_EVALUATED})
     if request.method == "PATCH":
         serializer = IdeaScoreSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
