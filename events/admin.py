@@ -8,7 +8,7 @@ class CityAdmin(admin.ModelAdmin):
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'datetime', 'image', 'details', 'is_upcoming', 'is_featured', 'get_cities')
+    list_display = ('title', 'datetime', 'image', 'details', 'is_upcoming', 'is_featured', 'get_cities', 'is_active')
 
 
 class EventParticipantAdmin(admin.ModelAdmin):

@@ -9,15 +9,6 @@
 	}
 }, {
 	"model": "ideas.ideascores",
-	"pk": 2,
-	"fields": {
-		"idea": 1,
-		"jury": 5,
-		"category": 2,
-		"value": 5
-	}
-}, {
-	"model": "ideas.ideascores",
 	"pk": 3,
 	"fields": {
 		"idea": 1,
@@ -42,15 +33,6 @@
 		"jury": 8,
 		"category": 1,
 		"value": 6
-	}
-}, {
-	"model": "ideas.ideascores",
-	"pk": 6,
-	"fields": {
-		"idea": 1,
-		"jury": 8,
-		"category": 2,
-		"value": 3
 	}
 }, {
 	"model": "ideas.ideascores",
