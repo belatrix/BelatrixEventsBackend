@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from events.models import Event
 from participants.models import User
-from participants.permissions import IsJury, IsModerator
+from participants.permissions import IsJury, IsModerator, IsParticipant
 
 from .models import Idea, IdeaVotes, IdeaScores, IdeaScoresCriteria
 from .models import IdeaCandidate, IdeaParticipant
@@ -373,7 +373,7 @@ def my_ideas(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((IsAuthenticatedOrReadOnly, ))
+@permission_classes((IsAuthenticatedOrReadOnly, IsParticipant))
 def idea_vote(request, event_id):
     """
     Endpoint to vote for an idea
