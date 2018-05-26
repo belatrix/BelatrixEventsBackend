@@ -7,9 +7,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.response import Response
 
 from events.models import Event
-from events.permissions import IsAttendee
 from participants.models import User
-from participants.permissions import IsJury, IsModerator
+from participants.permissions import IsJury, IsModerator, IsParticipant
 
 from .models import Idea, IdeaVotes, IdeaScores, IdeaScoresCriteria
 from .models import IdeaCandidate, IdeaParticipant
@@ -374,7 +373,7 @@ def my_ideas(request):
 
 
 @api_view(['GET', 'POST'])
-@permission_classes((IsAuthenticatedOrReadOnly, IsAttendee))
+@permission_classes((IsAuthenticatedOrReadOnly, IsParticipant))
 def idea_vote(request, event_id):
     """
     Endpoint to vote for an idea
@@ -394,7 +393,7 @@ def idea_vote(request, event_id):
                 print(e)
                 raise NotAcceptable(config.USER_VOTED)
     event_ideas = []
-    ideas = get_list_or_404(Idea, event=event_id, is_valid=True, is_completed=True)
+    ideas = get_list_or_404(Idea, event=event_id, is_valid=True)
     for idea in ideas:
         votes = IdeaVotes.objects.filter(idea=idea).count()
         idea_response = {'id': idea.id,
