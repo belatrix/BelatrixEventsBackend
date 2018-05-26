@@ -27,6 +27,7 @@ class UserChangeForm(forms.ModelForm):
 class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
     form = UserChangeForm
     list_display = ("email", "full_name", "is_staff", "is_moderator", "is_jury", "is_password_reset_required")
+    search_fields = ['email', 'full_name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name',
@@ -58,6 +59,7 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
 
 class ParticipantForm(ImportExportMixin, admin.ModelAdmin):
     list_display = ("email", "full_name", "event_id")
+    search_fields = ['email', 'full_name']
 
 
 admin.site.register(Participant, ParticipantForm)

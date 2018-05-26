@@ -29,6 +29,7 @@ class MeetingAdmin(admin.ModelAdmin):
 
 class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('datetime', 'meeting', 'participant')
+    search_fields = ['participant__email']
 
 
 admin.site.register(City, CityAdmin)
