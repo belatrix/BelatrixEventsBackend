@@ -36,7 +36,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_regex = RegexValidator(
         regex=r'^\d{9}$',
         message="Phone number must be entered in the format: '999999999'. Up to 9 digits allowed.")
-    phone_number = models.CharField(validators=[phone_regex], max_length=9, blank=True, null=True)
+    # TODO: improve regexvalidator in order to support current contact mobile formats
+    phone_number = models.CharField(max_length=16, blank=True, null=True)
     role = models.ForeignKey(Role, blank=True, null=True)
 
     is_staff = models.BooleanField(_('is staff'), default=False)
