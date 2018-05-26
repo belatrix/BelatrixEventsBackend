@@ -388,6 +388,9 @@ def idea_vote(request, event_id):
             idea = get_object_or_404(Idea, pk=serializer.validated_data['idea_id'])
             user = request.user
             event = get_object_or_404(Event, pk=event_id)
+            own_idea = IdeaParticipant.objects.filter(idea=idea, user=user).count()
+            if own_idea > 0:
+                raise NotAcceptable("No puedes votar por tu propia idea.")
             try:
                 IdeaVotes.objects.create(event=event, idea=idea, participant=user)
             except Exception as e:
