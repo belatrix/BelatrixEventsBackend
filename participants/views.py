@@ -15,7 +15,7 @@ from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
 
 from .models import User, Participant, Role
-from .permissions import IsModerator, IsStaff
+from .permissions import IsStaff
 from .serializers import UserSerializer, UserCreationSerializer
 from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer, RoleSerializer
 from .serializers import EventProfileSerializer, IdeaProfileSerializer, AttendanceProfileSerializer
@@ -40,7 +40,7 @@ def user_detail(request, user_id):
 
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated, IsModerator))
+@permission_classes((IsAuthenticated, ))
 def user_list(request):
     """
     Returns user list

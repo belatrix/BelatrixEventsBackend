@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from events.models import Event
 from events.permissions import IsAttendee
 from participants.models import User
-from participants.permissions import IsJury, IsModerator, IsParticipant
+from participants.permissions import IsJury, IsModerator
 
 from .models import Idea, IdeaVotes, IdeaScores, IdeaScoresCriteria
 from .models import IdeaCandidate, IdeaParticipant
