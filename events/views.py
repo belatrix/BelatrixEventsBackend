@@ -229,8 +229,18 @@ def meeting_list(request):
     ---
     GET:
         response_serializer: events.serializers.MeetingSerializer
+        parameters:
+            - name: event
+              description: set event_id to filter meetings by event
+              type: string
+              required: false
+              paramType: query
     """
     meetings = Meeting.objects.all().filter(is_active=True)
+    if request.GET.get('event'):
+        event_id = int(request.GET.get('event'))
+        event = get_object_or_404(Event, pk=event_id)
+        meetings = meetings.filter(event=event)
     serializer = MeetingSerializer(meetings, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
