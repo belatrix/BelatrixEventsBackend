@@ -1,11 +1,22 @@
+from constance import config
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import NotAcceptable
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from utils.random_item import random_element_list
-from .models import Event, Interaction, City
-from .serializers import CitySerializer, EventSerializer, InteractionSerializer
+
+from ideas.models import IdeaParticipant
+from ideas.serializers import IdeaParticipantsIdeasSerializer
+from participants.models import User
+from participants.permissions import IsStaff
+from participants.serializers import UserSerializer
+
+from .models import Event, Interaction, City, Meeting, Attendance
+from .serializers import CitySerializer, EventSerializer, InteractionSerializer, MeetingSerializer
+from .serializers import AttendanceRegisterSerializer
 
 
 @api_view(['GET', ])
@@ -32,6 +43,14 @@ def event_detail(request, event_id):
 def event_featured(request):
     """
     Returns event featured
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.filter(is_active=True, is_featured=True)
 
@@ -68,6 +87,14 @@ def event_featured(request):
 def event_interaction(request, event_id):
     """
     Returns event interactions
+    ---
+    GET:
+        parameters:
+            - name: pagination
+              description: set true if you want paginated results
+              type: string
+              required: false
+              paramType: query
     """
     event = get_object_or_404(Event, pk=event_id, is_active=True)
     interactions = Interaction.objects.filter(event=event, is_active=True)
@@ -102,6 +129,14 @@ def event_interaction_vote(request, interaction_id):
 def event_list(request):
     """
     Returns event list
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.all()
     if request.GET.get('city'):
@@ -126,6 +161,14 @@ def event_list(request):
 def event_upcoming_list(request):
     """
     Returns upcoming event list
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.filter(is_upcoming=True, is_active=True)
     if request.GET.get('city'):
@@ -150,6 +193,14 @@ def event_upcoming_list(request):
 def event_past_list(request):
     """
     Returns past event list
+    ---
+    GET:
+        parameters:
+            - name: city
+              description: set city_id to filter events by city
+              type: string
+              required: false
+              paramType: query
     """
     events = Event.objects.filter(is_upcoming=False, is_active=True)
     if request.GET.get('city'):
@@ -168,3 +219,43 @@ def event_past_list(request):
     else:
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, IsStaff))
+def meeting_list(request):
+    """
+    Returns meetings list to register attendance
+    ---
+    GET:
+        response_serializer: events.serializers.MeetingSerializer
+    """
+    meetings = Meeting.objects.all().filter(is_active=True)
+    serializer = MeetingSerializer(meetings, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST', ])
+@permission_classes((IsAuthenticated, IsStaff))
+def register_attendance(request):
+    """
+    Register attendance to a meeting
+    ---
+    POST:
+        serializer: events.serializers.AttendanceRegisterSerializer
+    """
+    serializer = AttendanceRegisterSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        meeting = get_object_or_404(Meeting, pk=serializer.validated_data['meeting_id'])
+        user = get_object_or_404(User, email=serializer.validated_data['user_email'])
+        try:
+            Attendance.objects.create(meeting=meeting, participant=user)
+        except Exception as e:
+            print(e)
+            raise NotAcceptable(config.PARTICIPANT_REGISTERED)
+
+        idea_participant = IdeaParticipant.objects.filter(user=user)
+        user_serializer = UserSerializer(user)
+        idea_serializer = IdeaParticipantsIdeasSerializer(idea_participant, many=True)
+        return Response({'user': user_serializer.data,
+                         'ideas': idea_serializer.data}, status=status.HTTP_200_OK)

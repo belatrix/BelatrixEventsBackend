@@ -1,14 +1,17 @@
 from rest_framework import serializers
 from events.models import Event
 from participants.models import User
+from participants.serializers import RoleSerializer
 
-from .models import Idea, IdeaParticipant, IdeaScores, IdeaScoresCriteria
+from .models import Idea, IdeaCandidate, IdeaParticipant, IdeaScores, IdeaScoresCriteria
 
 
 class UserSerializer(serializers.ModelSerializer):
+    role = RoleSerializer()
+
     class Meta(object):
         model = User
-        fields = ('id', 'first_name', 'last_name', 'email')
+        fields = ('id', 'full_name', 'email', 'phone_number', 'role')
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -30,7 +33,7 @@ class IdeaSerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = Idea
-        fields = ('id', 'author', 'title', 'description', 'event', 'is_completed')
+        fields = ('id', 'author', 'title', 'description', 'event', 'is_completed', 'is_valid')
         depth = 1
 
 
@@ -46,6 +49,26 @@ class IdeaParticipantsSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = IdeaParticipant
         fields = ('user', )
+
+
+class IdeaParticipantsIdeasSerializer(serializers.ModelSerializer):
+    idea = SimpleIdeaSerializer()
+
+    class Meta(object):
+        model = IdeaParticipant
+        fields = ('idea', )
+
+
+class IdeaCandidatesSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta(object):
+        model = IdeaCandidate
+        fields = ('user', )
+
+
+class IdeaCandidateRegistrationSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
 
 
 class IdeaRegistrationSerializer(serializers.Serializer):

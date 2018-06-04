@@ -3,7 +3,11 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from import_export.admin import ImportExportMixin
-from .models import Participant, User
+from .models import Participant, User, Role
+
+
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('name', )
 
 
 class UserChangeForm(forms.ModelForm):
@@ -22,13 +26,18 @@ class UserChangeForm(forms.ModelForm):
 
 class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
     form = UserChangeForm
-    list_display = ("email", "first_name", "last_name", "is_staff", "is_jury", "is_password_reset_required")
+    list_display = ("email", "full_name", "is_staff", "is_moderator", "is_jury", "is_password_reset_required")
+    search_fields = ['email', 'full_name']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name',
-                                      'last_name',)}),
+                                      'last_name',
+                                      'full_name',
+                                      'phone_number',
+                                      'role')}),
         ('Permissions', {'fields': ('is_superuser',
                                     'is_staff',
+                                    'is_moderator',
                                     'is_active',
                                     'is_blocked',
                                     'is_jury',
@@ -49,8 +58,10 @@ class UserCustomAdmin(ImportExportMixin, BaseUserAdmin):
 
 
 class ParticipantForm(ImportExportMixin, admin.ModelAdmin):
-    list_display = ("email", "first_name", "last_name", "event_id")
+    list_display = ("email", "full_name", "event_id")
+    search_fields = ['email', 'full_name']
 
 
 admin.site.register(Participant, ParticipantForm)
+admin.site.register(Role, RoleAdmin)
 admin.site.register(User, UserCustomAdmin)

@@ -1,0 +1,33 @@
+[{
+	"model": "ideas.ideacandidate",
+	"pk": 1,
+	"fields": {
+		"idea": 1,
+		"user": 6,
+		"is_accepted": true
+	}
+}, {
+	"model": "ideas.ideacandidate",
+	"pk": 2,
+	"fields": {
+		"idea": 1,
+		"user": 7,
+		"is_accepted": true
+	}
+}, {
+	"model": "ideas.ideacandidate",
+	"pk": 3,
+	"fields": {
+		"idea": 1,
+		"user": 2,
+		"is_accepted": true
+	}
+}, {
+	"model": "ideas.ideacandidate",
+	"pk": 4,
+	"fields": {
+		"idea": 1,
+		"user": 9,
+		"is_accepted": false
+	}
+}]

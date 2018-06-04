@@ -2,109 +2,133 @@
 	"model": "ideas.idea",
 	"pk": 1,
 	"fields": {
-		"title": "Agro IoT - Sistema en arduino para ver cultivos en tiempo real",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Agro IoT",
+		"description": "Sistema en arduino para ver cultivos en tiempo real",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 2,
 	"fields": {
-		"title": "Auto Check - App para obtener informaci\u00f3n del veh\u00edculo",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Auto Check",
+		"description": "App para obtener informaci\u00f3n del veh\u00edculo",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 3,
 	"fields": {
-		"title": "Encuentrame.pe - B\u00fasqueda de personas por medio de reconocimiento facial",
-		"description": "",
+		"title": "Encuentrame.pe",
+		"description": "B\u00fasqueda de personas por medio de reconocimiento facial",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 4,
 	"fields": {
-		"title": "Social Faith - Sistema para promocionar campa\u00f1as de donaciones para ONG",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Social Faith",
+		"description": "Sistema para promocionar campa\u00f1as de donaciones para ONG",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 5,
 	"fields": {
-		"title": "Entiende.pe - Plataforma para aprender de forma inteligente usando inteligencia artificial",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Entiende.pe",
+		"description": "Plataforma para aprender de forma inteligente usando inteligencia artificial",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 6,
 	"fields": {
-		"title": "Ayudame.pe - Plataforma que sirve como agente de cambio para mejorar la calidad de vida de personas",
-		"description": "",
+		"title": "Ayudame.pe",
+		"description": "Plataforma que sirve como agente de cambio para mejorar la calidad de vida de personas",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 7,
 	"fields": {
-		"title": "Maiden Assistant - App que ofrece recomendaciones basados en la experiencia de la persona",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Maiden Assistant",
+		"description": "App que ofrece recomendaciones basados en la experiencia de la persona",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 8,
 	"fields": {
-		"title": "Estudia Por Gusto - App que ayuda a intercambiar conocimiento de forma interactiva",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Estudia Por Gusto",
+		"description": "App que ayuda a intercambiar conocimiento de forma interactiva",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 9,
 	"fields": {
-		"title": "Blood care - Plataforma para encontrar una red de donantes de sangre voluntarios",
-		"description": "",
+		"title": "Blood care",
+		"description": "Plataforma para encontrar una red de donantes de sangre voluntarios",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 10,
 	"fields": {
-		"title": "Trappist - Plataforma que nos ayuda a optimizar el tiempo de espera en los bancos usando sensores",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Trappist",
+		"description": "Plataforma que nos ayuda a optimizar el tiempo de espera en los bancos usando sensores",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 11,
 	"fields": {
-		"title": "Ayllu FX - App para conectar y notificar personas para intercambiar divisas",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Ayllu FX",
+		"description": "App para conectar y notificar personas para intercambiar divisas",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 12,
 	"fields": {
-		"title": "I do it - Plataforma para conectar personas que requieren servicios de utilidad",
-		"description": "",
+		"title": "I do it",
+		"description": "Plataforma para conectar personas que requieren servicios de utilidad",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
@@ -112,178 +136,350 @@
 	"fields": {
 		"title": "Aprende, Responde, Gana",
 		"description": "",
-		"author": 1,
-		"event": 19
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 14,
 	"fields": {
-		"title": "YoTeAyudo - App para voluntarios con el objetivo de ayudar y colaborar con los dem\u00e1s",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "YoTeAyudo",
+		"description": "App para voluntarios con el objetivo de ayudar y colaborar con los dem\u00e1s",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 15,
 	"fields": {
-		"title": "Parqueate - App para buscar zonas de estacionamiento",
-		"description": "",
+		"title": "Parqueate",
+		"description": "App para buscar zonas de estacionamiento",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 16,
 	"fields": {
-		"title": "ReciclaPe - App m\u00f3vil para mejorar el proceso de reciclaje",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "ReciclaPe",
+		"description": "App m\u00f3vil para mejorar el proceso de reciclaje",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 17,
 	"fields": {
-		"title": "EcoFriends - App de retos ecol\u00f3gicos para minimizar el impacto con la naturaleza",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "EcoFriends",
+		"description": "App de retos ecol\u00f3gicos para minimizar el impacto con la naturaleza",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 18,
 	"fields": {
-		"title": "Co-Aprendamos.pe - Retos para aprender",
-		"description": "",
+		"title": "Co-Aprendamos.pe",
+		"description": "Retos para aprender",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 19,
 	"fields": {
-		"title": "Smart Cacao - IOT aplicado a la agricultura, automatizar parcelas agricolas",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Smart Cacao",
+		"description": "IOT aplicado a la agricultura, automatizar parcelas agricolas",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 20,
 	"fields": {
-		"title": "You Study - Comunidad de aprendizaje a trav\u00e9s de grupos de estudio",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "You Study",
+		"description": "Comunidad de aprendizaje a trav\u00e9s de grupos de estudio",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 21,
 	"fields": {
-		"title": "Regala una Sonrisa - Plataforma que gestiona donaciones de los usuarios para distribuir a ONG",
-		"description": "",
+		"title": "Regala una Sonrisa",
+		"description": "Plataforma que gestiona donaciones de los usuarios para distribuir a ONG",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 22,
 	"fields": {
-		"title": "YoTambien - Sistema de capacitaci\u00f3n para personas con discapacidades",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "YoTambien",
+		"description": "Sistema de capacitaci\u00f3n para personas con discapacidades",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 23,
 	"fields": {
-		"title": "Hogar SOS - Marketplace de servicios para el hogar, como carpinter\u00eda, gasfiter\u00eda, entre otros",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Hogar SOS",
+		"description": "Marketplace de servicios para el hogar, como carpinter\u00eda, gasfiter\u00eda, entre otros",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 24,
 	"fields": {
-		"title": "iChancon - Red social para colaborar en la resoluci\u00f3n de problemas acad\u00e9micos",
-		"description": "",
+		"title": "iChancon",
+		"description": "Red social para colaborar en la resoluci\u00f3n de problemas acad\u00e9micos",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 25,
 	"fields": {
-		"title": "iMetrics - Medidor de agua inteligente conectado a una red neural para optimizar facturaciones",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "iMetrics",
+		"description": "Medidor de agua inteligente conectado a una red neural para optimizar facturaciones",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 26,
 	"fields": {
-		"title": "Mi Primer App - Participaci\u00f3n en proyectos para estudiantes de postgrado",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Mi Primer App",
+		"description": "Participaci\u00f3n en proyectos para estudiantes de postgrado",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 27,
 	"fields": {
-		"title": "B\u00fasqueda de Personas Perdidas - Plataforma para buscar personas por medio de reconocimiento facial",
-		"description": "",
+		"title": "B\u00fasqueda de Personas Perdidas",
+		"description": "Plataforma para buscar personas por medio de reconocimiento facial",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 28,
 	"fields": {
-		"title": "Amor a Sofia - App para ayuda a los postulantes a universidades",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Amor a Sofia",
+		"description": "App para ayuda a los postulantes a universidades",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": true
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 29,
 	"fields": {
-		"title": "Medical Chain - Historiales m\u00e9dicos registrados en una red blockchain",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Medical Chain",
+		"description": "Historiales m\u00e9dicos registrados en una red blockchain",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 30,
 	"fields": {
-		"title": "Gento - Plataforma que cambia la forma de como compramos ropa por medio de machine learning",
-		"description": "",
+		"title": "Gento",
+		"description": "Plataforma que cambia la forma de como compramos ropa por medio de machine learning",
 		"author": 4,
-		"event": 19
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 31,
 	"fields": {
-		"title": "Sportify - App social para buscar gente que quiera jugar y este cerca de ti",
-		"description": "",
-		"author": 1,
-		"event": 19
+		"title": "Sportify",
+		"description": "App social para buscar gente que quiera jugar y este cerca de ti",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
 	}
 }, {
 	"model": "ideas.idea",
 	"pk": 32,
 	"fields": {
-		"title": "Dale Go - App social de eventos deportivos",
-		"description": "",
-		"author": 2,
-		"event": 19
+		"title": "Dale Go",
+		"description": "App social de eventos deportivos",
+		"author": 4,
+		"event": 2,
+		"is_completed": false,
+		"is_valid": false
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 33,
+	"fields": {
+		"title": "New Idea - Test",
+		"description": "Test description",
+		"author": 14,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": false
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 34,
+	"fields": {
+		"title": "new idea",
+		"description": "Test descrip",
+		"author": 14,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 35,
+	"fields": {
+		"title": "Test title",
+		"description": "Loren Ipsum is simply dummy text of the printing and typesetting industry. Loren Ipsum has been the industry\u2019s standar dummy....",
+		"author": 14,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": false
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 36,
+	"fields": {
+		"title": "new iOT idea",
+		"description": "Lorem Ipsum",
+		"author": 14,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": false
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 37,
+	"fields": {
+		"title": "New idea",
+		"description": "Test",
+		"author": 31,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": false
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 38,
+	"fields": {
+		"title": "J\u00fantate",
+		"description": "Las juntas son un medio mediante el cual muchos peruanos han logrado reunir sumas importantes de dinero sin necesidad de acceder a un cr\u00e9dito financiero. Creo que debemos automatizarla para poder realizar juntas con todo tipo de personas a pesar de las distancias f\u00edsicas.",
+		"author": 34,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 39,
+	"fields": {
+		"title": "An\u00e1lisis Financiero Personal con IA",
+		"description": "La idea se centra en el uso de la IA para analizar las deudas y el comportamiento de pago de una persona en el sistema financiero, y con datos que ingrese el usuario (como ingresos y gastos), se podr\u00e1 concluir con consejos para el usuario a fin de reducir su riesgo de impago o mejorara el perfil crediticio.",
+		"author": 33,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 40,
+	"fields": {
+		"title": "notificaciones TC",
+		"description": "Notificaciones al usar tu tarjeta de cr\u00e9dito o d\u00e9bito",
+		"author": 32,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 41,
+	"fields": {
+		"title": "Inversi\u00f3n en L\u00ednea - Fondos de Factoring / Sectores",
+		"description": "El objetivo es que las personas naturales puedan invertir desde sus hogares en fondos de factoring o confirming en empresas corporativas, grandes o mediana empresa. El sentido es tener una alternativa de inversi\u00f3n en fondos de inversi\u00f3n privados como p\u00fablicos.",
+		"author": 35,
+		"event": 19,
+		"is_completed": false,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 42,
+	"fields": {
+		"title": "Yotepresto.pe",
+		"description": "Una plataforma digital que permite interactuar a personas que necesitan financiaci\u00f3n con inversores que quieran rentabilizar sus ahorros prestando su dinero.",
+		"author": 36,
+		"event": 19,
+		"is_completed": true,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 43,
+	"fields": {
+		"title": "Paga.Pe",
+		"description": "Una plataforma en donde los prestamos entre personas naturales es registrada, pudiendo generar una cobranza automatizada, creando un historial crediticio de microprestamos para no bancarizados",
+		"author": 37,
+		"event": 19,
+		"is_completed": true,
+		"is_valid": true
+	}
+}, {
+	"model": "ideas.idea",
+	"pk": 44,
+	"fields": {
+		"title": "Minqa",
+		"description": "Aplicaci\u00f3n que permitir\u00e1 conectar a organizaciones peruanas con aquellas personas interesadas en apoyarlas mediante donaciones monetarias",
+		"author": 38,
+		"event": 19,
+		"is_completed": true,
+		"is_valid": true
 	}
 }]

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Idea</th>
+            <th>Jury</th>
+            <th>Category</th>
+            <th>Weight</th>
+            <th>Value</th>
+        </tr>
+        {% for register in results %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ register.idea.title }}</td>
+            <td>{{ register.jury.full_name }}</td>
+            <td>{{ register.category }}</td>
+            <td>{{ register.category.weight }}</td>
+            <td>{{ register.value }}</td>
+        </tr>
+    {% empty %}
+        <tr><td>no content.</td></tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'reports:index' %}">Back</a></p>
+{% endblock content %}

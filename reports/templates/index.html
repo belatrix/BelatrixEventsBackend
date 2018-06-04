@@ -1,15 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Belatrix Events Reports</title>
-</head>
+{% extends 'base.html' %}
+{% block content %}
 <h1>Reports</h1>
-<p>
-    <ul><li><a href="#">Participants by Projects</a></li></ul>
-</p>
-<body>
-
+<div>
+    <h2>Events</h2>
+    <p>
+        <ul><li><a href="{% url 'reports:event_information' event_id=19 %}">Summary Hackatrix 2018</a></li></ul>
+        <ul><li><a href="{% url 'reports:idea_list' event_id=19 %}">Hackatrix 2018 Valid Ideas</a></li></ul>
+        <ul><li><a href="{% url 'reports:meeting_list' %}">Meetings attendance</a></li></ul>
+    </p>
+</div>
+<div>
+    <h2>Ideas</h2>
+    <p>
+        <ul><li><a href="{% url 'reports:ideas_in_development' %}">Ideas in development</a></li></ul>
+        <ul><li><a href="{% url 'reports:ideas_vote_results' %}">Ideas Votes Results</a></li></ul>
+        <ul><li><a href="{% url 'reports:idea_jury_results' %}">Ideas Jury Results</a></li></ul>
+    </p>
+</div>
+<div>
+    <h2>Participants</h2>
+    <p>
+        <ul><li><a href="{% url 'reports:participants_idea' %}">Participants by Projects</a></li></ul>
+    </p>
+</div>
+{% endblock content %}

@@ -1,6 +1,8 @@
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
+from django.contrib.auth import logout
 from django.contrib.sites.models import Site
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from re import match as regex_match
 from rest_framework import status
@@ -11,9 +13,16 @@ from rest_framework.exceptions import NotAcceptable, ParseError, ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.response import Response
-from .models import User, Participant
-from .serializers import UserSerializer, UserCreationSerializer, UserUpdatePasswordSerializer
-from events.models import Event, EventParticipant
+
+from .models import User, Participant, Role
+from .permissions import IsStaff
+from .serializers import UserSerializer, UserCreationSerializer
+from .serializers import UserUpdatePasswordSerializer, UserProfileSerializer, RoleSerializer
+from .serializers import EventProfileSerializer, IdeaProfileSerializer, AttendanceProfileSerializer
+from .serializers import AuthorProfileSerializer
+
+from events.models import Event, EventParticipant, Attendance
+from ideas.models import IdeaCandidate, IdeaParticipant, Idea
 
 
 @api_view(['GET', ])
@@ -28,6 +37,76 @@ def user_detail(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     serializer = UserSerializer(user)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+def user_list(request):
+    """
+    Returns user list
+    ---
+    GET:
+        response_serializer: participants.serializers.UserSerializer
+        parameters:
+            - name: search
+              description: search terms
+              type: string
+              required: false
+              paramType: query
+    """
+    users = User.objects.filter(is_active=True)
+
+    if request.GET.get('search'):
+
+        full_search_terms = request.GET.get('search')
+        search_terms_array = full_search_terms.split()
+
+        if len(search_terms_array) > 0:
+            for term in search_terms_array:
+                users = users.filter(Q(full_name__icontains=term) | Q(email__icontains=term))
+
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def user_profile(request):
+    """
+    Returns user profile
+    ---
+    GET:
+        response_serializer: participants.serializers.UserSerializer
+        parameters:
+            - name: id
+              description: user id
+              type: int
+              required: false
+              paramType: query
+    """
+    if request.GET.get('id'):
+        user = get_object_or_404(User, pk=request.GET.get('id'))
+    else:
+        user = request.user
+
+    events = EventParticipant.objects.filter(participant=user)
+    events_serializer = EventProfileSerializer(events, many=True)
+    candidate_ideas = IdeaCandidate.objects.filter(user=user)
+    candidate_serializer = IdeaProfileSerializer(candidate_ideas, many=True)
+    participant_ideas = IdeaParticipant.objects.filter(user=user)
+    participant_serializer = IdeaProfileSerializer(participant_ideas, many=True)
+    attendances = Attendance.objects.filter(participant=user)
+    attendance_serializer = AttendanceProfileSerializer(attendances, many=True)
+    author_ideas = Idea.objects.filter(author=user)
+    author_serializer = AuthorProfileSerializer(author_ideas, many=True)
+    serializer = UserSerializer(user)
+
+    return Response({"user": serializer.data,
+                     "events": events_serializer.data,
+                     "candidate": candidate_serializer.data,
+                     "participant": participant_serializer.data,
+                     "author": author_serializer.data,
+                     "attendance": attendance_serializer.data}, status=status.HTTP_200_OK)
 
 
 @api_view(['POST', ])
@@ -62,6 +141,8 @@ def user_creation(request):
         if len(participant) == 1:
             event = Event.objects.filter(pk=participant[0].event_id)
             if len(event) == 1:
+                new_user.full_name = participant[0].full_name
+                new_user.save()
                 EventParticipant.objects.create(event=event[0], participant=new_user)
 
         try:
@@ -78,7 +159,44 @@ def user_creation(request):
 
 @api_view(['PATCH', ])
 @permission_classes((IsAuthenticated, ))
-def user_update_password(request, user_id):
+def user_update(request):
+    """
+    Update user data
+    ---
+    PATCH:
+        serializer: participants.serializers.UserProfileSerializer
+        response_serializer: participants.serializers.UserSerializer
+    """
+    if request.method == 'PATCH':
+        serializer = UserProfileSerializer(data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            current_user = request.user
+
+            if 'full_name' in serializer.validated_data:
+                current_user.full_name = serializer.validated_data['full_name']
+            else:
+                current_user.full_name = None
+
+            if 'phone_number' in serializer.validated_data:
+                current_user.phone_number = serializer.validated_data['phone_number']
+            else:
+                current_user.phone_number = None
+
+            if 'role_id' in serializer.validated_data:
+                role_id = serializer.validated_data['role_id']
+                current_user.role = Role.objects.get(pk=role_id)
+            else:
+                current_user.role = None
+
+            current_user.save()
+            serializer = UserSerializer(current_user)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['PATCH', ])
+@permission_classes((IsAuthenticated, ))
+def user_update_password(request):
     """
     Update user password
     ---
@@ -93,7 +211,7 @@ def user_update_password(request, user_id):
             current_password = serializer.validated_data['current_password']
             new_password = serializer.validated_data['new_password']
 
-        user = get_object_or_404(User, pk=user_id)
+        user = request.user
 
         if current_password == new_password:
             raise ValidationError('Passwords iguales')
@@ -167,6 +285,20 @@ def user_password_recovery_confirmation(request, user_uuid):
         return Response(data)
 
 
+@api_view(['GET', ])
+@permission_classes((IsAuthenticated, ))
+def user_roles(request):
+    """
+    Return user roles
+    ---
+    GET:
+        response_serializer: participants.serializers.RoleSerializer
+    """
+    roles = Role.objects.all()
+    serializer = RoleSerializer(roles, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         """
@@ -186,5 +318,37 @@ class CustomAuthToken(ObtainAuthToken):
             'email': user.email,
             'is_staff': user.is_staff,
             'is_jury': user.is_jury,
+            'is_moderator': user.is_moderator,
+            'is_active': user.is_active,
+            'is_blocked': user.is_blocked,
             'is_password_reset_required': user.is_password_reset_required,
         })
+
+
+@api_view(['POST', ])
+@permission_classes((IsAuthenticated, ))
+def user_logout(request):
+    """
+    Logout current user
+    """
+    logout(request)
+    return Response(status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['PATCH', ])
+@permission_classes((IsStaff, ))
+def user_activation(request, user_id):
+    """
+    Deactivate user
+    ---
+    PATCH:
+        response_serializer: participants.serializers.UserSerializer
+    """
+    user = get_object_or_404(User, pk=user_id)
+    if user.is_active:
+        user.is_active = False
+    else:
+        user.is_active = True
+    user.save()
+    serializer = UserSerializer(user)
+    return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

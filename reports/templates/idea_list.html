@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author email</th>
+            <th>Description</th>
+            <th>Is Completed?</th>
+            <th>Is Valid?</th>
+        </tr>
+        {% for register in idea_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ register.title }}</td>
+            <td>{{ register.author.email }}</td>
+            <td>{{ register.description }}</td>
+            <td>{{ register.is_completed }}</td>
+            <td>{{ register.is_valid }}</td>
+        </tr>
+    {% empty %}
+        <tr><td>no content.</td></tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'reports:index' %}">Back</a></p>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Idea Title</th>
+            <th>Votes</th>
+        </tr>
+        {% for register in results %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ register.idea__title }}</td>
+            <td>{{ register.total }}</td>
+        </tr>
+    {% empty %}
+        <tr><td>no content.</td></tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'reports:index' %}">Back</a></p>
+{% endblock content %}

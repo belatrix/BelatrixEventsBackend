@@ -1,3 +1,4 @@
+# encoding: utf-8
 """
 Django settings for BxEvents project.
 
@@ -90,6 +91,24 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_CONFIG = {
     'TEAM_MIN_SIZE': (5, 'Mininum number of team members.', int),
     'TEAM_MAX_SIZE': (8, 'Maximum number of team members.', int),
+    'PARTICIPANT_REGISTERED': ('El participante ya está registrado',
+                               'Participant already registered', str),
+    'IDEA_DELETED': ('Idea eliminada', 'Idea deletion message', str),
+    'IDEA_EDIT_RESTRICTION': ('No puedes editar o borrar esta idea',
+                              'Idea edit or delete restriction', str),
+    'IDEA_EXISTS': ('Esta idea ya existe', 'Idea already exists', str),
+    'CANDIDATE_ALREADY': ('Ya se registró como candidato',
+                          'User already register as a candidate', str),
+    'PARTICIPANT_IDEA_RESTRICTION': ('Ya se registro en una idea para este evento.',
+                                     'Restriction message to avoid multiple registers for ideas in same event', str),
+    'TEAM_MAX_SIZE_MESSAGE': ('Se alcanzó el número máximo de participantes por idea o ya está completo.',
+                              'Team max size reached', str),
+    'TEAM_MIN_SIZE_MESSAGE': ('No se tiene el número mínimo de integrantes.',
+                              'Team min size not reached', str),
+    'NOT_IDEA_OWNER': ('No eres el autor de la idea.', 'Not owner idea message', str),
+    'USER_VOTED': ('Ya has registrado previamente tu voto', 'Message to user who already voted', str),
+    'IDEA_EVALUATED': ('Esta idea ya fue evaluada en esta categoría',
+                       'Message to jury who already evaluate this idea in this category', str)
 }
 
 # Database
@@ -135,7 +154,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 

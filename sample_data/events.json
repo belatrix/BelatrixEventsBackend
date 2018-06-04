@@ -160,10 +160,10 @@
 		"has_interactions": false,
 		"interaction_text": "",
 		"interaction_confirmation_text": "",
-		"is_featured": true,
+		"is_featured": false,
 		"is_upcoming": false,
 		"is_interaction_active": false,
-		"is_active": false,
+		"is_active": true,
 		"city": [3]
 	}
 }, {
@@ -172,7 +172,7 @@
 	"fields": {
 		"title": "Hackatrix Lima 2018",
 		"image": "http://i.imgur.com/bTHbsu5.jpg",
-		"datetime": "2018-06-02T14:00:00Z",
+		"datetime": "2018-05-26T14:00:00Z",
 		"address": "Oficinas BCP",
 		"details": "Es la Hackathon anual de Belatrix para promover el desarrollo colectivo de ideas sociales e innovadoras en un ambiente de diversi\u00f3n y adrenalina pura.",
 		"register_link": "http://hackatrix.belatrixsf.com/",

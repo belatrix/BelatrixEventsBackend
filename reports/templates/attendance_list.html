@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Meeting Name</th>
+            <th>Participant fullname</th>
+            <th>Participant email</th>
+            <th>Register datetime</th>
+        </tr>
+        {% for register in attendance_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ register.meeting.name }}</td>
+            <td>{{ register.participant.full_name }}</td>
+            <td>{{ register.participant.email }}</td>
+            <td>{{ register.datetime }}</td>
+        </tr>
+    {% empty %}
+        <tr><td>no content.</td></tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'reports:meeting_list' %}">Back</a></p>
+{% endblock content %}
